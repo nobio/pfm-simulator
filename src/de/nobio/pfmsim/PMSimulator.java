@@ -8,10 +8,6 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-
-import de.nobio.pfmsim.config.ObjectFactory;
 import de.nobio.pfmsim.config.Resource;
 import de.nobio.pfmsim.config.Simulation;
 import de.nobio.pfmsim.config.Skill;

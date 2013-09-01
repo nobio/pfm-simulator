@@ -3,8 +3,6 @@ package de.nobio.pfmsim.resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-
 import org.w3c.dom.Element;
 
 import de.nobio.pfmsim.Util;
@@ -30,14 +28,14 @@ public class ResourceSetupHandler {
 
         List<Element> elTeams = Util.getChildren("team", resourceConfig);
         Util.log("loaded teams: " + elTeams);
-        
+
         for (Element elTeam : elTeams) {
             Util.log(elTeam);
             Team team = new Team();
             teams.add(team);
-            
+
             // load resources for that team
-            
+
         }
 
         return resources;

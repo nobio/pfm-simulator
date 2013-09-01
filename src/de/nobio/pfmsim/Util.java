@@ -22,22 +22,20 @@ public final class Util {
         }
         return returnValue;
     }
-    
+
     public final static List<Element> getChildren(String tagname, Element element) {
 
-        List<Element>  returnValue = new ArrayList<Element>();
+        List<Element> returnValue = new ArrayList<Element>();
         NodeList nodelist = element.getChildNodes();
         for (int n = 0; n < nodelist.getLength(); n++) {
             Node node = nodelist.item(n);
 
             if (node.getNodeType() == Node.ELEMENT_NODE && tagname.equals(node.getNodeName())) {
-                returnValue.add((Element)node);
+                returnValue.add((Element) node);
             }
         }
         return returnValue;
     }
-    
-    
 
     public final static void log(Object message) {
         System.out.println("DEBUG " + message.toString());

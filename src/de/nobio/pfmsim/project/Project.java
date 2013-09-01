@@ -4,10 +4,10 @@ import de.nobio.pfmsim.TimeClock;
 
 public class Project implements TimeClock {
 
-	@Override
-	public void tick(Long clock) {
-		// TODO Auto-generated method stub
+    @Override
+    public void tick(Long clock) {
+        // TODO Auto-generated method stub
 
-	}
+    }
 
 }
