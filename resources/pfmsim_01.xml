@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simulation>
+	<iterations>200</iterations>
+	<availability>0.7</availability>
+	<team id="Middleware">
+		<resource count="1">
+			<availability>0.9</availability>
+			<skills>
+				<skill id="jd">Java Developer</skill>
+				<skill id="dd">Database Designer</skill>
+			</skills>
+		</resource>
+		<resource count="1">
+			<skills>
+				<skill id="cd">Caas Developer</skill>
+			</skills>
+		</resource>
+		<resource count="4">
+			<skills>
+				<skill id="jd">Java Developer</skill>
+			</skills>
+		</resource>
+	</team>
+	<team id="Web">
+		<resource count="1">
+			<availabilityX>0.9</availabilityX>
+			<skills>
+				<skill id="jd">Java Developer</skill>
+				<skill id="dd">Database Designer</skill>
+			</skills>
+		</resource>
+		<resource count="4">
+			<skills>
+				<skill id="jd">Java Developer</skill>
+			</skills>
+		</resource>
+	</team>
+	<portfolio>
+	</portfolio>
+</simulation>
