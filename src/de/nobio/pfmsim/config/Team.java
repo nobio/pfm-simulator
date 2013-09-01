@@ -5,7 +5,6 @@
 // Generated on: 2013.09.01 at 02:14:43 PM MESZ 
 //
 
-
 package de.nobio.pfmsim.config;
 
 import java.util.ArrayList;
@@ -15,11 +14,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for team complex type.
+ * <p>
+ * Java class for team complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="team">
@@ -36,41 +37,44 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "team", propOrder = {
-    "resources"
-})
+@XmlType(name = "team", propOrder = { "resource" })
 public class Team {
 
     @XmlElement(nillable = true)
-    protected List<Resource> resources;
+    protected List<Resource> resource;
 
     /**
      * Gets the value of the resources property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the resources property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the resources property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getResources().add(newItem);
+     * getResources().add(newItem);
      * </pre>
      * 
      * 
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Resource }
+     * Objects of the following type(s) are allowed in the list {@link Resource }
      * 
      * 
      */
     public List<Resource> getResources() {
-        if (resources == null) {
-            resources = new ArrayList<Resource>();
+        if (resource == null) {
+            resource = new ArrayList<Resource>();
         }
-        return this.resources;
+        return this.resource;
+    }
+
+    @Override
+    public String toString() {
+        return "Team [resource=" + resource + "]";
     }
 
 }

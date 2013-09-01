@@ -1,65 +1,94 @@
 package de.nobio.pfmsim;
 
 import java.io.File;
-import java.io.IOException;
-import java.util.List;
 import java.util.Properties;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
+import javax.xml.bind.Unmarshaller;
 
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
-import de.nobio.pfmsim.project.Project;
-import de.nobio.pfmsim.project.ProjectSetupHandler;
-import de.nobio.pfmsim.resource.Resource;
-import de.nobio.pfmsim.resource.ResourceSetupHandler;
+import de.nobio.pfmsim.config.ObjectFactory;
+import de.nobio.pfmsim.config.Resource;
+import de.nobio.pfmsim.config.Simulation;
+import de.nobio.pfmsim.config.Skill;
+import de.nobio.pfmsim.config.Team;
 
 public class PMSimulator {
 
     public static final Properties props = new Properties();
 
-    public static void main(String[] args) throws ParserConfigurationException, SAXException, IOException {
+    public static void main(String[] args) throws JAXBException {
         if (args == null || args.length == 0) {
             System.err.println("provide path to properties-xml file");
             System.exit(-1);
         }
-
-        Document doc = readXMLProperties(args);
-
-        Node simulation = doc.getFirstChild();
-
-        Element it = (Element) doc.getElementsByTagName("iterations").item(0);
-        Long iterations = Long.parseLong(it.getTextContent());
-        Element resources = (Element) doc.getElementsByTagName("resources").item(0);
-        Element portfolio = (Element) doc.getElementsByTagName("portfolio").item(0);
+        // testDataStructure();
+        Simulation cfgSimulation = loadConfiguration(args);
 
         // setup all stuff
-        setup(simulation, resources, portfolio);
+        setup(cfgSimulation);
 
         // let's go: start main loop
-        mainLoop(iterations);
+        // mainLoop(iterations);
     }
 
-    private static Document readXMLProperties(String[] args) throws ParserConfigurationException, SAXException, IOException {
-        File fXmlFile = new File(args[0]);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse(fXmlFile);
-        doc.getDocumentElement().normalize();
-        return doc;
+    private static Simulation loadConfiguration(String[] args) throws JAXBException {
+        File file = new File(args[0]);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Simulation.class);
+
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        Simulation cfgSimulation = (Simulation) jaxbUnmarshaller.unmarshal(file);
+        Util.log(cfgSimulation);
+        return cfgSimulation;
     }
 
-    private static void setup(Node simulation, Element resourceConfig, Element portfolioConfig) {
-        List<Resource> resources = new ResourceSetupHandler().setup(resourceConfig);
-        List<Project> projects = new ProjectSetupHandler().setup(resourceConfig);
+    private static void setup(Simulation cfgSimulation) {
+        // List<Resource> resources = new
+        // ResourceSetupHandler().setup(resourceConfig);
+        // List<Project> projects = new
+        // ProjectSetupHandler().setup(resourceConfig);
     }
 
     private static void mainLoop(Long iterations) {
         Util.log(iterations);
+    }
+
+    private static void testDataStructure() {
+
+        try {
+            Skill skill1 = new Skill();
+            skill1.setId("jd");
+            skill1.setName("Java Developer");
+            Skill skill2 = new Skill();
+            skill2.setId("od");
+            skill2.setName("Objective-C Developer");
+
+            Resource resource = new Resource();
+            resource.setAvailability(0.7);
+            resource.getSkills().add(skill1);
+            resource.getSkills().add(skill2);
+
+            Team team1 = new Team();
+            team1.getResources().add(resource);
+            Team team2 = new Team();
+            team2.getResources().add(resource);
+
+            Simulation simulation = new Simulation();
+            simulation.setAvailability(0.756);
+            simulation.setIterations(101L);
+            simulation.getTeams().add(team1);
+            simulation.getTeams().add(team2);
+
+            JAXBContext jaxbContext = JAXBContext.newInstance(Simulation.class);
+            Marshaller marshaller = jaxbContext.createMarshaller();
+            marshaller.setProperty("jaxb.formatted.output", Boolean.TRUE);
+            marshaller.marshal(simulation, System.out);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

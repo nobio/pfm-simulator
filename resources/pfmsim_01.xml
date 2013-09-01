@@ -5,34 +5,24 @@
 	<team id="Middleware">
 		<resource count="1">
 			<availability>0.9</availability>
-			<skills>
-				<skill id="jd">Java Developer</skill>
-				<skill id="dd">Database Designer</skill>
-			</skills>
+			<skill id="jd">Java Developer</skill>
+			<skill id="dd">Database Designer</skill>
 		</resource>
 		<resource count="1">
-			<skills>
-				<skill id="cd">Caas Developer</skill>
-			</skills>
+			<skill id="cd">Caas Developer</skill>
 		</resource>
 		<resource count="4">
-			<skills>
-				<skill id="jd">Java Developer</skill>
-			</skills>
+			<skill id="jd">Java Developer</skill>
 		</resource>
 	</team>
 	<team id="Web">
 		<resource count="1">
 			<availabilityX>0.9</availabilityX>
-			<skills>
-				<skill id="jd">Java Developer</skill>
-				<skill id="dd">Database Designer</skill>
-			</skills>
+			<skill id="jd">Java Developer</skill>
+			<skill id="dd">Database Designer</skill>
 		</resource>
 		<resource count="4">
-			<skills>
-				<skill id="jd">Java Developer</skill>
-			</skills>
+			<skill id="jd">Java Developer</skill>
 		</resource>
 	</team>
 	<portfolio>

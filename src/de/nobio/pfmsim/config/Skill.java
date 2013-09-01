@@ -5,18 +5,21 @@
 // Generated on: 2013.09.01 at 02:14:43 PM MESZ 
 //
 
-
 package de.nobio.pfmsim.config;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlType;
-
+import javax.xml.bind.annotation.XmlValue;
 
 /**
- * <p>Java class for skill complex type.
+ * <p>
+ * Java class for skill complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="skill">
@@ -34,24 +37,20 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "skill", propOrder = {
-    "id",
-    "skill"
-})
+@XmlType(name = "skill", propOrder = { "id", "name" })
 public class Skill {
-
-    protected Long id;
-    protected String skill;
+    @XmlAttribute
+    protected String id;
+    @XmlValue
+    protected String name;
 
     /**
      * Gets the value of the id property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Long }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
@@ -59,36 +58,37 @@ public class Skill {
      * Sets the value of the id property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Long }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
-    public void setId(Long value) {
-        this.id = value;
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
      * Gets the value of the skill property.
      * 
-     * @return
-     *     possible object is
-     *     {@link String }
-     *     
+     * @return possible object is {@link String }
+     * 
      */
-    public String getSkill() {
-        return skill;
+    public String getName() {
+        return name;
     }
 
     /**
      * Sets the value of the skill property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link String }
-     *     
+     *            allowed object is {@link String }
+     * 
      */
-    public void setSkill(String value) {
-        this.skill = value;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Skill [id=" + id + ", name=" + name + "]";
     }
 
 }

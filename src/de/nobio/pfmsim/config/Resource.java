@@ -5,7 +5,6 @@
 // Generated on: 2013.09.01 at 02:14:43 PM MESZ 
 //
 
-
 package de.nobio.pfmsim.config;
 
 import java.util.ArrayList;
@@ -15,11 +14,13 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 /**
- * <p>Java class for resource complex type.
+ * <p>
+ * Java class for resource complex type.
  * 
- * <p>The following schema fragment specifies the expected content contained within this class.
+ * <p>
+ * The following schema fragment specifies the expected content contained within
+ * this class.
  * 
  * <pre>
  * &lt;complexType name="resource">
@@ -37,23 +38,18 @@ import javax.xml.bind.annotation.XmlType;
  * 
  */
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "resource", propOrder = {
-    "availability",
-    "skills"
-})
+@XmlType(name = "resource", propOrder = { "availability", "skill" })
 public class Resource {
 
     protected Double availability;
     @XmlElement(nillable = true)
-    protected List<Skill> skills;
+    protected List<Skill> skill;
 
     /**
      * Gets the value of the availability property.
      * 
-     * @return
-     *     possible object is
-     *     {@link Double }
-     *     
+     * @return possible object is {@link Double }
+     * 
      */
     public Double getAvailability() {
         return availability;
@@ -63,41 +59,45 @@ public class Resource {
      * Sets the value of the availability property.
      * 
      * @param value
-     *     allowed object is
-     *     {@link Double }
-     *     
+     *            allowed object is {@link Double }
+     * 
      */
-    public void setAvailability(Double value) {
-        this.availability = value;
+    public void setAvailability(Double availability) {
+        this.availability = availability;
     }
 
     /**
      * Gets the value of the skills property.
      * 
      * <p>
-     * This accessor method returns a reference to the live list,
-     * not a snapshot. Therefore any modification you make to the
-     * returned list will be present inside the JAXB object.
-     * This is why there is not a <CODE>set</CODE> method for the skills property.
+     * This accessor method returns a reference to the live list, not a
+     * snapshot. Therefore any modification you make to the returned list will
+     * be present inside the JAXB object. This is why there is not a
+     * <CODE>set</CODE> method for the skills property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
+     * 
      * <pre>
-     *    getSkills().add(newItem);
+     * getSkills().add(newItem);
      * </pre>
      * 
      * 
      * <p>
-     * Objects of the following type(s) are allowed in the list
-     * {@link Skill }
+     * Objects of the following type(s) are allowed in the list {@link Skill }
      * 
      * 
      */
     public List<Skill> getSkills() {
-        if (skills == null) {
-            skills = new ArrayList<Skill>();
+        if (skill == null) {
+            skill = new ArrayList<Skill>();
         }
-        return this.skills;
+        return this.skill;
+    }
+
+    @Override
+    public String toString() {
+        return "Resource [availability=" + availability + ", skill=" + skill + "]";
     }
 
 }
