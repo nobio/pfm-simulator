@@ -3,8 +3,6 @@ package de.nobio.pfmsim.resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
-
 import de.nobio.pfmsim.Util;
 
 /**
@@ -19,30 +17,32 @@ public class ResourceSetupHandler {
      * @param resourceConfig
      * @return all resources
      */
-    public List<Resource> setup(Element resourceConfig) {
-        List<Resource> resources = new ArrayList<Resource>();
-        List<Team> teams = new ArrayList<Team>();
+    public List<Team> setup(Simulation cfgSimulation) throws CloneNotSupportedException {
+        List<Team> teams = cfgSimulation.getTeams();
 
-        Double generalAvailability = getGeneralAvailability(resourceConfig);
-        Util.log("loaded generalAvailability = " + generalAvailability);
-
-        List<Element> elTeams = Util.getChildren("team", resourceConfig);
-        Util.log("loaded teams: " + elTeams);
-
-        for (Element elTeam : elTeams) {
-            Util.log(elTeam);
-            Team team = new Team();
-            teams.add(team);
-
-            // load resources for that team
-
+        // check all resources; if availability is 0.0 set the
+        // "general availability"
+        for (Team team : teams) {
+            for (Resource resource : team.getResources()) {
+                if (resource.getAvailability() == null) {
+                    resource.setAvailability(cfgSimulation.getAvailability());
+                }
+            }
         }
 
-        return resources;
-    }
+        // clone resources due to their count attribute; when this is "1"
+        // leave it; when it is >1 add (n-1) clones
+        for (Team team : teams) {
+            List<Resource> additionalResources = new ArrayList<Resource>();
+            for (Resource resource : team.getResources()) {
+                for (int n = 1; n < resource.getCount(); n++) {
+                    additionalResources.add(resource.clone());
+                }
+            }
+            team.getResources().addAll(additionalResources);
+        }
 
-    private Double getGeneralAvailability(Element resourceConfig) {
-        return Double.parseDouble(Util.getChildValueFromElement("availability", resourceConfig));
+        return teams;
     }
 
 }

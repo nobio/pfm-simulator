@@ -5,7 +5,7 @@
 // Generated on: 2013.09.01 at 02:14:43 PM MESZ 
 //
 
-package de.nobio.pfmsim.config;
+package de.nobio.pfmsim.resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,23 +13,25 @@ import java.util.List;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
 /**
  * <p>
- * Java class for resource complex type.
+ * Java class for simulation complex type.
  * 
  * <p>
  * The following schema fragment specifies the expected content contained within
  * this class.
  * 
  * <pre>
- * &lt;complexType name="resource">
+ * &lt;complexType name="simulation">
  *   &lt;complexContent>
  *     &lt;restriction base="{http://www.w3.org/2001/XMLSchema}anyType">
  *       &lt;sequence>
  *         &lt;element name="availability" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
- *         &lt;element name="skills" type="{}skill" maxOccurs="unbounded" minOccurs="0"/>
+ *         &lt;element name="iterations" type="{http://www.w3.org/2001/XMLSchema}double" minOccurs="0"/>
+ *         &lt;element name="teams" type="{}team" maxOccurs="unbounded" minOccurs="0"/>
  *       &lt;/sequence>
  *     &lt;/restriction>
  *   &lt;/complexContent>
@@ -38,13 +40,17 @@ import javax.xml.bind.annotation.XmlType;
  * 
  * 
  */
+@XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "resource", propOrder = { "availability", "skill" })
-public class Resource {
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "team" })
+public class Simulation {
 
-    protected Double availability;
+    @XmlElement(required = true)
+    private Double availability;
+    @XmlElement(required = true)
+    protected Long iterations;
     @XmlElement(nillable = true)
-    protected List<Skill> skill;
+    protected List<Team> team;
 
     /**
      * Gets the value of the availability property.
@@ -68,37 +74,58 @@ public class Resource {
     }
 
     /**
-     * Gets the value of the skills property.
+     * Gets the value of the iterations property.
+     * 
+     * @return possible object is {@link Double }
+     * 
+     */
+    public Long getIterations() {
+        return iterations;
+    }
+
+    /**
+     * Sets the value of the iterations property.
+     * 
+     * @param value
+     *            allowed object is {@link Double }
+     * 
+     */
+    public void setIterations(Long iterations) {
+        this.iterations = iterations;
+    }
+
+    /**
+     * Gets the value of the teams property.
      * 
      * <p>
      * This accessor method returns a reference to the live list, not a
      * snapshot. Therefore any modification you make to the returned list will
      * be present inside the JAXB object. This is why there is not a
-     * <CODE>set</CODE> method for the skills property.
+     * <CODE>set</CODE> method for the teams property.
      * 
      * <p>
      * For example, to add a new item, do as follows:
      * 
      * <pre>
-     * getSkills().add(newItem);
+     * getTeams().add(newItem);
      * </pre>
      * 
      * 
      * <p>
-     * Objects of the following type(s) are allowed in the list {@link Skill }
+     * Objects of the following type(s) are allowed in the list {@link Team }
      * 
      * 
      */
-    public List<Skill> getSkills() {
-        if (skill == null) {
-            skill = new ArrayList<Skill>();
+    public List<Team> getTeams() {
+        if (team == null) {
+            team = new ArrayList<Team>();
         }
-        return this.skill;
+        return this.team;
     }
 
     @Override
     public String toString() {
-        return "Resource [availability=" + availability + ", skill=" + skill + "]";
+        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", team=\n" + team + "\n]";
     }
 
 }

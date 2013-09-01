@@ -1,6 +1,7 @@
 package de.nobio.pfmsim;
 
 import java.io.File;
+import java.util.List;
 import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
@@ -8,16 +9,17 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import de.nobio.pfmsim.config.Resource;
-import de.nobio.pfmsim.config.Simulation;
-import de.nobio.pfmsim.config.Skill;
-import de.nobio.pfmsim.config.Team;
+import de.nobio.pfmsim.resource.Resource;
+import de.nobio.pfmsim.resource.ResourceSetupHandler;
+import de.nobio.pfmsim.resource.Simulation;
+import de.nobio.pfmsim.resource.Skill;
+import de.nobio.pfmsim.resource.Team;
 
 public class PMSimulator {
 
     public static final Properties props = new Properties();
 
-    public static void main(String[] args) throws JAXBException {
+    public static void main(String[] args) throws Exception {
         if (args == null || args.length == 0) {
             System.err.println("provide path to properties-xml file");
             System.exit(-1);
@@ -29,7 +31,7 @@ public class PMSimulator {
         setup(cfgSimulation);
 
         // let's go: start main loop
-        // mainLoop(iterations);
+        mainLoop(cfgSimulation.getIterations());
     }
 
     private static Simulation loadConfiguration(String[] args) throws JAXBException {
@@ -38,13 +40,13 @@ public class PMSimulator {
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Simulation cfgSimulation = (Simulation) jaxbUnmarshaller.unmarshal(file);
-        Util.log(cfgSimulation);
+        Util.log("loaded config: " + cfgSimulation);
         return cfgSimulation;
     }
 
-    private static void setup(Simulation cfgSimulation) {
-        // List<Resource> resources = new
-        // ResourceSetupHandler().setup(resourceConfig);
+    private static void setup(Simulation cfgSimulation) throws CloneNotSupportedException {
+        List<Team> teams = new ResourceSetupHandler().setup(cfgSimulation);
+        Util.log(teams);
         // List<Project> projects = new
         // ProjectSetupHandler().setup(resourceConfig);
     }
