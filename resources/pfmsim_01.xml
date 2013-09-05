@@ -2,30 +2,40 @@
 <simulation>
 	<iterations>200</iterations>
 	<availability>0.7</availability>
+
+	<!-- definition of skills; will be referenced by resources and projects/tasks -->
+	<skill id="jd">Java Developer</skill>
+	<skill id="dd">Database Designer</skill>
+	<skill id="cd">Caas Developer</skill>
+	<skill id="xy">Klassenkasper</skill>
+
+	<!-- definition of teams with their resources; later only resources will be referenced by projects but it might be a more natural approach to think in teams -->
 	<team id="Middleware">
 		<resource count="1">
 			<availability>0.9</availability>
-			<skill id="jd">Java Developer</skill>
-			<skill id="dd">Database Designer</skill>
+			<skill ref="jd" />
+			<skill ref="dd" />
 		</resource>
 		<resource count="1">
-			<skill id="cd">Caas Developer</skill>
+			<skill ref="cd" />
 		</resource>
 		<resource count="4">
-			<skill id="jd">Java Developer</skill>
+			<skill ref="jd" />
 		</resource>
 	</team>
 	<team id="Web">
 		<resource count="2">
 			<availability>0.8</availability>
-			<skill id="jd">Java Developer</skill>
-			<skill id="dd">Database Designer</skill>
+			<skill ref="jd" />
+			<skill ref="dd" />
 		</resource>
 		<resource count="3">
-			<skill id="jd">Java Developer</skill>
+			<skill ref="jd" />
+			<skill ref="xy" />
 		</resource>
 	</team>
-	<skill></skill>
+	
+	<!-- Definition of a portfolio -->
 	<portfolio>
 		<project size="">
 		</project>

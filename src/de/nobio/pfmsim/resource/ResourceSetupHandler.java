@@ -3,8 +3,6 @@ package de.nobio.pfmsim.resource;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.nobio.pfmsim.Util;
-
 /**
  * @author nobio
  * 
@@ -27,6 +25,12 @@ public class ResourceSetupHandler {
                 if (resource.getAvailability() == null) {
                     resource.setAvailability(cfgSimulation.getAvailability());
                 }
+                List<Skill> tmpSkills = new ArrayList<Skill>();
+                for (Skill skill : resource.getSkills()) {
+                    tmpSkills.add(cfgSimulation.getSkillFromPool(skill.getRef()));
+                }
+                resource.getSkills().removeAll(resource.getSkills());
+                resource.getSkills().addAll(tmpSkills);
             }
         }
 
