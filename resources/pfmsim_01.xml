@@ -25,6 +25,9 @@
 			<skill id="jd">Java Developer</skill>
 		</resource>
 	</team>
+	<skill></skill>
 	<portfolio>
+		<project size="">
+		</project>
 	</portfolio>
 </simulation>
