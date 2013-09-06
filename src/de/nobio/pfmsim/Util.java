@@ -1,6 +1,8 @@
 package de.nobio.pfmsim;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Random;
 import java.util.TreeSet;
@@ -37,12 +39,42 @@ public final class Util {
     public final static Double getNormallyDistributedRandomNumer(Double mean, Double deviation) {
         return rnd.nextGaussian() * deviation + mean;
     }
-    
+
+    /**
+     * Returns a normally distributed random number
+     * 
+     * @param mean mean value which is the average
+     * @param deviation the standard deviation
+     * @return a normally distributed random value with mu=mean and sigma=deviation
+     */
+    public final static String getWeightedRandomValue(Map<String, Integer> baseParams) {
+        List<String> distribution = new ArrayList<String>();
+
+        for (String weightValue : baseParams.keySet()) {
+            for (int i = 0; i < baseParams.get(weightValue); i++) {
+                distribution.add(weightValue);
+            }
+        }
+        Double rnd = Math.ceil(getEquallyDistributedRandomNumer(0.0, (double) distribution.size() - 1));
+        //        long rndValue = Math.round(rnd);
+        String strValue = String.valueOf(rnd);
+        strValue = strValue.substring(0, strValue.indexOf("."));
+        //        System.out.println(distribution + " " + rnd + " ceil:" + Math.floor(rnd) + "/ " + rndValue + " "
+        //                + distribution.get(Integer.valueOf(String.valueOf(rndValue))));
+        return distribution.get(Integer.valueOf(strValue));
+    }
+
     public final static void test() {
         Map<Long, Integer> distribution = new HashMap<Long, Integer>();
-        for (int i = 0; i < 1000; i++) {
-            Double rndval = Util.getNormallyDistributedRandomNumer(10.0, 1.0);
-//            Double rndval = Util.getEquallyDistributedRandomNumer(10.0, 20.0);
+        for (int i = 0; i < 100000; i++) {
+            //            Double rndval = Util.getNormallyDistributedRandomNumer(10.0, 1.0);
+            //            Double rndval = Util.getEquallyDistributedRandomNumer(10.0, 20.0);
+            Map<String, Integer> baseParams = new HashMap<String, Integer>();
+            baseParams.put("200", 4);
+            baseParams.put("100", 1);
+            //            baseParams.put("300", 1);
+            //            baseParams.put("400", 1);
+            Double rndval = Double.valueOf(Util.getWeightedRandomValue(baseParams));
             Long key = Math.round(rndval);
             if (distribution.get(key) == null) {
                 distribution.put(key, 1);
@@ -52,11 +84,14 @@ public final class Util {
         }
         TreeSet<Long> sortedKeys = new TreeSet<Long>(distribution.keySet());
         System.out.print("distribution {");
+        Double sum = 0.0;
         for (Long k : sortedKeys) {
-            System.out.print(k + "=" + distribution.get(k) + ", ");
+            sum += distribution.get(k);
+        }
+        for (Long k : sortedKeys) {
+            System.out.print(k + "=" + distribution.get(k) + " (" + distribution.get(k) / sum * 100 + "%), ");
         }
         System.out.println("}");
-        
 
     }
 }

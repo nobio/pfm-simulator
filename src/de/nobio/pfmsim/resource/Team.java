@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "team", propOrder = { "id", "resource" })
 public class Team {
-    @XmlAttribute
+    @XmlAttribute(required=true)
     protected String id;
     @XmlElement(nillable = true)
     protected List<Resource> resource;

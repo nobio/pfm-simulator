@@ -22,10 +22,11 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "resource", propOrder = { "availability", "count", "skill" })
 public class Resource {
 
+    @XmlElement(required=false)
     protected Double availability = 0.0D;
-    @XmlAttribute
+    @XmlAttribute(required=true)
     protected Integer count = 0;
-    @XmlElement(nillable = true)
+    @XmlElement(nillable = true, required=true)
     protected List<Skill> skill;
 
     public Double getAvailability() {

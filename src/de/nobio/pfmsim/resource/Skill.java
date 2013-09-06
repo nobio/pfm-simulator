@@ -7,12 +7,14 @@ import javax.xml.bind.annotation.XmlType;
 import javax.xml.bind.annotation.XmlValue;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "skill", propOrder = { "id", "name" })
+@XmlType(name = "skill", propOrder = { "id", "weight", "ref", "name" })
 public class Skill {
     @XmlAttribute
     private String id;
     @XmlAttribute
     private String ref;
+    @XmlAttribute
+    private Double weight;
     @XmlValue
     private String name;
 
@@ -20,16 +22,12 @@ public class Skill {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getRef() {
         return ref;
     }
 
-    public void setRef(String ref) {
-        this.ref = ref;
+    public Double getWeight() {
+        return weight;
     }
 
     public String getName() {
@@ -42,11 +40,19 @@ public class Skill {
 
     @Override
     public String toString() {
+        return "Skill [id=" + id + ", ref=" + ref + ", weight=" + weight + ", name=" + name + "]";
+    }
+
+    /*
+    @Override
+    public String toString() {
         String idString = id != null ? "id=" + id : "";
         String nameString = name != null && !name.isEmpty() ? "name=" + name : "";
         String refString = ref != null ? "ref=" + ref : "";
+        String weightString = weight != null ? "weight=" + weight : "";
 
-        return "Skill [" + idString + " " + refString + " " + nameString + "(@" + this.hashCode() + ")" + "]";
+        return "Skill [" + refString + " " + idString + " " + weightString + " " + nameString + "(@" + this.hashCode() + ")" + "]";
     }
-
+    */
+    
 }

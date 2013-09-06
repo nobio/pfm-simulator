@@ -57,38 +57,4 @@ public class PMSimulator {
         Util.log(iterations);
     }
 
-    private static void testDataStructure() {
-
-        try {
-            Skill skill1 = new Skill();
-            skill1.setId("jd");
-            skill1.setName("Java Developer");
-            Skill skill2 = new Skill();
-            skill2.setId("od");
-            skill2.setName("Objective-C Developer");
-
-            Resource resource = new Resource();
-            resource.setAvailability(0.7);
-            resource.getSkills().add(skill1);
-            resource.getSkills().add(skill2);
-
-            Team team1 = new Team();
-            team1.getResources().add(resource);
-            Team team2 = new Team();
-            team2.getResources().add(resource);
-
-            Simulation simulation = new Simulation();
-            simulation.setAvailability(0.756);
-            simulation.setIterations(101L);
-            simulation.getTeams().add(team1);
-            simulation.getTeams().add(team2);
-
-            JAXBContext jaxbContext = JAXBContext.newInstance(Simulation.class);
-            Marshaller marshaller = jaxbContext.createMarshaller();
-            marshaller.setProperty("jaxb.formatted.output", Boolean.TRUE);
-            marshaller.marshal(simulation, System.out);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
 }
