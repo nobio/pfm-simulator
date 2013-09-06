@@ -46,10 +46,11 @@ public class PMSimulator {
 
     private static void setup(Simulation cfgSimulation) throws CloneNotSupportedException {
         List<Team> teams = new ResourceSetupHandler().setup(cfgSimulation);
-//        Util.log(teams);
+        //        Util.log(teams);
         Util.log(cfgSimulation);
         // List<Project> projects = new
         // ProjectSetupHandler().setup(resourceConfig);
+        Util.test();
     }
 
     private static void mainLoop(Long iterations) {
