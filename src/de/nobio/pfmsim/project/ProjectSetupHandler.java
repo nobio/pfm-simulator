@@ -1,14 +1,13 @@
 package de.nobio.pfmsim.project;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
+import de.nobio.pfmsim.Simulation;
 
 public class ProjectSetupHandler {
 
-    public List<Project> setup(Element projectConfig) {
-        return new ArrayList<Project>();
+    public List<Project> setup(Simulation cfgSimulation) {
+        return null;
     }
 
 }

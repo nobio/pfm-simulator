@@ -16,59 +16,59 @@
 		Big Project with it's effort definition -->
 	<project_category id="np">
 		<name>Normal Project</name>
-		<effort_distribution type="constant, equal, normal">
+		<distribution type="Constant">
 			<param1>50</param1>
 			<param2>10</param2>
-		</effort_distribution>
+		</distribution>
 	</project_category>
 	<project_category id="sm">
 		<name>Small Enhancement</name>
-		<effort_distribution type="constant, equal, normal">
+		<distribution type="Equal">
 			<param1>10</param1>
 			<param2>4</param2>
-		</effort_distribution>
+		</distribution>
 	</project_category>
 
 	<!-- definition of project phases; the efforts are meant to be a weight 
 		value; all weights of all phases in one project mean 100% -->
 	<phase id="init">
 		<name>Initialisation</name>
-		<effort_distribution type="constant">
+		<distribution type="Constant">
 			<param1>12</param1>
-		</effort_distribution>
+		</distribution>
 	</phase>
 	<phase id="prep">
 		<name>Preperation</name>
-		<effort_distribution type="equal">
+		<distribution type="Equal">
 			<param1>20</param1>
 			<param2>30</param2>
-		</effort_distribution>
+		</distribution>
 	</phase>
 	<phase id="spec">
 		<name>Specification</name>
-		<effort_distribution type="normal">
+		<distribution type="Normal">
 			<param1>30</param1>
 			<param2>3</param2>
-		</effort_distribution>
+		</distribution>
 	</phase>
 	<phase id="constr">
 		<name>Construction</name>
-		<effort_distribution type="normal">
+		<distribution type="Normal">
 			<param1>50</param1>
 			<param2>10</param2>
-		</effort_distribution>
+		</distribution>
 	</phase>
 	<phase id="acc">
 		<name>Acceptance</name>
-		<effort_distribution type="constant">
+		<distribution type="Constant">
 			<param1>5</param1>
-		</effort_distribution>
+		</distribution>
 	</phase>
 	<phase id="trans">
 		<name>Transition</name>
-		<effort_distribution type="constant">
+		<distribution type="Rectangle">
 			<param1>3</param1>
-		</effort_distribution>
+		</distribution>
 	</phase>
 	
 	<!-- definition of teams with their resources; later only resources will 
@@ -104,7 +104,7 @@
 		<!-- definition of projects -->
 		<project category_ref="np" weight="4">
 			<workload>
-				<distribution type="dist1">
+				<distribution type="Rectangle">
 					<param1>40</param1>
 					<param2>23</param2>
 					<param3>44</param3>

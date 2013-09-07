@@ -14,10 +14,12 @@ public class Category {
 
     @XmlAttribute(required = true)
     private String id;
+    
     @XmlElement(required = true)
     private String name;
-    @XmlElement(name="effort_distribution", nillable = true, required = true)
-    protected List<EffortDistribution> effortDistribution;
+    
+    @XmlElement(name="distribution", nillable = true, required = true)
+    protected List<Distribution> effortDistribution;
 
     public String getId() {
         return id;
@@ -27,7 +29,7 @@ public class Category {
         return name;
     }
 
-    public List<EffortDistribution> getEffortDistribution() {
+    public List<Distribution> getEffortDistribution() {
         return effortDistribution;
     }
 

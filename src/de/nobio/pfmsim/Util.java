@@ -12,7 +12,11 @@ public final class Util {
     static Random rnd = new Random(System.currentTimeMillis());
 
     public final static void log(Object message) {
-        System.out.println("DEBUG " + message.toString());
+        if (message == null) {
+            System.out.println("DEBUG [nothing to be logged]");
+        } else {
+            System.out.println("DEBUG " + message.toString());
+        }
     }
 
     /**
@@ -65,7 +69,8 @@ public final class Util {
      * Returns a weighted random value from the given map (key); the weight is
      * given as the value
      * 
-     * @param baseParams: value=the strings weight; key=a group string
+     * @param baseParams
+     *            : value=the strings weight; key=a group string
      * @return one of the given values but be weighted random
      */
     public final static String getWeightedRandomValue(Map<String, Integer> baseParams) {

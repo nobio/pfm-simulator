@@ -30,14 +30,19 @@ public class Simulation {
 
     @XmlElement(required = true)
     private Double availability;
+    
     @XmlElement(required = true)
     private Long iterations;
+    
     @XmlElement(nillable = true, name = "skill")
     private List<Skill> skillPool;
+    
     @XmlElement(nillable = true, name = "project_category")
     private List<Category> projectCategories;
+    
     @XmlElement(nillable = true, name = "phase")
     private List<Phase> phases;
+    
     @XmlElement(nillable = true, name = "team")
     private List<Team> teams;
 
