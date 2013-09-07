@@ -111,11 +111,11 @@
 					<param4>0</param4>
 				</distribution>
 			</workload>
-			<tasks>
+			<task>
 				<!-- skills needed for these takss -->
 				<skill ref="jd" weight="4" />
 				<skill ref="dd" weight="1" />
-			</tasks>
+			</task>
 			<phase ref="init" />
 			<phase ref="prep" />
 			<phase ref="spec" />

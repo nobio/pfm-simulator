@@ -9,7 +9,7 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "project_category", propOrder = { "id", "name", "effortDistribution" })
+@XmlType(name = "project_category", propOrder = { "id", "name", "distribution" })
 public class Category {
 
     @XmlAttribute(required = true)
@@ -19,7 +19,7 @@ public class Category {
     private String name;
     
     @XmlElement(name="distribution", nillable = true, required = true)
-    protected List<Distribution> effortDistribution;
+    private List<Distribution> distribution;
 
     public String getId() {
         return id;
@@ -29,13 +29,13 @@ public class Category {
         return name;
     }
 
-    public List<Distribution> getEffortDistribution() {
-        return effortDistribution;
+    public List<Distribution> getDistribution() {
+        return distribution;
     }
 
     @Override
     public String toString() {
-        return "Category [id=" + id + ", name=" + name + ", effortDistribution=" + effortDistribution + "]";
+        return "Category [id=" + id + ", name=" + name + ", distribution=" + distribution + "]";
     }
 
 }

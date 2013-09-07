@@ -20,12 +20,13 @@ import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.project.Category;
 import de.nobio.pfmsim.project.Phase;
+import de.nobio.pfmsim.project.Portfolio;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.resource.Team;
 
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "skillPool", "projectCategories", "phases", "teams" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "skillPool", "projectCategories", "phases", "teams","portfolio" })
 public class Simulation {
 
     @XmlElement(required = true)
@@ -46,6 +47,9 @@ public class Simulation {
     @XmlElement(nillable = true, name = "team")
     private List<Team> teams;
 
+    @XmlElement(nillable = false, name="portfolio")
+    private List<Portfolio> portfolio;
+    
     public Double getAvailability() {
         return availability;
     }
@@ -94,11 +98,17 @@ public class Simulation {
     public List<Phase> getPhases() {
         return phases;
     }
+    
+
+    public List<Portfolio> getPortfolio() {
+        return portfolio;
+    }
 
     @Override
     public String toString() {
         return "Simulation [availability=" + availability + ", iterations=" + iterations + ", skillPool=" + skillPool + ", projectCategories=" + projectCategories + ", phases="
-                + phases + ", teams=" + teams + "]";
+                + phases + ", teams=" + teams + ", portfolio=" + portfolio + "]";
     }
 
+  
 }
