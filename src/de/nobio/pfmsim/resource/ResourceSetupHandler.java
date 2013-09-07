@@ -3,6 +3,8 @@ package de.nobio.pfmsim.resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.nobio.pfmsim.Simulation;
+
 /**
  * @author nobio
  * 

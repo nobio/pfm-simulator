@@ -7,7 +7,7 @@
 // Generated on: 2013.09.01 at 02:14:43 PM MESZ
 //
 
-package de.nobio.pfmsim.resource;
+package de.nobio.pfmsim;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,9 +18,14 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
+import de.nobio.pfmsim.project.Category;
+import de.nobio.pfmsim.project.Phase;
+import de.nobio.pfmsim.resource.Skill;
+import de.nobio.pfmsim.resource.Team;
+
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "skillPool", "team" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "skillPool", "projectCategories", "phases", "teams" })
 public class Simulation {
 
     @XmlElement(required = true)
@@ -29,8 +34,12 @@ public class Simulation {
     private Long iterations;
     @XmlElement(nillable = true, name = "skill")
     private List<Skill> skillPool;
-    @XmlElement(nillable = true)
-    private List<Team> team;
+    @XmlElement(nillable = true, name = "project_category")
+    private List<Category> projectCategories;
+    @XmlElement(nillable = true, name = "phase")
+    private List<Phase> phases;
+    @XmlElement(nillable = true, name = "team")
+    private List<Team> teams;
 
     public Double getAvailability() {
         return availability;
@@ -49,10 +58,10 @@ public class Simulation {
     }
 
     public List<Team> getTeams() {
-        if (team == null) {
-            team = new ArrayList<Team>();
+        if (teams == null) {
+            teams = new ArrayList<Team>();
         }
-        return this.team;
+        return this.teams;
     }
 
     public List<Skill> getSkillPool() {
@@ -73,9 +82,18 @@ public class Simulation {
         return skill;
     }
 
+    public List<Category> getProjectCategories() {
+        return projectCategories;
+    }
+
+    public List<Phase> getPhases() {
+        return phases;
+    }
+
     @Override
     public String toString() {
-        return "Simulation [\navailability=" + availability + ", \niterations=" + iterations + ", \nskillPool=" + skillPool + ", \nteam=" + team + "]";
+        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", skillPool=" + skillPool + ", projectCategories=" + projectCategories + ", phases="
+                + phases + ", teams=" + teams + "]";
     }
 
 }

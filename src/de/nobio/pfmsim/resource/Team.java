@@ -21,9 +21,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "team", propOrder = { "id", "resource" })
 public class Team {
     @XmlAttribute(required=true)
-    protected String id;
+    private String id;
     @XmlElement(nillable = true)
-    protected List<Resource> resource;
+    private List<Resource> resource;
 
     public String getId() {
         return id;

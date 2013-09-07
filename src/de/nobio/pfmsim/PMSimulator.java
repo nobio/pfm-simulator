@@ -6,13 +6,9 @@ import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
-import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 
-import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.resource.ResourceSetupHandler;
-import de.nobio.pfmsim.resource.Simulation;
-import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.resource.Team;
 
 public class PMSimulator {
@@ -46,11 +42,11 @@ public class PMSimulator {
 
     private static void setup(Simulation cfgSimulation) throws CloneNotSupportedException {
         List<Team> teams = new ResourceSetupHandler().setup(cfgSimulation);
-        //        Util.log(teams);
+        // Util.log(teams);
         Util.log(cfgSimulation);
         // List<Project> projects = new
         // ProjectSetupHandler().setup(resourceConfig);
-        Util.test();
+        // Util.test();
     }
 
     private static void mainLoop(Long iterations) {
