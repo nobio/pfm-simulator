@@ -22,20 +22,47 @@ public class Phase {
     @XmlElement(name = "workload", nillable = true, required = true)
     private Workload workload;
 
+  
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getRef() {
         return ref;
     }
 
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
     public String getName() {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Workload getWorkload() {
         return workload;
+    }
+
+    public void setWorkload(Workload workload) {
+        this.workload = workload;
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        Phase phase = new Phase();
+        phase.setId(id);
+        phase.setName(name);
+        phase.setRef(ref);
+        phase.setWorkload(workload);
+        return phase;
     }
 
     @Override

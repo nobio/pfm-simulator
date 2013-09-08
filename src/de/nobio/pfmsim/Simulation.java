@@ -48,7 +48,7 @@ public class Simulation {
     private List<Team> teams;
 
     @XmlElement(nillable = false, name="portfolio")
-    private List<Portfolio> portfolio;
+    private Portfolio portfolio;
     
     public Double getAvailability() {
         return availability;
@@ -100,7 +100,7 @@ public class Simulation {
     }
     
 
-    public List<Portfolio> getPortfolio() {
+    public Portfolio getPortfolio() {
         return portfolio;
     }
 

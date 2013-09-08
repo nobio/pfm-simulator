@@ -24,7 +24,7 @@ public class Project implements TimeClock {
 
     @XmlElement(type = Distribution.class)
     private Distribution distribution;
-    
+
     @XmlElement(name = "phase", nillable = true, required = true)
     private List<Phase> phases;
 
@@ -40,12 +40,20 @@ public class Project implements TimeClock {
         return category;
     }
 
+    public void setCategory(Category category) {
+        this.category = category;
+    }
+
     public Distribution getDistribution() {
         return distribution;
     }
 
     public List<Phase> getPhases() {
         return phases;
+    }
+
+    public void setPhases(List<Phase> phases) {
+        this.phases = phases;
     }
 
     @Override
