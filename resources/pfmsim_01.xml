@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simulation>
+	<!-- ============================================================== -->
+	<!-- ======================== HEADER ============================== -->
+	<!-- ============================================================== -->
 	<!-- number of iterations which can be identified with "days" -->
 	<iterations>200</iterations>
 	<!-- general availability for all resources except there is another value 
@@ -7,10 +10,10 @@
 	<availability>0.7</availability>
 
 	<!-- definition of skills; will be referenced by resources and projects/tasks -->
-	<skill id="jd">Java Developer</skill>
-	<skill id="dd">Database Designer</skill>
-	<skill id="cd">Caas Developer</skill>
-	<skill id="xy">Klassenkasper</skill>
+	<skill id="jd" name="Java Developer" />
+	<skill id="dd" name="Database Designer" />
+	<skill id="cd" name="Caas Developer" />
+	<skill id="xy" name="Klassenkasper" />
 
 	<!-- definition of project categories like Small Enhancement, Normal Project, 
 		Big Project with it's effort definition -->
@@ -33,44 +36,63 @@
 		value; all weights of all phases in one project mean 100% -->
 	<phase id="init">
 		<name>Initialisation</name>
-		<distribution type="Constant">
-			<param1>12</param1>
-		</distribution>
+		<workload>
+			<distribution type="Rectangle">
+				<param1>40</param1>
+				<param2>23</param2>
+				<param3>44</param3>
+				<param4>0</param4>
+			</distribution>
+		</workload>
 	</phase>
 	<phase id="prep">
 		<name>Preperation</name>
-		<distribution type="Equal">
-			<param1>20</param1>
-			<param2>30</param2>
-		</distribution>
+		<workload>
+			<distribution type="Equal">
+				<param1>20</param1>
+				<param2>30</param2>
+			</distribution>
+		</workload>
 	</phase>
 	<phase id="spec">
 		<name>Specification</name>
-		<distribution type="Normal">
-			<param1>30</param1>
-			<param2>3</param2>
-		</distribution>
+		<workload>
+			<distribution type="Normal">
+				<param1>30</param1>
+				<param2>3</param2>
+			</distribution>
+		</workload>
 	</phase>
 	<phase id="constr">
 		<name>Construction</name>
-		<distribution type="Normal">
-			<param1>50</param1>
-			<param2>10</param2>
-		</distribution>
+		<workload>
+			<distribution type="Normal">
+				<param1>50</param1>
+				<param2>10</param2>
+			</distribution>
+		</workload>
 	</phase>
 	<phase id="acc">
 		<name>Acceptance</name>
-		<distribution type="Constant">
-			<param1>5</param1>
-		</distribution>
+		<workload>
+			<distribution type="Constant">
+				<param1>5</param1>
+			</distribution>
+		</workload>
 	</phase>
 	<phase id="trans">
 		<name>Transition</name>
-		<distribution type="Rectangle">
-			<param1>3</param1>
-		</distribution>
+		<workload>
+			<distribution type="Rectangle">
+				<param1>3</param1>
+			</distribution>
+		</workload>
 	</phase>
-	
+
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+
 	<!-- definition of teams with their resources; later only resources will 
 		be referenced by projects but it might be a more natural approach to think 
 		in teams -->
@@ -102,20 +124,28 @@
 	<!-- Definition of a portfolio -->
 	<portfolio>
 		<!-- definition of projects -->
-		<project category_ref="np" weight="4">
-			<workload>
-				<distribution type="Rectangle">
-					<param1>40</param1>
-					<param2>23</param2>
-					<param3>44</param3>
-					<param4>0</param4>
-				</distribution>
-			</workload>
+		<project category_ref="np" priority="1">
+			<!-- this is how the chances of this project category has compared to 
+				others; please use "weighted" here -->
+			<distribution type="Weighted">
+				<param1>1</param1>
+			</distribution>
 			<task>
-				<!-- skills needed for these takss -->
-				<skill ref="jd" weight="4" />
-				<skill ref="dd" weight="1" />
+				<!-- skill needed for this task -->
+				<skill ref="jd">
+					<distribution type="Weighted">
+						<param1>4</param1>
+					</distribution>
+				</skill>
 			</task>
+			<task>
+				<skill ref="dd">
+					<distribution type="Weighted">
+						<param1>1</param1>
+					</distribution>
+				</skill>
+			</task>
+			<!-- definition of the phases of this project category -->
 			<phase ref="init" />
 			<phase ref="prep" />
 			<phase ref="spec" />

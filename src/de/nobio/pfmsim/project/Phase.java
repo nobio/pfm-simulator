@@ -1,7 +1,5 @@
 package de.nobio.pfmsim.project;
 
-import java.util.List;
-
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
@@ -9,33 +7,40 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "phase", propOrder = { "id", "name", "effortDistribution" })
+@XmlType(name = "phase", propOrder = { "id", "ref", "name", "workload" })
 public class Phase {
 
     @XmlAttribute(required = true)
     private String id;
-    
+
+    @XmlAttribute(required = true)
+    private String ref;
+
     @XmlElement(required = true)
     private String name;
-    
-    @XmlElement(name = "distribution", nillable = true, required = true)
-    private List<Distribution> effortDistribution;
+
+    @XmlElement(name = "workload", nillable = true, required = true)
+    private Workload workload;
 
     public String getId() {
         return id;
+    }
+
+    public String getRef() {
+        return ref;
     }
 
     public String getName() {
         return name;
     }
 
-    public List<Distribution> getEffortDistribution() {
-        return effortDistribution;
+    public Workload getWorkload() {
+        return workload;
     }
 
     @Override
     public String toString() {
-        return "Phase [id=" + id + ", name=" + name + ", effortDistribution=" + effortDistribution + "]";
+        return "Phase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + "]";
     }
 
 }

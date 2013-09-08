@@ -3,20 +3,25 @@ package de.nobio.pfmsim.resource;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
-import javax.xml.bind.annotation.XmlValue;
+
+import de.nobio.pfmsim.project.Distribution;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "skill", propOrder = { "id", "weight", "ref", "name" })
+@XmlType(name = "skill", propOrder = { "id", "distribution", "ref", "name" })
 public class Skill {
     @XmlAttribute
     private String id;
+
     @XmlAttribute
     private String ref;
+
     @XmlAttribute
-    private Double weight;
-    @XmlValue
     private String name;
+
+    @XmlElement(type = Distribution.class)
+    private Distribution distribution;
 
     public String getId() {
         return id;
@@ -26,8 +31,8 @@ public class Skill {
         return ref;
     }
 
-    public Double getWeight() {
-        return weight;
+    public Distribution getDistribution() {
+        return distribution;
     }
 
     public String getName() {
@@ -40,19 +45,7 @@ public class Skill {
 
     @Override
     public String toString() {
-        return "Skill [id=" + id + ", ref=" + ref + ", weight=" + weight + ", name=" + name + "]";
+        return "Skill [id=" + id + ", ref=" + ref + ", distribution=" + distribution + ", name=" + name + "]";
     }
 
-    /*
-    @Override
-    public String toString() {
-        String idString = id != null ? "id=" + id : "";
-        String nameString = name != null && !name.isEmpty() ? "name=" + name : "";
-        String refString = ref != null ? "ref=" + ref : "";
-        String weightString = weight != null ? "weight=" + weight : "";
-
-        return "Skill [" + refString + " " + idString + " " + weightString + " " + nameString + "(@" + this.hashCode() + ")" + "]";
-    }
-    */
-    
 }
