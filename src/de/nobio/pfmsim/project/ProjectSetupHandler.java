@@ -3,6 +3,7 @@ package de.nobio.pfmsim.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.Simulation;
 
 public class ProjectSetupHandler {
@@ -17,26 +18,42 @@ public class ProjectSetupHandler {
     public Portfolio setup(Simulation cfgSimulation) throws CloneNotSupportedException {
 
         for (Project project : cfgSimulation.getPortfolio().getProjects()) {
-
-            // setup project category
-            for (Category category : cfgSimulation.getProjectCategories()) {
-                if (project.getCategoryRef().equals(category.getId())) {
-                    project.setCategory(category);
-                    break;
-                }
-            }
-
-            // setup phases
-            List<Phase> phases = new ArrayList<Phase>();
-            for (Phase phase : project.getPhases()) {
-                for (Phase cfgPhase : cfgSimulation.getPhases()) {
-                    if (phase.getRef().equals(cfgPhase.getId())) {
-                        phases.add((Phase) cfgPhase.clone());
-                    }
-                }
-            }
-            project.setPhases(phases);
+            setupCategories(cfgSimulation, project);
+            setupPhases(cfgSimulation, project);
+            setupNeededSkills(cfgSimulation, project);
         }
+                
         return cfgSimulation.getPortfolio();
     }
+
+    private void setupPhases(Simulation cfgSimulation, Project project) throws CloneNotSupportedException {
+        // setup phases
+        List<Phase> tmpPhases = new ArrayList<Phase>();
+        for (Phase phase : project.getPhases()) {
+            tmpPhases.add(cfgSimulation.getPhaseFromPool(phase.getRef()));
+        }
+        project.getPhases().removeAll(project.getPhases());
+        project.getPhases().addAll(tmpPhases);
+    }
+
+    private void setupCategories(Simulation cfgSimulation, Project project) {
+        // setup project category
+        for (Category category : cfgSimulation.getProjectCategories()) {
+            if (project.getCategoryRef().equals(category.getId())) {
+                project.setCategory(category);
+                break;
+            }
+        }
+    }
+    
+    private void setupNeededSkills(Simulation cfgSimulation, Project project) {
+        // setup skills for this project
+        List<Skill> tmpSkills = new ArrayList<Skill>();
+        for (Skill skill : project.getSkills()) {
+            tmpSkills.add(cfgSimulation.getSkillFromPool(skill.getRef()));
+        }
+        project.getSkills().removeAll(project.getSkills());
+        project.getSkills().addAll(tmpSkills);
+    }
+    
 }

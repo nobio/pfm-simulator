@@ -134,6 +134,7 @@
             <distribution type="Weighted">
                 <param1>1</param1>
             </distribution>
+            
             <!-- skill needed for this task -->
             <skill ref="jd">
                 <distribution type="Weighted">

@@ -8,10 +8,11 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.TimeClock;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "project", propOrder = { "categoryRef", "priority", "distribution", "category", "phases" })
+@XmlType(name = "project", propOrder = { "categoryRef", "priority", "distribution", "category", "phases", "neededSkills" })
 public class Project implements TimeClock {
 
     @XmlAttribute(required = true, name = "category_ref")
@@ -27,6 +28,9 @@ public class Project implements TimeClock {
 
     @XmlElement(name = "phase", nillable = true, required = true)
     private List<Phase> phases;
+
+    @XmlElement(name = "skill", nillable = true, required = true)
+    private List<Skill> neededSkills;
 
     public String getCategoryRef() {
         return categoryRef;
@@ -56,6 +60,10 @@ public class Project implements TimeClock {
         this.phases = phases;
     }
 
+    public List<Skill> getSkills() {
+        return neededSkills;
+    }
+
     @Override
     public void tick(Long clock) {
         // TODO Auto-generated method stub
@@ -64,7 +72,8 @@ public class Project implements TimeClock {
 
     @Override
     public String toString() {
-        return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", category=" + category + ", distribution=" + distribution + ", phases=" + phases + "]";
+        return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", category=" + category + ", distribution=" + distribution + ", phases="
+                + phases + ", skills=" + neededSkills + "]";
     }
 
 }

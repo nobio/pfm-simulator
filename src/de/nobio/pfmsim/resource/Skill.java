@@ -45,7 +45,7 @@ public class Skill {
 
     @Override
     public String toString() {
-        return "Skill [id=" + id + ", ref=" + ref + ", distribution=" + distribution + ", name=" + name + "]";
+        return "\n\t\tSkill [id=" + id + ", ref=" + ref + ", distribution=" + distribution + ", name=" + name + "]";
     }
 
 }

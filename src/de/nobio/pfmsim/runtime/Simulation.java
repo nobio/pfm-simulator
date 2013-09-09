@@ -26,7 +26,8 @@ import de.nobio.pfmsim.resource.Team;
 
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "planningHorizont", "skillPool", "projectCategories", "phases", "teams", "portfolio" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "planningHorizont", "skillPool", "projectCategories", "phasePool", "teams",
+        "portfolio" })
 public class Simulation {
 
     @XmlElement(required = true)
@@ -45,7 +46,7 @@ public class Simulation {
     private List<Category> projectCategories;
 
     @XmlElement(nillable = true, name = "phase")
-    private List<Phase> phases;
+    private List<Phase> phasePool;
 
     @XmlElement(nillable = true, name = "team")
     private List<Team> teams;
@@ -103,7 +104,18 @@ public class Simulation {
     }
 
     public List<Phase> getPhases() {
-        return phases;
+        return phasePool;
+    }
+
+    public Phase getPhaseFromPool(String ref) {
+        Phase phase = null;
+        for (Phase s : phasePool) {
+            if (ref.equals(s.getId())) {
+                phase = s;
+                break;
+            }
+        }
+        return phase;
     }
 
     public Portfolio getPortfolio() {
@@ -113,7 +125,7 @@ public class Simulation {
     @Override
     public String toString() {
         return "Simulation [availability=" + availability + ", iterations=" + iterations + ", planningHorizont=" + planningHorizont + ", skillPool="
-                + skillPool + ", projectCategories=" + projectCategories + ", phases=" + phases + ", teams=" + teams + ", portfolio=" + portfolio + "]";
+                + skillPool + ", projectCategories=" + projectCategories + ", phasePool=" + phasePool + ", teams=" + teams + ", portfolio=" + portfolio + "]";
     }
 
 }
