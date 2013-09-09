@@ -1,4 +1,4 @@
-package de.nobio.pfmsim.project;
+package de.nobio.pfmsim.runtime;
 
 public class ProjectQueueHandler {
 

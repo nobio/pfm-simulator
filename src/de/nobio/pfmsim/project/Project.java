@@ -8,7 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-import de.nobio.pfmsim.TimeClock;
+import de.nobio.pfmsim.runtime.TimeClock;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "project", propOrder = { "categoryRef", "priority", "distribution", "category", "phases" })

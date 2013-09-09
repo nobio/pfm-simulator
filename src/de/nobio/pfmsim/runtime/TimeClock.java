@@ -1,4 +1,4 @@
-package de.nobio.pfmsim;
+package de.nobio.pfmsim.runtime;
 
 public interface TimeClock {
 

@@ -12,6 +12,7 @@ import de.nobio.pfmsim.project.Portfolio;
 import de.nobio.pfmsim.project.ProjectSetupHandler;
 import de.nobio.pfmsim.resource.ResourceSetupHandler;
 import de.nobio.pfmsim.resource.Team;
+import de.nobio.pfmsim.runtime.Simulation;
 
 public class PMSimulator {
 

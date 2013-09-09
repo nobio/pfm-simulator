@@ -7,7 +7,7 @@
 // Generated on: 2013.09.01 at 02:14:43 PM MESZ
 //
 
-package de.nobio.pfmsim;
+package de.nobio.pfmsim.runtime;
 
 import java.util.ArrayList;
 import java.util.List;
