@@ -4,7 +4,10 @@
     <!-- ======================== HEADER ============================== -->
     <!-- ============================================================== -->
     <!-- number of iterations which can be identified with "days" -->
-    <iterations>200</iterations>
+    <iterations>5</iterations>
+    
+    <!-- pause in ms between two iterations -->
+    <pause>1000</pause>
 
     <!-- general availability for all resources except there is another value 
         defined at resource level -->

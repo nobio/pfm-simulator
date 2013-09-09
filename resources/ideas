@@ -1,0 +1,31 @@
+
+
+Tagesablauf:
+1. Muss umpriorisiert werden?
+
+2. Kann ein Projekt initiiert werden? Wenn ja -> ProjectQueue
+
+3. - Reservierung von Resourcen auf ein Projekt (oder Task?) gem. Prio;
+   - Planungshorizint max. für n Zeiteinheiten (parametrierbar)
+   - Es werden Resourcen zuerst für laufenden Projekte reserviert (z.B. weil der Task länger als der 
+     Planungshorizont ist und nun als noch ungeplant/unreserviert sichtbar wird  
+   - dann werden Projekte in der Queue geplant/reserviert
+   
+4. Hat ein Projekt aus der Queue genug Reservierungen wird es gestartet
+
+5. Hat sich für einen Task eine neue Schätzung ergeben (Eintritt in neue Phase)?
+
+6. Resourcen "arbeiten"; d.h. sie kontributieren Workload (Achtung: Zufallsverteilung) auf Tasks/Projekte,
+   reduzieren also noch zu leistende Workload des Projektes
+   
+7. Jede Resource erhält eine freie Zeiteinheit (eigentlich tatsächliche Verfügbarkeit) am Ende des 
+   Planungshorizonts und kann im nächsten Zyklus verplant werden
+    
+8. Ist ein Projekt beendet?
+
+9. Schreiben von Statistikinformationen:
+   - Auslastung der Resourcen (gesamt)
+   - Auslastung der Resourcen (pro Team)
+   - Wieviele Projekte warten in der Queue
+   - Wieviele Projekte laufen gerade
+   - 
