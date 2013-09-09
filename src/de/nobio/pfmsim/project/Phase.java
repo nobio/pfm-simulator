@@ -67,7 +67,7 @@ public class Phase {
 
     @Override
     public String toString() {
-        return "Phase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + "]";
+        return "\n\t\tPhase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + "]";
     }
 
 }

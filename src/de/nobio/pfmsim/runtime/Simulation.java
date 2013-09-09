@@ -26,30 +26,33 @@ import de.nobio.pfmsim.resource.Team;
 
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "skillPool", "projectCategories", "phases", "teams","portfolio" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "planningHorizont", "skillPool", "projectCategories", "phases", "teams", "portfolio" })
 public class Simulation {
 
     @XmlElement(required = true)
     private Double availability;
-    
+
     @XmlElement(required = true)
     private Long iterations;
-    
+
+    @XmlElement(required = true, name = "planning_horizont")
+    private Long planningHorizont;
+
     @XmlElement(nillable = true, name = "skill")
     private List<Skill> skillPool;
-    
+
     @XmlElement(nillable = true, name = "project_category")
     private List<Category> projectCategories;
-    
+
     @XmlElement(nillable = true, name = "phase")
     private List<Phase> phases;
-    
+
     @XmlElement(nillable = true, name = "team")
     private List<Team> teams;
 
-    @XmlElement(nillable = false, name="portfolio")
+    @XmlElement(nillable = false, name = "portfolio")
     private Portfolio portfolio;
-    
+
     public Double getAvailability() {
         return availability;
     }
@@ -60,6 +63,10 @@ public class Simulation {
 
     public Long getIterations() {
         return iterations;
+    }
+
+    public Long getPlanningHorizont() {
+        return planningHorizont;
     }
 
     public void setIterations(Long iterations) {
@@ -98,7 +105,6 @@ public class Simulation {
     public List<Phase> getPhases() {
         return phases;
     }
-    
 
     public Portfolio getPortfolio() {
         return portfolio;
@@ -106,9 +112,8 @@ public class Simulation {
 
     @Override
     public String toString() {
-        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", skillPool=" + skillPool + ", projectCategories=" + projectCategories + ", phases="
-                + phases + ", teams=" + teams + ", portfolio=" + portfolio + "]";
+        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", planningHorizont=" + planningHorizont + ", skillPool="
+                + skillPool + ", projectCategories=" + projectCategories + ", phases=" + phases + ", teams=" + teams + ", portfolio=" + portfolio + "]";
     }
 
-  
 }

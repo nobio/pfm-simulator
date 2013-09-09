@@ -1,17 +1,14 @@
 package de.nobio.pfmsim;
 
 import java.io.File;
-import java.util.List;
 import java.util.Properties;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
-import de.nobio.pfmsim.project.Portfolio;
 import de.nobio.pfmsim.project.ProjectSetupHandler;
 import de.nobio.pfmsim.resource.ResourceSetupHandler;
-import de.nobio.pfmsim.resource.Team;
 import de.nobio.pfmsim.runtime.Simulation;
 
 public class PMSimulator {
@@ -39,15 +36,14 @@ public class PMSimulator {
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Simulation cfgSimulation = (Simulation) jaxbUnmarshaller.unmarshal(file);
-        Util.log("loaded config: " + cfgSimulation);
+//        Util.log("loaded config: " + cfgSimulation);
         return cfgSimulation;
     }
 
     private static void setup(Simulation cfgSimulation) throws CloneNotSupportedException {
-        List<Team> teams = new ResourceSetupHandler().setup(cfgSimulation);
-        Util.log(teams);
-        Portfolio portfolio = new ProjectSetupHandler().setup(cfgSimulation);
-        Util.log(portfolio);
+        new ResourceSetupHandler().setup(cfgSimulation);
+        new ProjectSetupHandler().setup(cfgSimulation);
+        Util.log(cfgSimulation);
         // Util.test();
     }
 
