@@ -1,14 +1,22 @@
 package de.nobio.pfmsim.project;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlEnum;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-// TODO: move to de.nobio.pfmsim.distribution
+import de.nobio.pfmsim.distribution.EqualDistribution;
+import de.nobio.pfmsim.distribution.IDistribution;
+import de.nobio.pfmsim.distribution.NormalDistribution;
+import de.nobio.pfmsim.distribution.WeightedDistribution;
 
+// TODO: move to de.nobio.pfmsim.distribution
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "distribution", propOrder = { "type", "param1", "param2", "param3", "param4", "param5", "param6", "param7", "param8", "param9", "param10" })
@@ -17,9 +25,9 @@ public class Distribution {
     @XmlEnum
     public enum DistributionType {
         Constant, // always the same (???)
-        Equal,    // equal distribution
-        Normal,   // normal (gaussian) distribution
-        Weighted, // weighted distribution 
+        Equal, // equal distribution
+        Normal, // normal (gaussian) distribution
+        Weighted, // weighted distribution
         Rectangle // todo: some shaped distribution
     }
 
@@ -56,7 +64,9 @@ public class Distribution {
     @XmlElement(required = false)
     private String param10;
 
-    private iDistribution distribution;
+    @SuppressWarnings("rawtypes")
+    @XmlTransient
+    private IDistribution distribution;
 
     public DistributionType getType() {
         return type;
@@ -102,28 +112,30 @@ public class Distribution {
         return param10;
     }
 
-    public addParam(String param) {
-        // 
+    public void addParam(String param) {
+        //
     }
 
     public Double getRandomValue() {
 
-        if(type == null || type.isEmpty()) {
+        if (type == null) {
             throw new RuntimeException("ne distribution type defined");
-        } 
-
-        if(distribution == null) {
-            switch type
-            case Equal:
-                distribution = new EqualDistribution(param1, param2);
-            case Normal:
-                distribution = new NormalDistribution(param1, param2);
-            case Weighted:
-                distribution = new WeightedDistribution();
-                Map<String, Integer> baseParams = new HashMap<String, Integer>();
-            end;
         }
 
+        if (distribution == null) {
+            switch (type) {
+            case Equal:
+                distribution = new EqualDistribution<Double>(Double.valueOf(param1), Double.valueOf(param2));
+            case Normal:
+                distribution = new NormalDistribution<Double>(Double.valueOf(param1), Double.valueOf(param2));
+            case Weighted:
+                Map<String, Integer> baseParams = new HashMap<String, Integer>();
+                distribution = new WeightedDistribution<String>(baseParams);
+            default:
+            }
+            return 1.0D;
+        }
+        return null;
     }
 
     @Override

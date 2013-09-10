@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "portfolio", propOrder = { "projectStartDistribution", "projects" })
 public class Portfolio {
 
-    @XmlElement(name = "distribution", required = "true")
+    @XmlElement(name = "distribution", required = true)
     private Distribution projectStartDistribution;
 
     @XmlElement(name = "project", nillable = true, required = true)

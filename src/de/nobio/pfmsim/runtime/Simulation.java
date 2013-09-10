@@ -16,9 +16,11 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.project.Category;
+import de.nobio.pfmsim.project.Distribution;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Portfolio;
 import de.nobio.pfmsim.resource.Skill;
@@ -58,6 +60,7 @@ public class Simulation {
     private Portfolio portfolio;
 
 	// no XmlElement or XmlAttribute
+    @XmlTransient
 	private Distribution projectCategoryDistribution;
 
     public Double getAvailability() {
@@ -150,7 +153,7 @@ public class Simulation {
     @Override
     public String toString() {
         return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont
-                + ", skillPool=" + skillPool + ", projectCategories=" + projectCategories + ", phasePool=" + phasePool + ", teams=" + teams + ", portfolio="
+                + ", skillPool=" + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", teams=" + teams + ", portfolio="
                 + portfolio + "]";
     }
 

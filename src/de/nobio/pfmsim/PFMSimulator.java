@@ -19,7 +19,7 @@ import de.nobio.pfmsim.runtime.PFMContext;
 import de.nobio.pfmsim.runtime.ProjectQueue;
 import de.nobio.pfmsim.runtime.Simulation;
 
-public class PFMsimulator {
+public class PFMSimulator {
 
     private Handler repriorisationHandler = new RepriorisationHandler();
     private Handler projectInitializer = new ProjectInitializer();
@@ -43,7 +43,7 @@ public class PFMsimulator {
         setup(context);
 
         // let's go: start main loop
-        new PMSimulator().mainLoop(context);
+        new PFMSimulator().mainLoop(context);
     }
 
     private static Simulation loadConfiguration(String[] args) throws JAXBException {
@@ -63,7 +63,7 @@ public class PFMsimulator {
         Util.log("=======================================================================================");
         Util.log("=================================== Configuration =====================================");
         Util.log("=======================================================================================");
-        Util.log(cfgSimulation);
+        Util.log(context.getConfiguration());
         Util.log("=======================================================================================");
     }
 
