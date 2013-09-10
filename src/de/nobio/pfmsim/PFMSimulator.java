@@ -36,11 +36,11 @@ public class PFMsimulator {
         // testDataStructure();
         Simulation cfgSimulation = loadConfiguration(args);
 
-        // setup all stuff
-        setup(cfgSimulation);
-
         // setup the context
         PFMContext context = new PFMContext(cfgSimulation, new ProjectQueue(), new ProjectQueue());
+
+        // setup all stuff
+        setup(context);
 
         // let's go: start main loop
         new PMSimulator().mainLoop(context);
@@ -56,9 +56,9 @@ public class PFMsimulator {
         return cfgSimulation;
     }
 
-    private static void setup(Simulation cfgSimulation) throws CloneNotSupportedException {
-        new ResourceSetupHandler().setup(cfgSimulation);
-        new ProjectSetupHandler().setup(cfgSimulation);
+    private static void setup(PFMContext context) throws CloneNotSupportedException {
+        new ResourceSetupHandler().setup(context.getConfiguration());
+        new ProjectSetupHandler().setup(context.getConfiguration());
 
         Util.log("=======================================================================================");
         Util.log("=================================== Configuration =====================================");

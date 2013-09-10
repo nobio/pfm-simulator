@@ -7,6 +7,9 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlType;
 
+// TODO: move to de.nobio.pfmsim.distribution
+
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "distribution", propOrder = { "type", "param1", "param2", "param3", "param4", "param5", "param6", "param7", "param8", "param9", "param10" })
 public class Distribution {
@@ -53,6 +56,8 @@ public class Distribution {
     @XmlElement(required = false)
     private String param10;
 
+    private iDistribution distribution;
+
     public DistributionType getType() {
         return type;
     }
@@ -95,6 +100,30 @@ public class Distribution {
 
     public String getParam10() {
         return param10;
+    }
+
+    public addParam(String param) {
+        // 
+    }
+
+    public Double getRandomValue() {
+
+        if(type == null || type.isEmpty()) {
+            throw new RuntimeException("ne distribution type defined");
+        } 
+
+        if(distribution == null) {
+            switch type
+            case Equal:
+                distribution = new EqualDistribution(param1, param2);
+            case Normal:
+                distribution = new NormalDistribution(param1, param2);
+            case Weighted:
+                distribution = new WeightedDistribution();
+                Map<String, Integer> baseParams = new HashMap<String, Integer>();
+            end;
+        }
+
     }
 
     @Override

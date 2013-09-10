@@ -8,11 +8,18 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "portfolio", propOrder = { "projects" })
+@XmlType(name = "portfolio", propOrder = { "projectStartDistribution", "projects" })
 public class Portfolio {
+
+    @XmlElement(name = "distribution", required = "true")
+    private Distribution projectStartDistribution;
 
     @XmlElement(name = "project", nillable = true, required = true)
     private List<Project> projects;
+
+    public Distribution getProjectStartDistribution() {
+        return projectStartDistribution;
+    }
 
     public List<Project> getProjects() {
         return projects;
@@ -20,7 +27,7 @@ public class Portfolio {
 
     @Override
     public String toString() {
-        return "\nPortfolio [projects=" + projects + "]";
+        return "\nPortfolio [projectStartDistribution=" + projectStartDistribution + ", projects=" + projects + "]";
     }
 
 }

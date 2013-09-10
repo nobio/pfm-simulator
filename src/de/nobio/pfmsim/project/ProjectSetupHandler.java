@@ -21,8 +21,9 @@ public class ProjectSetupHandler {
             setupCategories(cfgSimulation, project);
             setupPhases(cfgSimulation, project);
             setupNeededSkills(cfgSimulation, project);
+			setupProjectCategoryDistribution(cfgSimulation, project);
         }
-                
+               
         return cfgSimulation.getPortfolio();
     }
 
@@ -38,12 +39,7 @@ public class ProjectSetupHandler {
 
     private void setupCategories(Simulation cfgSimulation, Project project) {
         // setup project category
-        for (Category category : cfgSimulation.getProjectCategories()) {
-            if (project.getCategoryRef().equals(category.getId())) {
-                project.setCategory(category);
-                break;
-            }
-        }
+		cfgSimulation.getProjectCategoryFromPool(project.categoryRef());
     }
     
     private void setupNeededSkills(Simulation cfgSimulation, Project project) {
@@ -55,5 +51,9 @@ public class ProjectSetupHandler {
         project.getSkills().removeAll(project.getSkills());
         project.getSkills().addAll(tmpSkills);
     }
-    
+ 
+	private void setupProjectCategoryDistribution(Simulation cfgSimulation, Project project) {
+		Category category = getProjectCategoryFromPool(project.getCategory.g)
+		cfgSimulation.get....(project.getCategory().getId());
+	}   
 }

@@ -13,7 +13,7 @@
         defined at resource level -->
     <availability>0.7</availability>
 
-    <!-- how long into the future could be planned? -->
+    <!-- how far into future efforts can be planned? -->
     <planning_horizont>60</planning_horizont>
     
     <!-- definition of skills; will be referenced by resources and projects/tasks -->
@@ -130,6 +130,14 @@
 
     <!-- Definition of a portfolio -->
     <portfolio>
+
+        <!-- propability of starting a new project; the trigger value is hard coded to >50; adapt your intervall and make sure your min value is smaller than 50 -->
+        <distribution type="Equal">
+            <param1>0</param1>
+            <!--paramx>50<paramx-->
+            <param2>70</param2>
+        </distribution>
+
         <!-- definition of projects -->
         <project category_ref="np" priority="1">
             <!-- this is how the chances of this project category has compared 
