@@ -14,11 +14,11 @@ public class Category {
 
     @XmlAttribute(required = true)
     private String id;
-    
+
     @XmlElement(required = true)
     private String name;
-    
-    @XmlElement(name="distribution", nillable = true, required = true)
+
+    @XmlElement(name = "distribution", nillable = true, required = true)
     private List<Distribution> distribution;
 
     public String getId() {

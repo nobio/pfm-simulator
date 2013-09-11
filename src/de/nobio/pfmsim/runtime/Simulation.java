@@ -28,8 +28,8 @@ import de.nobio.pfmsim.resource.Team;
 
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "projectCategoryPool", "phasePool", "teams",
-        "portfolio" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "projectCategoryPool", "phasePool",
+        "teams", "portfolio" })
 public class Simulation {
 
     @XmlElement(required = true)
@@ -59,9 +59,9 @@ public class Simulation {
     @XmlElement(nillable = false, name = "portfolio")
     private Portfolio portfolio;
 
-	// no XmlElement or XmlAttribute
+    // no XmlElement or XmlAttribute
     @XmlTransient
-	private Distribution projectCategoryDistribution;
+    private Distribution projectCategoryDistribution;
 
     public Double getAvailability() {
         return availability;
@@ -127,9 +127,9 @@ public class Simulation {
         return category;
     }
 
-	public Distribution getProjectCategoryDistribution() {
-		return projectCategoryDistribution;
-	}
+    public Distribution getProjectCategoryDistribution() {
+        return projectCategoryDistribution;
+    }
 
     public List<Phase> getPhases() {
         return phasePool;
@@ -153,8 +153,8 @@ public class Simulation {
     @Override
     public String toString() {
         return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont
-                + ", skillPool=" + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", teams=" + teams + ", portfolio="
-                + portfolio + "]";
+                + ", skillPool=" + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", teams=" + teams
+                + ", portfolio=" + portfolio + "]";
     }
 
 }

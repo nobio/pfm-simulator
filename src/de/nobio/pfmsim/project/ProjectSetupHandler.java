@@ -3,6 +3,7 @@ package de.nobio.pfmsim.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.nobio.pfmsim.project.Distribution.DistributionType;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.Simulation;
 
@@ -39,7 +40,11 @@ public class ProjectSetupHandler {
 
     private void setupCategories(Simulation cfgSimulation, Project project) {
         // setup project category
-        cfgSimulation.getProjectCategoryFromPool(project.getCategoryRef());
+        Category category = cfgSimulation.getProjectCategoryFromPool(project.getCategoryRef());
+        if (category == null) {
+            throw new RuntimeException("invalid category reference " + project.getCategoryRef());
+        }
+        project.setCategory(category);
     }
 
     private void setupNeededSkills(Simulation cfgSimulation, Project project) {
@@ -53,6 +58,10 @@ public class ProjectSetupHandler {
     }
 
     private void setupProjectCategoryDistribution(Simulation cfgSimulation, Project project) {
-//		Category category = getProjectCategoryFromPool(project.getCategory.g)
-//		cfgSimulation.get....(project.getCategory().getId());
-	}}
+        if (project.getDistribution() != null && project.getDistribution().getType() == DistributionType.Weighted) {
+            String group = project.getCategory().getId();
+            Integer weight = Integer.valueOf(project.getDistribution().getParam1());
+            project.getDistribution().addParamForWeightedDistribution(group, weight);
+        }
+    }
+}

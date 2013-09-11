@@ -22,7 +22,6 @@ public class Phase {
     @XmlElement(name = "workload", nillable = true, required = true)
     private Workload workload;
 
-  
     public String getId() {
         return id;
     }

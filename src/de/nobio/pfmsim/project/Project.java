@@ -48,6 +48,9 @@ public class Project implements TimeClock {
         this.category = category;
     }
 
+    /**
+     * config of project probability
+     */
     public Distribution getDistribution() {
         return distribution;
     }

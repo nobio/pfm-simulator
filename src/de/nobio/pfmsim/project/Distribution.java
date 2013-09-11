@@ -22,6 +22,9 @@ import de.nobio.pfmsim.distribution.WeightedDistribution;
 @XmlType(name = "distribution", propOrder = { "type", "param1", "param2", "param3", "param4", "param5", "param6", "param7", "param8", "param9", "param10" })
 public class Distribution {
 
+    @XmlTransient
+    Map<String, Integer> baseParamsForWeightedDistribution = new HashMap<String, Integer>();
+
     @XmlEnum
     public enum DistributionType {
         Constant, // always the same (???)
@@ -112,8 +115,9 @@ public class Distribution {
         return param10;
     }
 
-    public void addParam(String param) {
-        //
+    public void addParamForWeightedDistribution(String group, Integer weight) {
+        baseParamsForWeightedDistribution.put(group,  weight);
+        distribution = new WeightedDistribution<String>(baseParamsForWeightedDistribution); 
     }
 
     public Double getRandomValue() {
@@ -129,8 +133,7 @@ public class Distribution {
             case Normal:
                 distribution = new NormalDistribution<Double>(Double.valueOf(param1), Double.valueOf(param2));
             case Weighted:
-                Map<String, Integer> baseParams = new HashMap<String, Integer>();
-                distribution = new WeightedDistribution<String>(baseParams);
+                distribution = new WeightedDistribution<String>(baseParamsForWeightedDistribution);
             default:
             }
             return 1.0D;
