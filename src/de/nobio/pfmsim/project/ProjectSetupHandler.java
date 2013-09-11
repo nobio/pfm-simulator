@@ -3,6 +3,7 @@ package de.nobio.pfmsim.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.nobio.pfmsim.Util;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.Simulation;
 
@@ -53,6 +54,12 @@ public class ProjectSetupHandler {
     }
 
     private void setupProjectCategoryDistribution(Simulation cfgSimulation, Project project) {
-//		Category category = getProjectCategoryFromPool(project.getCategory.g)
-//		cfgSimulation.get....(project.getCategory().getId());
-	}}
+        // Category category = getProjectCategoryFromPool(project.getCategory.g)
+        // cfgSimulation.get....(project.getCategory().getId());
+    }
+    
+    public void validate(Simulation config) {
+        
+    }
+
+}

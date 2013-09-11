@@ -86,6 +86,24 @@ public final class Util {
         return distribution.get(rndIndex);
     }
 
+    public final static void assertNotNull(Object obj) {
+        if (obj == null) {
+            throw new RuntimeException("assertion: must not be null");
+        }
+    }
+
+    public final static void assertEqual(Object obj1, Object obj2) {
+        if (obj1 == null || obj2 == null) {
+            throw new RuntimeException("assertion: " + obj1 + " must be equal to " + obj2);
+        }
+        if (obj1 != null && !obj1.equals(obj2)) {
+            throw new RuntimeException("assertion: " + obj1 + " must be equal to " + obj2);
+        }
+        if (obj2 != null && !obj2.equals(obj1)) {
+            throw new RuntimeException("assertion: " + obj1 + " must be equal to " + obj2);
+        }
+    }
+
     public final static void test() {
         Map<Long, Integer> distribution = new HashMap<Long, Integer>();
         for (int i = 0; i < 100000; i++) {

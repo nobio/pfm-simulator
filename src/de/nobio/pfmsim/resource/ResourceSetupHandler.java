@@ -3,6 +3,7 @@ package de.nobio.pfmsim.resource;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.nobio.pfmsim.Util;
 import de.nobio.pfmsim.runtime.Simulation;
 
 /**
@@ -49,6 +50,33 @@ public class ResourceSetupHandler {
         }
 
         return teams;
+    }
+
+    public void validate(Simulation config) {
+        Util.assertNotNull(config.getAvailability());
+        Util.assertNotNull(config.getIterations());
+        Util.assertNotNull(config.getPause());
+        Util.assertNotNull(config.getPhases());
+        Util.assertNotNull(config.getPlanningHorizont());
+        Util.assertNotNull(config.getSkillPool());
+        Util.assertNotNull(config.getTeams());
+
+        for (Team team : config.getTeams()) {
+            Util.assertNotNull(team.getId());
+            Util.assertNotNull(team.getResources());
+            
+            for (Resource resource : team.getResources()) {
+                Util.assertNotNull(resource.getAvailability());
+                Util.assertNotNull(resource.getCount());
+                Util.assertNotNull(resource.getSkills());
+                
+                for (Skill skill : resource.getSkills()) {
+                    Util.assertNotNull(skill.getId());
+                    Util.assertNotNull(skill.getName());
+                }
+                               
+            }
+        }
     }
 
 }
