@@ -1,16 +1,24 @@
 package de.nobio.pfmsim.distribution;
 
+import java.util.HashMap;
 import java.util.Map;
 
-public class WeightedDistribution<T> implements IDistribution<T> {
+import de.nobio.pfmsim.Util;
+
+public class WeightedDistribution<T> implements IDistribution<String> {
+
+    Map<String, Integer> baseParams = new HashMap<String, Integer>();
 
     public WeightedDistribution(Map<String, Integer> baseParams) {
-        // TODO Auto-generated constructor stub
+        this.baseParams = baseParams;
     }
 
+    public void addParam(String group, Integer weight) {
+        baseParams.put(group, weight);
+    }
+    
     @Override
-    public T getRandomeValue() {
-        // TODO Auto-generated method stub
-        return null;
+    public String getRandomeValue() {
+        return Util.getWeightedRandomValue(baseParams);
     }
 }

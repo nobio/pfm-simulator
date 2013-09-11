@@ -7,7 +7,7 @@ package de.nobio.pfmsim.distribution;
  * @author nobio
  * 
  */
-public class NormalDistribution<T> implements IDistribution<T> {
+public class NormalDistribution<T> implements IDistribution<Double> {
 
     public NormalDistribution(Double mean, Double deviation) {
         super();
@@ -15,7 +15,7 @@ public class NormalDistribution<T> implements IDistribution<T> {
     }
 
     @Override
-    public T getRandomeValue() {
+    public Double getRandomeValue() {
         // TODO Auto-generated method stub
         return null;
     }

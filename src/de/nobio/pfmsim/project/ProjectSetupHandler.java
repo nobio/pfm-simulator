@@ -61,7 +61,8 @@ public class ProjectSetupHandler {
         if (project.getDistribution() != null && project.getDistribution().getType() == DistributionType.Weighted) {
             String group = project.getCategory().getId();
             Integer weight = Integer.valueOf(project.getDistribution().getParam1());
-            project.getDistribution().addParamForWeightedDistribution(group, weight);
+            cfgSimulation.createProjectCategoryDistribution(DistributionType.Weighted);
+            cfgSimulation.getProjectCategoryDistribution().addParamForWeightedDistribution(group, weight);
         }
     }
 }

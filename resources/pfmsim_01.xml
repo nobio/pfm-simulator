@@ -4,10 +4,10 @@
     <!-- ======================== HEADER ============================== -->
     <!-- ============================================================== -->
     <!-- number of iterations which can be identified with "days" -->
-    <iterations>5</iterations>
+    <iterations>30</iterations>
     
     <!-- pause in ms between two iterations -->
-    <pause>1000</pause>
+    <pause>100</pause>
 
     <!-- general availability for all resources except there is another value 
         defined at resource level -->
@@ -144,6 +144,31 @@
                 to others; please use "weighted" here -->
             <distribution type="Weighted">
                 <param1>1</param1>
+            </distribution>
+            
+            <!-- skill needed for this task -->
+            <skill ref="jd">
+                <distribution type="Weighted">
+                    <param1>4</param1>
+                </distribution>
+            </skill>
+            <skill ref="dd">
+                <distribution type="Weighted">
+                    <param1>1</param1>
+                </distribution>
+            </skill>
+            <!-- definition of the phases of this project category -->
+            <phase ref="init" />
+            <phase ref="prep" />
+            <phase ref="spec" />
+            <phase ref="constr" />
+            <phase ref="trans" />
+        </project>
+        <project category_ref="sm" priority="1">
+            <!-- this is how the chances of this project category has compared 
+                to others; please use "weighted" here -->
+            <distribution type="Weighted">
+                <param1>2</param1>
             </distribution>
             
             <!-- skill needed for this task -->

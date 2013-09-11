@@ -71,6 +71,19 @@ public class Distribution {
     @XmlTransient
     private IDistribution distribution;
 
+    /**
+     * Default constructor
+     */
+    public Distribution() {
+        super();
+    }
+
+    public Distribution(DistributionType type) {
+        super();
+        this.type = type;
+        initDistribution();
+    }
+
     public DistributionType getType() {
         return type;
     }
@@ -116,29 +129,59 @@ public class Distribution {
     }
 
     public void addParamForWeightedDistribution(String group, Integer weight) {
-        baseParamsForWeightedDistribution.put(group,  weight);
-        distribution = new WeightedDistribution<String>(baseParamsForWeightedDistribution); 
+        if (this.type == DistributionType.Weighted) {
+            @SuppressWarnings("unchecked")
+            WeightedDistribution<String> weightedDistribution = (WeightedDistribution<String>) distribution;
+            weightedDistribution.addParam(group, weight);
+        } else {
+            throw new RuntimeException("you cannot add parameters for a weighted random value when this distribution was not defined as a weighted distribution");
+        }
     }
 
-    public Double getRandomValue() {
+    public Double getRandomNumericValue() {
 
         if (type == null) {
             throw new RuntimeException("ne distribution type defined");
         }
+        if (type == DistributionType.Weighted) {
+            throw new RuntimeException("you cannot ask for a numeric random value when this distribution was defined as a weighted distribution");
+        }
 
+        initDistribution();
+
+        return (Double) distribution.getRandomeValue();
+    }
+
+    public String getRandomWeightedValue() {
+
+        if (type == null) {
+            throw new RuntimeException("ne distribution type defined");
+        }
+        if (type != DistributionType.Weighted) {
+            throw new RuntimeException("you cannot ask for a weighted random value when this distribution was not defined as a weighted distribution");
+        }
+
+        initDistribution();
+
+        return (String) distribution.getRandomeValue();
+    }
+
+    private void initDistribution() {
         if (distribution == null) {
             switch (type) {
             case Equal:
                 distribution = new EqualDistribution<Double>(Double.valueOf(param1), Double.valueOf(param2));
+                break;
             case Normal:
                 distribution = new NormalDistribution<Double>(Double.valueOf(param1), Double.valueOf(param2));
+                break;
             case Weighted:
                 distribution = new WeightedDistribution<String>(baseParamsForWeightedDistribution);
+                break;
             default:
+                distribution = null;
             }
-            return 1.0D;
         }
-        return null;
     }
 
     @Override

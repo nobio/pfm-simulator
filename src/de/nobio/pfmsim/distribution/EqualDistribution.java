@@ -3,22 +3,26 @@
  */
 package de.nobio.pfmsim.distribution;
 
+import de.nobio.pfmsim.Util;
+
 /**
  * @author nobio
  * @param <T>
  * 
  */
-public class EqualDistribution<T> implements IDistribution<T> {
+public class EqualDistribution<T> implements IDistribution<Double> {
+
+    private Double start;
+    private Double end;
 
     public EqualDistribution(Double start, Double end) {
-        super();
-        // TODO Auto-generated constructor stub
+        this.start = start;
+        this.end = end;
     }
 
     @Override
-    public T getRandomeValue() {
-        // TODO Auto-generated method stub
-        return null;
+    public Double getRandomeValue() {
+        return Util.getEquallyDistributedRandomNumer(start, end);
     }
 
 }

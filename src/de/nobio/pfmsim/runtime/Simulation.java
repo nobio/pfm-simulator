@@ -23,6 +23,7 @@ import de.nobio.pfmsim.project.Category;
 import de.nobio.pfmsim.project.Distribution;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Portfolio;
+import de.nobio.pfmsim.project.Distribution.DistributionType;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.resource.Team;
 
@@ -61,7 +62,7 @@ public class Simulation {
 
     // no XmlElement or XmlAttribute
     @XmlTransient
-    private Distribution projectCategoryDistribution;
+    private Distribution projectCategoryDistribution = new Distribution();
 
     public Double getAvailability() {
         return availability;
@@ -129,6 +130,12 @@ public class Simulation {
 
     public Distribution getProjectCategoryDistribution() {
         return projectCategoryDistribution;
+    }
+
+    public void createProjectCategoryDistribution(DistributionType type) {
+        if (projectCategoryDistribution.getType() != type) {
+            projectCategoryDistribution = new Distribution(type);
+        }
     }
 
     public List<Phase> getPhases() {
