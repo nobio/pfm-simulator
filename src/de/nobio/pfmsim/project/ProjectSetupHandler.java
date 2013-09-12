@@ -65,4 +65,9 @@ public class ProjectSetupHandler {
             cfgSimulation.getProjectCategoryDistribution().addParamForWeightedDistribution(group, weight);
         }
     }
+    
+    public void validate(Simulation config) {
+        
+    }
+
 }

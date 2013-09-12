@@ -57,8 +57,13 @@ public class PFMSimulator {
     }
 
     private static void setup(PFMContext context) throws CloneNotSupportedException {
-        new ResourceSetupHandler().setup(context.getConfiguration());
-        new ProjectSetupHandler().setup(context.getConfiguration());
+        ResourceSetupHandler resourceSetup = new ResourceSetupHandler();
+        resourceSetup.setup(context.getConfiguration());
+        resourceSetup.validate(context.getConfiguration());
+        
+        ProjectSetupHandler projectSetup = new ProjectSetupHandler();
+        projectSetup.setup(context.getConfiguration());
+        projectSetup.validate(context.getConfiguration());
 
         Util.log("=======================================================================================");
         Util.log("=================================== Configuration =====================================");
