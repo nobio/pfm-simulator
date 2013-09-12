@@ -7,6 +7,8 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import de.nobio.pfmsim.distribution.Distribution;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "portfolio", propOrder = { "projectStartDistribution", "projects" })
 public class Portfolio {

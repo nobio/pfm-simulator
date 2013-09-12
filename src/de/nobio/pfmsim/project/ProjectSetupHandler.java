@@ -3,7 +3,7 @@ package de.nobio.pfmsim.project;
 import java.util.ArrayList;
 import java.util.List;
 
-import de.nobio.pfmsim.project.Distribution.DistributionType;
+import de.nobio.pfmsim.distribution.Distribution.DistributionType;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.Simulation;
 

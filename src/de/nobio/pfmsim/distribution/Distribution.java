@@ -1,4 +1,4 @@
-package de.nobio.pfmsim.project;
+package de.nobio.pfmsim.distribution;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -11,12 +11,6 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import de.nobio.pfmsim.distribution.EqualDistribution;
-import de.nobio.pfmsim.distribution.IDistribution;
-import de.nobio.pfmsim.distribution.NormalDistribution;
-import de.nobio.pfmsim.distribution.WeightedDistribution;
-
-// TODO: move to de.nobio.pfmsim.distribution
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "distribution", propOrder = { "type", "param1", "param2", "param3", "param4", "param5", "param6", "param7", "param8", "param9", "param10" })

@@ -6,7 +6,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-import de.nobio.pfmsim.project.Distribution;
+import de.nobio.pfmsim.distribution.Distribution;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "skill", propOrder = { "id", "distribution", "ref", "name" })

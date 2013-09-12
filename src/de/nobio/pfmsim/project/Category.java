@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import de.nobio.pfmsim.distribution.Distribution;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "project_category", propOrder = { "id", "name", "distribution" })
 public class Category {

@@ -8,6 +8,7 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+import de.nobio.pfmsim.distribution.Distribution;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.TimeClock;
 

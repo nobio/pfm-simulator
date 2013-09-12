@@ -19,11 +19,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import de.nobio.pfmsim.distribution.Distribution;
+import de.nobio.pfmsim.distribution.Distribution.DistributionType;
 import de.nobio.pfmsim.project.Category;
-import de.nobio.pfmsim.project.Distribution;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Portfolio;
-import de.nobio.pfmsim.project.Distribution.DistributionType;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.resource.Team;
 
