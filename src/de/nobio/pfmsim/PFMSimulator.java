@@ -1,6 +1,7 @@
 package de.nobio.pfmsim;
 
 import java.io.File;
+import java.util.logging.Logger;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -20,6 +21,8 @@ import de.nobio.pfmsim.runtime.ProjectQueue;
 import de.nobio.pfmsim.runtime.Simulation;
 
 public class PFMSimulator {
+
+    private static final Logger LOGGER = Logger.getLogger(PFMSimulator.class.getName());
 
     private Handler repriorisationHandler = new RepriorisationHandler();
     private Handler projectInitializer = new ProjectInitializer();
@@ -52,7 +55,7 @@ public class PFMSimulator {
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Simulation cfgSimulation = (Simulation) jaxbUnmarshaller.unmarshal(file);
-        //        Util.log("loaded config: " + cfgSimulation);
+        //        LOGGER.info("loaded config: " + cfgSimulation);
         return cfgSimulation;
     }
 
@@ -65,18 +68,18 @@ public class PFMSimulator {
         projectSetup.setup(context.getConfiguration());
         projectSetup.validate(context.getConfiguration());
 
-        Util.log("=======================================================================================");
-        Util.log("=================================== Configuration =====================================");
-        Util.log("=======================================================================================");
-        Util.log(context.getConfiguration());
-        Util.log("=======================================================================================");
+        LOGGER.info("=======================================================================================");
+        LOGGER.info("=================================== Configuration =====================================");
+        LOGGER.info("=======================================================================================");
+        LOGGER.info(context.getConfiguration().toString());
+        LOGGER.info("=======================================================================================");
     }
 
     private void mainLoop(PFMContext context) throws InterruptedException {
 
-        Util.log("=======================================================================================");
-        Util.log("# starting simulation");
-        Util.log("=======================================================================================");
+        LOGGER.info("=======================================================================================");
+        LOGGER.info("# starting simulation");
+        LOGGER.info("=======================================================================================");
 
         long iterations = context.getConfiguration().getIterations();
         long pause = context.getConfiguration().getPause();
@@ -91,13 +94,13 @@ public class PFMSimulator {
             statisticHandler.handle(context);
 
             Thread.sleep(pause);
-            Util.log("");
+            LOGGER.info("");
 
         }
 
-        Util.log("=======================================================================================");
-        Util.log("# simulation stopped");
-        Util.log("=======================================================================================");
+        LOGGER.info("=======================================================================================");
+        LOGGER.info("# simulation stopped");
+        LOGGER.info("=======================================================================================");
     }
 
 }

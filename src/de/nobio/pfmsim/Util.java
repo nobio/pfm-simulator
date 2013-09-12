@@ -9,15 +9,7 @@ import java.util.TreeSet;
 
 public final class Util {
 
-    static Random rnd = new Random(System.currentTimeMillis());
-
-    public final static void log(Object message) {
-        if (message == null) {
-            System.out.println("DEBUG [nothing to be logged]");
-        } else {
-            System.out.println("DEBUG " + message.toString());
-        }
-    }
+    private static Random rnd = new Random(System.currentTimeMillis());
 
     /**
      * Returns an equally distributed random number in a given interval

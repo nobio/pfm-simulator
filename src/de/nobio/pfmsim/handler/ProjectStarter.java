@@ -3,7 +3,8 @@
  */
 package de.nobio.pfmsim.handler;
 
-import de.nobio.pfmsim.Util;
+import java.util.logging.Logger;
+
 import de.nobio.pfmsim.runtime.PFMContext;
 
 /**
@@ -12,12 +13,14 @@ import de.nobio.pfmsim.runtime.PFMContext;
  */
 public class ProjectStarter implements Handler {
 
+    private static final Logger LOGGER = Logger.getLogger(ProjectStarter.class.getName());
+
     /**
      * @see de.nobio.pfmsim.handler.Handler#handle(de.nobio.pfmsim.runtime.PFMContext)
      */
     @Override
     public void handle(PFMContext context) {
-        Util.log(this.getClass().getName());
+        LOGGER.info(this.getClass().getName());
     }
 
 }
