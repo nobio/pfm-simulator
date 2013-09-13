@@ -6,6 +6,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.distribution.Distribution;
@@ -13,15 +14,16 @@ import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.TimeClock;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "project", propOrder = { "categoryRef", "priority", "distribution", "category", "phases", "neededSkills" })
+@XmlType(name = "project")
 public class Project implements TimeClock {
 
     @XmlAttribute(required = true, name = "category_ref")
     private String categoryRef;
 
-    @XmlAttribute(required = true, name = "priority")
+    @XmlTransient
     private String priority;
 
+    @XmlElement(type = Category.class)
     private Category category;
 
     @XmlElement(type = Distribution.class)

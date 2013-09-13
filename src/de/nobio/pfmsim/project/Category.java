@@ -9,9 +9,10 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.distribution.Distribution;
+import de.nobio.pfmsim.resource.Skill;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "project_category", propOrder = { "id", "name", "distribution" })
+@XmlType(name = "project_category")
 public class Category {
 
     @XmlAttribute(required = true)
@@ -21,7 +22,13 @@ public class Category {
     private String name;
 
     @XmlElement(name = "distribution", nillable = true, required = true)
-    private List<Distribution> distribution;
+    private List<Distribution> projectCategoryStartProbability;
+
+    @XmlElement(name = "phase", nillable = true, required = true)
+    private List<Phase> phases;
+
+    @XmlElement(name = "skill", nillable = true, required = true)
+    private List<Skill> neededSkills;
 
     public String getId() {
         return id;
@@ -31,13 +38,38 @@ public class Category {
         return name;
     }
 
-    public List<Distribution> getDistribution() {
-        return distribution;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Distribution> getProjectCategoryStartProbability() {
+        return projectCategoryStartProbability;
+    }
+
+    public void setProjectCategoryStartProbability(List<Distribution> projectCategoryStartProbability) {
+        this.projectCategoryStartProbability = projectCategoryStartProbability;
+    }
+
+    public List<Phase> getPhases() {
+        return phases;
+    }
+
+    public void setPhases(List<Phase> phases) {
+        this.phases = phases;
+    }
+
+    public List<Skill> getNeededSkills() {
+        return neededSkills;
+    }
+
+    public void setNeededSkills(List<Skill> neededSkills) {
+        this.neededSkills = neededSkills;
     }
 
     @Override
     public String toString() {
-        return "Category [id=" + id + ", name=" + name + ", distribution=" + distribution + "]";
+        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryStartProbability=" + projectCategoryStartProbability + ", phases=" + phases
+                + ", neededSkills=" + neededSkills + "]";
     }
 
 }

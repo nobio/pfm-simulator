@@ -38,6 +38,7 @@ public class PFMSimulator {
         }
         // testDataStructure();
         Simulation cfgSimulation = loadConfiguration(args);
+        LOGGER.info(cfgSimulation.toString());
 
         // setup the context
         PFMContext context = new PFMContext(cfgSimulation, new ProjectQueue(), new ProjectQueue());
@@ -46,7 +47,7 @@ public class PFMSimulator {
         setup(context);
 
         // let's go: start main loop
-        new PFMSimulator().mainLoop(context);
+//        new PFMSimulator().mainLoop(context);
     }
 
     private static Simulation loadConfiguration(String[] args) throws JAXBException {

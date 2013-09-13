@@ -5,7 +5,7 @@
     <!-- ============================================================== -->
     <!-- number of iterations which can be identified with "days" -->
     <iterations>30</iterations>
-    
+
     <!-- pause in ms between two iterations -->
     <pause>100</pause>
 
@@ -15,7 +15,7 @@
 
     <!-- how far into future efforts can be planned? -->
     <planning_horizont>60</planning_horizont>
-    
+
     <!-- definition of skills; will be referenced by resources and projects/tasks -->
     <skill id="jd" name="Java Developer" />
     <skill id="dd" name="Database Designer" />
@@ -26,17 +26,53 @@
         Project, Big Project with it's effort definition -->
     <project_category id="np">
         <name>Normal Project</name>
-        <distribution type="Constant">
-            <param1>50</param1>
-            <param2>10</param2>
+        <!-- this is how the chances of this project category has compared 
+            to others; please use "weighted" here -->
+        <distribution type="Weighted">
+            <param1>1</param1>
         </distribution>
+
+        <!-- skills needed for this project category with a certain probability 
+            distribution -->
+        <skill ref="jd">
+            <distribution type="Weighted">
+                <param1>4</param1>
+            </distribution>
+        </skill>
+        <skill ref="dd">
+            <distribution type="Weighted">
+                <param1>1</param1>
+            </distribution>
+        </skill>
+        <!-- definition of the phases of this project category -->
+        <phase ref="init" />
+        <phase ref="prep" />
+        <phase ref="spec" />
+        <phase ref="constr" />
+        <phase ref="trans" />
     </project_category>
     <project_category id="sm">
         <name>Small Enhancement</name>
-        <distribution type="Equal">
-            <param1>10</param1>
-            <param2>4</param2>
+        <!-- this is how the chances of this project category has compared 
+            to others; please use "weighted" here -->
+        <distribution type="Weighted">
+            <param1>2</param1>
         </distribution>
+
+        <!-- skill needed for this task -->
+        <skill ref="jd">
+            <distribution type="Weighted">
+                <param1>4</param1>
+            </distribution>
+        </skill>
+        <skill ref="dd">
+            <distribution type="Weighted">
+                <param1>1</param1>
+            </distribution>
+        </skill>
+        <!-- definition of the phases of this project category -->
+        <phase ref="spec" />
+        <phase ref="constr" />
     </project_category>
 
     <!-- definition of project phases; the efforts are meant to be a weight 
@@ -131,63 +167,17 @@
     <!-- Definition of a portfolio -->
     <portfolio>
 
-        <!-- propability of starting a new project; the trigger value is hard coded to >50; adapt your intervall and make sure your min value is smaller than 50 -->
+        <!-- propability of starting a new project; the trigger value is 
+            hard coded to >50; adapt your intervall and make sure your min value is smaller 
+            than 50 -->
         <distribution type="Equal">
             <param1>0</param1>
-            <!--paramx>50<paramx-->
+            <!--paramx>50<paramx -->
             <param2>70</param2>
         </distribution>
 
         <!-- definition of projects -->
-        <project category_ref="np" priority="1">
-            <!-- this is how the chances of this project category has compared 
-                to others; please use "weighted" here -->
-            <distribution type="Weighted">
-                <param1>1</param1>
-            </distribution>
-            
-            <!-- skill needed for this task -->
-            <skill ref="jd">
-                <distribution type="Weighted">
-                    <param1>4</param1>
-                </distribution>
-            </skill>
-            <skill ref="dd">
-                <distribution type="Weighted">
-                    <param1>1</param1>
-                </distribution>
-            </skill>
-            <!-- definition of the phases of this project category -->
-            <phase ref="init" />
-            <phase ref="prep" />
-            <phase ref="spec" />
-            <phase ref="constr" />
-            <phase ref="trans" />
-        </project>
-        <project category_ref="sm" priority="1">
-            <!-- this is how the chances of this project category has compared 
-                to others; please use "weighted" here -->
-            <distribution type="Weighted">
-                <param1>2</param1>
-            </distribution>
-            
-            <!-- skill needed for this task -->
-            <skill ref="jd">
-                <distribution type="Weighted">
-                    <param1>4</param1>
-                </distribution>
-            </skill>
-            <skill ref="dd">
-                <distribution type="Weighted">
-                    <param1>1</param1>
-                </distribution>
-            </skill>
-            <!-- definition of the phases of this project category -->
-            <phase ref="init" />
-            <phase ref="prep" />
-            <phase ref="spec" />
-            <phase ref="constr" />
-            <phase ref="trans" />
-        </project>
+        <project category_ref="np" priority="1" />
+        <project category_ref="sm" />
     </portfolio>
 </simulation>

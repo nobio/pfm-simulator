@@ -29,7 +29,7 @@ import de.nobio.pfmsim.resource.Team;
 
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "projectCategoryPool", "phasePool",
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "phasePool", "projectCategoryPool", 
         "teams", "portfolio" })
 public class Simulation {
 
