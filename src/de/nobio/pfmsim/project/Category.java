@@ -21,8 +21,8 @@ public class Category {
     @XmlElement(required = true)
     private String name;
 
-    @XmlElement(name = "distribution", nillable = true, required = true)
-    private List<Distribution> projectCategoryStartProbability;
+    @XmlElement(name = "distribution", required = true)
+    private Distribution projectCategoryStartProbability;
 
     @XmlElement(name = "phase", nillable = true, required = true)
     private List<Phase> phases;
@@ -42,11 +42,11 @@ public class Category {
         this.name = name;
     }
 
-    public List<Distribution> getProjectCategoryStartProbability() {
+    public Distribution getProjectCategoryStartProbability() {
         return projectCategoryStartProbability;
     }
 
-    public void setProjectCategoryStartProbability(List<Distribution> projectCategoryStartProbability) {
+    public void setProjectCategoryStartProbability(Distribution projectCategoryStartProbability) {
         this.projectCategoryStartProbability = projectCategoryStartProbability;
     }
 

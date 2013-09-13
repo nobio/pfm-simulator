@@ -177,7 +177,7 @@
         </distribution>
 
         <!-- definition of projects -->
-        <project category_ref="np" priority="1" />
+        <project category_ref="np" />
         <project category_ref="sm" />
     </portfolio>
 </simulation>

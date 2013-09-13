@@ -26,17 +26,17 @@ public class ProjectInitializer implements Handler {
         LOGGER.info(this.getClass().getName());
 
         Simulation config = context.getConfiguration();
-        Portfolio portfolio = config.getPortfolio();
+//        Portfolio portfolio = config.getPortfolio();
 
         // can we start a project?
-        if (portfolio.getProjectStartDistribution().getRandomNumericValue() > 50) {
-            LOGGER.info("Ohhh a project. Let's start it!!");
-
-            // which project category should the project have?
-            Category projectCategory = config.getProjectCategoryFromPool(config.getProjectCategoryDistribution().getRandomWeightedValue());
-            LOGGER.info(projectCategory.toString());
-            LOGGER.info("let's setup a " + projectCategory.getName() + " project");
-        }
+//        if (portfolio.getProjectStartDistribution().getRandomNumericValue() > 50) {
+//            LOGGER.info("Ohhh a project. Let's start it!!");
+//
+//            // which project category should the project have?
+//            Category projectCategory = config.getProjectCategoryFromPool(config.getProjectCategoryDistribution().getRandomWeightedValue());
+//            LOGGER.info(projectCategory.toString());
+//            LOGGER.info("let's setup a " + projectCategory.getName() + " project");
+//        }
     }
 
 }

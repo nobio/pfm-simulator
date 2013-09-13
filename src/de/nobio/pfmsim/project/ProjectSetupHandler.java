@@ -19,7 +19,7 @@ public class ProjectSetupHandler {
     public Portfolio setup(Simulation config) throws CloneNotSupportedException {
         setupPhases(config);
         setupNeededSkills(config);
-        //        setupProjectCategoryDistribution(config);
+        setupProjectCategoryDistribution(config);
 
         return config.getPortfolio();
     }
@@ -48,12 +48,14 @@ public class ProjectSetupHandler {
         }
     }
 
-    private void setupProjectCategoryDistribution(Simulation config, Project project) {
-        if (project.getDistribution() != null && project.getDistribution().getType() == DistributionType.Weighted) {
-            String group = project.getCategory().getId();
-            Integer weight = Integer.valueOf(project.getDistribution().getParam1());
-            config.createProjectCategoryDistribution(DistributionType.Weighted);
-            config.getProjectCategoryDistribution().addParamForWeightedDistribution(group, weight);
+    private void setupProjectCategoryDistribution(Simulation config) {
+        for (Category category : config.getProjectCategoryPool()) {
+            if (category.getProjectCategoryStartProbability() != null && category.getProjectCategoryStartProbability().getType() == DistributionType.Weighted) {
+                String group = category.getId();
+                Integer weight = Integer.valueOf(category.getProjectCategoryStartProbability().getParam1());
+                config.createProjectCategoryDistribution(DistributionType.Weighted);
+                config.getProjectCategoryDistribution().addParamForWeightedDistribution(group, weight);
+            }
         }
     }
 

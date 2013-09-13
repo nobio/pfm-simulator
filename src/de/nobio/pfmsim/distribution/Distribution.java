@@ -11,7 +11,6 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "distribution", propOrder = { "type", "param1", "param2", "param3", "param4", "param5", "param6", "param7", "param8", "param9", "param10" })
 public class Distribution {
@@ -128,7 +127,8 @@ public class Distribution {
             WeightedDistribution<String> weightedDistribution = (WeightedDistribution<String>) distribution;
             weightedDistribution.addParam(group, weight);
         } else {
-            throw new RuntimeException("you cannot add parameters for a weighted random value when this distribution was not defined as a weighted distribution");
+            throw new RuntimeException(
+                    "you cannot add parameters for a weighted random value when this distribution was not defined as a weighted distribution");
         }
     }
 
@@ -190,7 +190,7 @@ public class Distribution {
         String strP8 = param8 != null ? ", param8=" + param8 : "";
         String strP9 = param9 != null ? ", param9=" + param9 : "";
         String strP10 = param10 != null ? ", param10=" + param10 : "";
-        return "Distribution [type=" + type + strP1 + strP2 + strP3 + strP4 + strP5 + strP6 + strP7 + strP8 + strP9 + strP10 + "]";
+        return "Distribution [type=" + type + distribution + strP1 + strP2 + strP3 + strP4 + strP5 + strP6 + strP7 + strP8 + strP9 + strP10 + "]";
     }
 
 }
