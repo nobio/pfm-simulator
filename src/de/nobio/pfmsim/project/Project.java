@@ -1,5 +1,6 @@
 package de.nobio.pfmsim.project;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.xml.bind.annotation.XmlAccessType;
@@ -10,18 +11,18 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.distribution.Distribution;
-import de.nobio.pfmsim.resource.Skill;
+import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.runtime.TimeClock;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "project")
-public class Project implements TimeClock {
+public class Project implements TimeClock, Comparable<Project> {
 
     @XmlAttribute(required = true, name = "category_ref")
     private String categoryRef;
 
     @XmlTransient
-    private String priority;
+    private Long priority;
 
     @XmlElement(type = Category.class)
     private Category category;
@@ -32,15 +33,19 @@ public class Project implements TimeClock {
     @XmlElement(name = "phase", nillable = true, required = true)
     private List<Phase> phases;
 
-    @XmlElement(name = "skill", nillable = true, required = true)
-    private List<Skill> neededSkills;
+    @XmlTransient
+    private List<Resource> resources;
 
     public String getCategoryRef() {
         return categoryRef;
     }
 
-    public String getPriority() {
+    public Long getPriority() {
         return priority;
+    }
+
+    public void setPriority(Long priority) {
+        this.priority = priority;
     }
 
     public Category getCategory() {
@@ -66,8 +71,19 @@ public class Project implements TimeClock {
         this.phases = phases;
     }
 
-    public List<Skill> getSkills() {
-        return neededSkills;
+    public List<Resource> getResources() {
+        if (resources == null) {
+            resources = new ArrayList<Resource>();
+        }
+        return resources;
+    }
+
+    public void setResources(List<Resource> resources) {
+        this.resources = resources;
+    }
+
+    public void addResource(Resource resource) {
+        getResources().add(resource);
     }
 
     @Override
@@ -77,9 +93,24 @@ public class Project implements TimeClock {
     }
 
     @Override
+    public int compareTo(Project p1) {
+        int cmp = 0;
+        if (p1 == null) {
+            cmp = 0;
+        } else if (p1.getPriority() > getPriority()) {
+            cmp = 1;
+        } else if (p1.getPriority() < getPriority()) {
+            cmp = -1;
+        } else if (p1.getPriority() == getPriority()) {
+            cmp = 0;
+        }
+        return cmp;
+    }
+
+    @Override
     public String toString() {
-        return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", category=" + category + ", distribution=" + distribution + ", phases="
-                + phases + ", skills=" + neededSkills + "]";
+        return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", category=" + category + ", distribution=" + distribution + ", phases=" + phases
+                + ", skills=" + resources + "]";
     }
 
 }

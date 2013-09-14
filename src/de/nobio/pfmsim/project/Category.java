@@ -6,11 +6,9 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.distribution.Distribution;
-import de.nobio.pfmsim.distribution.WeightedDistribution;
 import de.nobio.pfmsim.resource.Skill;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -24,16 +22,13 @@ public class Category {
     private String name;
 
     @XmlElement(name = "distribution", required = true)
-    private Distribution projectCategoryStartProbability;
+    private Distribution projectCategoryDistribution;
 
     @XmlElement(name = "phase", nillable = true, required = true)
     private List<Phase> phases;
 
     @XmlElement(name = "skill", nillable = true, required = true)
     private List<Skill> neededSkills;
-    
-    @XmlTransient
-    private WeightedDistribution<String> skillDistribution;
 
     public String getId() {
         return id;
@@ -47,12 +42,12 @@ public class Category {
         this.name = name;
     }
 
-    public Distribution getProjectCategoryStartProbability() {
-        return projectCategoryStartProbability;
+    public Distribution getProjectCategoryDistribution() {
+        return projectCategoryDistribution;
     }
 
-    public void setProjectCategoryStartProbability(Distribution projectCategoryStartProbability) {
-        this.projectCategoryStartProbability = projectCategoryStartProbability;
+    public void setProjectCategoryDistribution(Distribution projectCategoryStartProbability) {
+        this.projectCategoryDistribution = projectCategoryStartProbability;
     }
 
     public List<Phase> getPhases() {
@@ -71,18 +66,10 @@ public class Category {
         this.neededSkills = neededSkills;
     }
 
-    public WeightedDistribution<String> getSkillDistribution() {
-        return skillDistribution;
-    }
-
-    public void setSkillDistribution(WeightedDistribution<String> skillDistribution) {
-        this.skillDistribution = skillDistribution;
-    }
-
     @Override
     public String toString() {
-        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryStartProbability=" + projectCategoryStartProbability + ", phases=" + phases + ", neededSkills="
-                + neededSkills + ", skillDistribution=" + skillDistribution + "]";
+        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryDistribution=" + projectCategoryDistribution + ", phases=" + phases + ", neededSkills=" + neededSkills
+                + "]";
     }
 
 }

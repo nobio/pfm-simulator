@@ -46,7 +46,7 @@ public class PFMSimulator {
         setup(context);
 
         // let's go: start main loop
-//        new PFMSimulator().mainLoop(context);
+        new PFMSimulator().mainLoop(context);
     }
 
     private static Simulation loadConfiguration(String[] args) throws JAXBException {
@@ -83,8 +83,9 @@ public class PFMSimulator {
 
         long iterations = context.getConfiguration().getIterations();
         long pause = context.getConfiguration().getPause();
+        
         // iterate over the whole simulation period
-        for (int moment = 0; moment <= iterations; moment++) {
+        for (int moment = 0; moment < iterations; moment++) {
 
             repriorisationHandler.handle(context);
             projectInitializer.handle(context);
@@ -94,6 +95,7 @@ public class PFMSimulator {
             statisticHandler.handle(context);
 
             Thread.sleep(pause);
+            LOGGER.info(context.getWaitingProjects().toString());
             LOGGER.info("");
 
         }

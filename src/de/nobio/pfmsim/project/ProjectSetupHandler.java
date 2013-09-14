@@ -42,9 +42,6 @@ public class ProjectSetupHandler {
         for (Category category : config.getProjectCategoryPool()) {
             WeightedDistribution<String> skillDistribution = new WeightedDistribution<String>();
             for (Skill skill : category.getNeededSkills()) {
-                if (skill.getDistribution().getType() != DistributionType.Weighted) {
-                    throw new IllegalArgumentException("Distrtibution of skills must be weighted");
-                }
                 Skill referenceSkill = config.getSkillFromPool(skill.getRef());
                 skill.setId(referenceSkill.getId());
                 skill.setName(referenceSkill.getName());
@@ -53,18 +50,17 @@ public class ProjectSetupHandler {
                 String group = skill.getId();
                 skillDistribution.addParam(group, weight);
             }
-            category.setSkillDistribution(skillDistribution);
         }
     }
 
     private void setupProjectCategoryDistribution(Simulation config) {
         WeightedDistribution<String> projectCategoryDistribution = new WeightedDistribution<String>();
         for (Category category : config.getProjectCategoryPool()) {
-            if (category.getProjectCategoryStartProbability().getType() != DistributionType.Weighted) {
+            if (category.getProjectCategoryDistribution().getType() != DistributionType.Weighted) {
                 throw new IllegalArgumentException("Distrtibution of skills must be weighted");
             }
             String group = category.getId();
-            Integer weight = Integer.valueOf(category.getProjectCategoryStartProbability().getParam1());
+            Integer weight = Integer.valueOf(category.getProjectCategoryDistribution().getParam1());
             projectCategoryDistribution.addParam(group, weight);
         }
         config.setProjectCategoryDistribution(projectCategoryDistribution);

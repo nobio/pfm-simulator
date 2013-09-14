@@ -121,6 +121,11 @@ public class Distribution {
         return param10;
     }
 
+    public IDistribution getDistribution(){
+        initDistribution();
+        return distribution;
+    } 
+    
     public void addParamForWeightedDistribution(String group, Integer weight) {
         if (this.type == DistributionType.Weighted) {
             @SuppressWarnings("unchecked")

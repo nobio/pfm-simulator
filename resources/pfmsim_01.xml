@@ -4,10 +4,10 @@
 	<!-- ======================== HEADER ============================== -->
 	<!-- ============================================================== -->
 	<!-- number of iterations which can be identified with "days" -->
-	<iterations>30</iterations>
+	<iterations>3</iterations>
 
 	<!-- pause in ms between two iterations -->
-	<pause>100</pause>
+	<pause>800</pause>
 
 	<!-- general availability for all resources except there is another value 
 		defined at resource level -->
@@ -33,15 +33,17 @@
 		</distribution>
 
 		<!-- skills needed for this project category with a certain probability 
-			distribution; please use "weighted" here; goes to Category.skillDistribution -->
+			distribution; must not use "weighted" here -->
 		<skill ref="jd">
-			<distribution type="Weighted">
-				<param1>4</param1>
+			<distribution type="Normal">
+                <param1>6</param1>
+                <param2>5</param2>
 			</distribution>
 		</skill>
 		<skill ref="dd">
-			<distribution type="Weighted">
-				<param1>1</param1>
+			<distribution type="Equal">
+                <param1>1</param1>
+                <param2>3</param2>
 			</distribution>
 		</skill>
 		<!-- definition of the phases of this project category -->
@@ -61,13 +63,9 @@
 
 		<!-- skill needed for this task -->
 		<skill ref="jd">
-			<distribution type="Weighted">
-				<param1>4</param1>
-			</distribution>
-		</skill>
-		<skill ref="dd">
-			<distribution type="Weighted">
-				<param1>1</param1>
+			<distribution type="Equal">
+                <param1>1</param1>
+                <param2>2</param2>
 			</distribution>
 		</skill>
 		<!-- definition of the phases of this project category -->
@@ -169,9 +167,9 @@
 
 		<!-- propability of starting a new project; the trigger value is hard coded 
 			to >50; adapt your intervall and make sure your min value is smaller than 
-			50 -->
+			50; this goes to Portfolio.projectCategoryStartProbability -->
 		<distribution type="Equal">
-			<param1>0</param1>
+			<param1>51</param1>
 			<!--paramx>50<paramx -->
 			<param2>70</param2>
 		</distribution>

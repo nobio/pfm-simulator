@@ -16,18 +16,24 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "resource", propOrder = { "availability", "count", "skill" })
+@XmlType(name = "resource")
 public class Resource {
 
     @XmlElement(required = false)
-    protected Double availability = 0.0D;
+    private Double availability = 0.0D;
+
     @XmlAttribute(required = true)
-    protected Integer count = 0;
+    private Integer count = 0;
+
+    @XmlTransient
+    private Double reserved = 0.0D;
+
     @XmlElement(nillable = true, required = true)
-    protected List<Skill> skill;
+    private List<Skill> skill;
 
     public Double getAvailability() {
         return availability;
@@ -35,6 +41,14 @@ public class Resource {
 
     public void setAvailability(Double availability) {
         this.availability = availability;
+    }
+
+    public Double getReserved() {
+        return reserved;
+    }
+
+    public void setReserved(Double reserved) {
+        this.reserved = reserved;
     }
 
     public Integer getCount() {
@@ -50,6 +64,10 @@ public class Resource {
             skill = new ArrayList<Skill>();
         }
         return this.skill;
+    }
+
+    public void addSkill(Skill skill) {
+        getSkills().add(skill);
     }
 
     @Override
