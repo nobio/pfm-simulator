@@ -19,8 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
-import de.nobio.pfmsim.distribution.Distribution;
-import de.nobio.pfmsim.distribution.Distribution.DistributionType;
+import de.nobio.pfmsim.distribution.WeightedDistribution;
 import de.nobio.pfmsim.project.Category;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Portfolio;
@@ -29,8 +28,7 @@ import de.nobio.pfmsim.resource.Team;
 
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "phasePool", "projectCategoryPool",
-        "teams", "portfolio" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "phasePool", "projectCategoryPool", "teams", "portfolio" })
 public class Simulation {
 
     @XmlElement(required = true)
@@ -60,9 +58,8 @@ public class Simulation {
     @XmlElement(nillable = false, name = "portfolio")
     private Portfolio portfolio;
 
-    // no XmlElement or XmlAttribute
     @XmlTransient
-    private Distribution projectCategoryDistribution = new Distribution();
+    private WeightedDistribution<String> projectCategoryDistribution = new WeightedDistribution<String>();
 
     public Double getAvailability() {
         return availability;
@@ -128,14 +125,12 @@ public class Simulation {
         return category;
     }
 
-    public Distribution getProjectCategoryDistribution() {
+    public WeightedDistribution<String> getProjectCategoryDistribution() {
         return projectCategoryDistribution;
     }
 
-    public void createProjectCategoryDistribution(DistributionType type) {
-        if (projectCategoryDistribution.getType() != type) {
-            projectCategoryDistribution = new Distribution(type);
-        }
+    public void setProjectCategoryDistribution(WeightedDistribution<String> projectCategoryDistribution) {
+        this.projectCategoryDistribution = projectCategoryDistribution;
     }
 
     public List<Phase> getPhases() {
@@ -159,9 +154,9 @@ public class Simulation {
 
     @Override
     public String toString() {
-        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont
-                + ", skillPool=" + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", projectCategoryDistribution"
-                + projectCategoryDistribution + ", teams=" + teams + ", portfolio=" + portfolio + "]";
+        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont + ", skillPool="
+                + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", projectCategoryDistribution" + projectCategoryDistribution
+                + ", teams=" + teams + ", portfolio=" + portfolio + "]";
     }
 
 }

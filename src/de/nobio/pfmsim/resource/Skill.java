@@ -20,19 +20,23 @@ public class Skill {
     @XmlAttribute
     private String name;
 
-    @XmlElement(type = Distribution.class)
+    @XmlElement(type = Distribution.class, name = "distribution")
     private Distribution distribution;
 
     public String getId() {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getRef() {
         return ref;
     }
 
-    public Distribution getDistribution() {
-        return distribution;
+    public void setRef(String ref) {
+        this.ref = ref;
     }
 
     public String getName() {
@@ -41,6 +45,14 @@ public class Skill {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Distribution getDistribution() {
+        return distribution;
+    }
+
+    public void setDistribution(Distribution distribution) {
+        this.distribution = distribution;
     }
 
     @Override

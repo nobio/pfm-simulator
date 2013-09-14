@@ -38,7 +38,6 @@ public class PFMSimulator {
         }
         // testDataStructure();
         Simulation cfgSimulation = loadConfiguration(args);
-        LOGGER.info(cfgSimulation.toString());
 
         // setup the context
         PFMContext context = new PFMContext(cfgSimulation, new ProjectQueue(), new ProjectQueue());

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import de.nobio.pfmsim.distribution.Distribution.DistributionType;
+import de.nobio.pfmsim.distribution.WeightedDistribution;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.Simulation;
 
@@ -39,24 +40,34 @@ public class ProjectSetupHandler {
     private void setupNeededSkills(Simulation config) {
         // setup skills for this project
         for (Category category : config.getProjectCategoryPool()) {
-            List<Skill> tmpSkills = new ArrayList<Skill>();
+            WeightedDistribution<String> skillDistribution = new WeightedDistribution<String>();
             for (Skill skill : category.getNeededSkills()) {
-                tmpSkills.add(config.getSkillFromPool(skill.getRef()));
+                if (skill.getDistribution().getType() != DistributionType.Weighted) {
+                    throw new IllegalArgumentException("Distrtibution of skills must be weighted");
+                }
+                Skill referenceSkill = config.getSkillFromPool(skill.getRef());
+                skill.setId(referenceSkill.getId());
+                skill.setName(referenceSkill.getName());
+
+                Integer weight = Integer.valueOf(skill.getDistribution().getParam1());
+                String group = skill.getId();
+                skillDistribution.addParam(group, weight);
             }
-            category.getNeededSkills().removeAll(category.getNeededSkills());
-            category.getNeededSkills().addAll(tmpSkills);
+            category.setSkillDistribution(skillDistribution);
         }
     }
 
     private void setupProjectCategoryDistribution(Simulation config) {
+        WeightedDistribution<String> projectCategoryDistribution = new WeightedDistribution<String>();
         for (Category category : config.getProjectCategoryPool()) {
-            if (category.getProjectCategoryStartProbability() != null && category.getProjectCategoryStartProbability().getType() == DistributionType.Weighted) {
-                String group = category.getId();
-                Integer weight = Integer.valueOf(category.getProjectCategoryStartProbability().getParam1());
-                config.createProjectCategoryDistribution(DistributionType.Weighted);
-                config.getProjectCategoryDistribution().addParamForWeightedDistribution(group, weight);
+            if (category.getProjectCategoryStartProbability().getType() != DistributionType.Weighted) {
+                throw new IllegalArgumentException("Distrtibution of skills must be weighted");
             }
+            String group = category.getId();
+            Integer weight = Integer.valueOf(category.getProjectCategoryStartProbability().getParam1());
+            projectCategoryDistribution.addParam(group, weight);
         }
+        config.setProjectCategoryDistribution(projectCategoryDistribution);
     }
 
     public void validate(Simulation config) {

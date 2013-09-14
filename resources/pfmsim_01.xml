@@ -1,183 +1,183 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <simulation>
-    <!-- ============================================================== -->
-    <!-- ======================== HEADER ============================== -->
-    <!-- ============================================================== -->
-    <!-- number of iterations which can be identified with "days" -->
-    <iterations>30</iterations>
+	<!-- ============================================================== -->
+	<!-- ======================== HEADER ============================== -->
+	<!-- ============================================================== -->
+	<!-- number of iterations which can be identified with "days" -->
+	<iterations>30</iterations>
 
-    <!-- pause in ms between two iterations -->
-    <pause>100</pause>
+	<!-- pause in ms between two iterations -->
+	<pause>100</pause>
 
-    <!-- general availability for all resources except there is another value 
-        defined at resource level -->
-    <availability>0.7</availability>
+	<!-- general availability for all resources except there is another value 
+		defined at resource level -->
+	<availability>0.7</availability>
 
-    <!-- how far into future efforts can be planned? -->
-    <planning_horizont>60</planning_horizont>
+	<!-- how far into future efforts can be planned? -->
+	<planning_horizont>60</planning_horizont>
 
-    <!-- definition of skills; will be referenced by resources and projects/tasks -->
-    <skill id="jd" name="Java Developer" />
-    <skill id="dd" name="Database Designer" />
-    <skill id="cd" name="Caas Developer" />
-    <skill id="xy" name="Klassenkasper" />
+	<!-- definition of skills; will be referenced by resources and projects/tasks -->
+	<skill id="jd" name="Java Developer" />
+	<skill id="dd" name="Database Designer" />
+	<skill id="cd" name="Caas Developer" />
+	<skill id="xy" name="Klassenkasper" />
 
-    <!-- definition of project categories like Small Enhancement, Normal 
-        Project, Big Project with it's effort definition -->
-    <project_category id="np">
-        <name>Normal Project</name>
-        <!-- this is how the chances of this project category has compared 
-            to others; please use "weighted" here -->
-        <distribution type="Weighted">
-            <param1>1</param1>
-        </distribution>
+	<!-- definition of project categories like Small Enhancement, Normal Project, 
+		Big Project with it's effort definition -->
+	<project_category id="np">
+		<name>Normal Project</name>
+		<!-- this is how the chances of this project category has compared to others; 
+			please use "weighted" here; goes to Category.projectCategoryStartProbability -->
+		<distribution type="Weighted">
+			<param1>1</param1>
+		</distribution>
 
-        <!-- skills needed for this project category with a certain probability 
-            distribution -->
-        <skill ref="jd">
-            <distribution type="Weighted">
-                <param1>4</param1>
-            </distribution>
-        </skill>
-        <skill ref="dd">
-            <distribution type="Weighted">
-                <param1>1</param1>
-            </distribution>
-        </skill>
-        <!-- definition of the phases of this project category -->
-        <phase ref="init" />
-        <phase ref="prep" />
-        <phase ref="spec" />
-        <phase ref="constr" />
-        <phase ref="trans" />
-    </project_category>
-    <project_category id="sm">
-        <name>Small Enhancement</name>
-        <!-- this is how the chances of this project category has compared 
-            to others; please use "weighted" here -->
-        <distribution type="Weighted">
-            <param1>2</param1>
-        </distribution>
+		<!-- skills needed for this project category with a certain probability 
+			distribution; please use "weighted" here; goes to Category.skillDistribution -->
+		<skill ref="jd">
+			<distribution type="Weighted">
+				<param1>4</param1>
+			</distribution>
+		</skill>
+		<skill ref="dd">
+			<distribution type="Weighted">
+				<param1>1</param1>
+			</distribution>
+		</skill>
+		<!-- definition of the phases of this project category -->
+		<phase ref="init" />
+		<phase ref="prep" />
+		<phase ref="spec" />
+		<phase ref="constr" />
+		<phase ref="trans" />
+	</project_category>
+	<project_category id="sm">
+		<name>Small Enhancement</name>
+		<!-- this is how the chances of this project category has compared to others; 
+			please use "weighted" here -->
+		<distribution type="Weighted">
+			<param1>2</param1>
+		</distribution>
 
-        <!-- skill needed for this task -->
-        <skill ref="jd">
-            <distribution type="Weighted">
-                <param1>4</param1>
-            </distribution>
-        </skill>
-        <skill ref="dd">
-            <distribution type="Weighted">
-                <param1>1</param1>
-            </distribution>
-        </skill>
-        <!-- definition of the phases of this project category -->
-        <phase ref="spec" />
-        <phase ref="constr" />
-    </project_category>
+		<!-- skill needed for this task -->
+		<skill ref="jd">
+			<distribution type="Weighted">
+				<param1>4</param1>
+			</distribution>
+		</skill>
+		<skill ref="dd">
+			<distribution type="Weighted">
+				<param1>1</param1>
+			</distribution>
+		</skill>
+		<!-- definition of the phases of this project category -->
+		<phase ref="spec" />
+		<phase ref="constr" />
+	</project_category>
 
-    <!-- definition of project phases; the efforts are meant to be a weight 
-        value; all weights of all phases in one project mean 100% -->
-    <phase id="init">
-        <name>Initialisation</name>
-        <workload>
-            <distribution type="Rectangle">
-                <param1>40</param1>
-                <param2>23</param2>
-                <param3>44</param3>
-                <param4>0</param4>
-            </distribution>
-        </workload>
-    </phase>
-    <phase id="prep">
-        <name>Preperation</name>
-        <workload>
-            <distribution type="Equal">
-                <param1>20</param1>
-                <param2>30</param2>
-            </distribution>
-        </workload>
-    </phase>
-    <phase id="spec">
-        <name>Specification</name>
-        <workload>
-            <distribution type="Normal">
-                <param1>30</param1>
-                <param2>3</param2>
-            </distribution>
-        </workload>
-    </phase>
-    <phase id="constr">
-        <name>Construction</name>
-        <workload>
-            <distribution type="Normal">
-                <param1>50</param1>
-                <param2>10</param2>
-            </distribution>
-        </workload>
-    </phase>
-    <phase id="acc">
-        <name>Acceptance</name>
-        <workload>
-            <distribution type="Constant">
-                <param1>5</param1>
-            </distribution>
-        </workload>
-    </phase>
-    <phase id="trans">
-        <name>Transition</name>
-        <workload>
-            <distribution type="Rectangle">
-                <param1>3</param1>
-            </distribution>
-        </workload>
-    </phase>
+	<!-- definition of project phases; the efforts are meant to be a weight 
+		value; all weights of all phases in one project mean 100% -->
+	<phase id="init">
+		<name>Initialisation</name>
+		<workload>
+			<distribution type="Rectangle">
+				<param1>40</param1>
+				<param2>23</param2>
+				<param3>44</param3>
+				<param4>0</param4>
+			</distribution>
+		</workload>
+	</phase>
+	<phase id="prep">
+		<name>Preperation</name>
+		<workload>
+			<distribution type="Equal">
+				<param1>20</param1>
+				<param2>30</param2>
+			</distribution>
+		</workload>
+	</phase>
+	<phase id="spec">
+		<name>Specification</name>
+		<workload>
+			<distribution type="Normal">
+				<param1>30</param1>
+				<param2>3</param2>
+			</distribution>
+		</workload>
+	</phase>
+	<phase id="constr">
+		<name>Construction</name>
+		<workload>
+			<distribution type="Normal">
+				<param1>50</param1>
+				<param2>10</param2>
+			</distribution>
+		</workload>
+	</phase>
+	<phase id="acc">
+		<name>Acceptance</name>
+		<workload>
+			<distribution type="Constant">
+				<param1>5</param1>
+			</distribution>
+		</workload>
+	</phase>
+	<phase id="trans">
+		<name>Transition</name>
+		<workload>
+			<distribution type="Rectangle">
+				<param1>3</param1>
+			</distribution>
+		</workload>
+	</phase>
 
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
-    <!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
 
-    <!-- definition of teams with their resources; later only resources will 
-        be referenced by projects but it might be a more natural approach to think 
-        in teams -->
-    <team id="Middleware">
-        <resource count="1">
-            <availability>0.9</availability>
-            <skill ref="jd" />
-            <skill ref="dd" />
-        </resource>
-        <resource count="1">
-            <skill ref="cd" />
-        </resource>
-        <resource count="4">
-            <skill ref="jd" />
-        </resource>
-    </team>
-    <team id="Web">
-        <resource count="2">
-            <availability>0.8</availability>
-            <skill ref="jd" />
-            <skill ref="dd" />
-        </resource>
-        <resource count="3">
-            <skill ref="jd" />
-            <skill ref="xy" />
-        </resource>
-    </team>
+	<!-- definition of teams with their resources; later only resources will 
+		be referenced by projects but it might be a more natural approach to think 
+		in teams -->
+	<team id="Middleware">
+		<resource count="1">
+			<availability>0.9</availability>
+			<skill ref="jd" />
+			<skill ref="dd" />
+		</resource>
+		<resource count="1">
+			<skill ref="cd" />
+		</resource>
+		<resource count="4">
+			<skill ref="jd" />
+		</resource>
+	</team>
+	<team id="Web">
+		<resource count="2">
+			<availability>0.8</availability>
+			<skill ref="jd" />
+			<skill ref="dd" />
+		</resource>
+		<resource count="3">
+			<skill ref="jd" />
+			<skill ref="xy" />
+		</resource>
+	</team>
 
-    <!-- Definition of a portfolio -->
-    <portfolio>
+	<!-- Definition of a portfolio -->
+	<portfolio>
 
-        <!-- propability of starting a new project; the trigger value is 
-            hard coded to >50; adapt your intervall and make sure your min value is smaller 
-            than 50 -->
-        <distribution type="Equal">
-            <param1>0</param1>
-            <!--paramx>50<paramx -->
-            <param2>70</param2>
-        </distribution>
+		<!-- propability of starting a new project; the trigger value is hard coded 
+			to >50; adapt your intervall and make sure your min value is smaller than 
+			50 -->
+		<distribution type="Equal">
+			<param1>0</param1>
+			<!--paramx>50<paramx -->
+			<param2>70</param2>
+		</distribution>
 
-        <!-- definition of projects -->
-        <project category_ref="np" />
-        <project category_ref="sm" />
-    </portfolio>
+		<!-- definition of projects -->
+		<project category_ref="np" />
+		<project category_ref="sm" />
+	</portfolio>
 </simulation>
