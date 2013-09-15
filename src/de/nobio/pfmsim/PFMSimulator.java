@@ -75,7 +75,7 @@ public class PFMSimulator {
         LOGGER.info("=======================================================================================");
     }
 
-    private void mainLoop(PFMContext context) throws InterruptedException {
+    private void mainLoop(PFMContext context) throws Exception {
 
         LOGGER.info("=======================================================================================");
         LOGGER.info("# starting simulation");
@@ -95,7 +95,7 @@ public class PFMSimulator {
             statisticHandler.handle(context);
 
             Thread.sleep(pause);
-            LOGGER.info(context.getWaitingProjects().toString());
+//            LOGGER.info(context.getWaitingProjects().toString());
             LOGGER.info("");
 
         }

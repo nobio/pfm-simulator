@@ -24,6 +24,9 @@ public class Category {
     @XmlElement(name = "distribution", required = true)
     private Distribution projectCategoryDistribution;
 
+    @XmlElement(name = "project_duration", required = true)
+    private ProjectDuration projectDuration;
+
     @XmlElement(name = "phase", nillable = true, required = true)
     private List<Phase> phases;
 
@@ -50,6 +53,14 @@ public class Category {
         this.projectCategoryDistribution = projectCategoryStartProbability;
     }
 
+    public ProjectDuration getProjectDuration() {
+        return projectDuration;
+    }
+
+    public void setProjectDuration(ProjectDuration projectDuration) {
+        this.projectDuration = projectDuration;
+    }
+
     public List<Phase> getPhases() {
         return phases;
     }
@@ -68,8 +79,8 @@ public class Category {
 
     @Override
     public String toString() {
-        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryDistribution=" + projectCategoryDistribution + ", phases=" + phases + ", neededSkills=" + neededSkills
-                + "]";
+        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryDistribution=" + projectCategoryDistribution + ", projectDuration=" + projectDuration + ", phases="
+                + phases + ", neededSkills=" + neededSkills + "]";
     }
 
 }

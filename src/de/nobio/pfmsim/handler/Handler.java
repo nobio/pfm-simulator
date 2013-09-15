@@ -4,6 +4,6 @@ import de.nobio.pfmsim.runtime.PFMContext;
 
 public interface Handler {
 
-    public void handle(PFMContext context);
+    public void handle(PFMContext context) throws Exception;
 
 }

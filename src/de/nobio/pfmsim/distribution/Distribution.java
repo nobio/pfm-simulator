@@ -121,7 +121,7 @@ public class Distribution {
         return param10;
     }
 
-    public IDistribution getDistribution(){
+    public IDistribution<?> getDistribution(){
         initDistribution();
         return distribution;
     } 
@@ -195,7 +195,7 @@ public class Distribution {
         String strP8 = param8 != null ? ", param8=" + param8 : "";
         String strP9 = param9 != null ? ", param9=" + param9 : "";
         String strP10 = param10 != null ? ", param10=" + param10 : "";
-        return "Distribution [type=" + type + distribution + strP1 + strP2 + strP3 + strP4 + strP5 + strP6 + strP7 + strP8 + strP9 + strP10 + "]";
+        return "Distribution [type=" + type + ", distribution=" + distribution + strP1 + strP2 + strP3 + strP4 + strP5 + strP6 + strP7 + strP8 + strP9 + strP10 + "]";
     }
 
 }

@@ -3,37 +3,24 @@ package de.nobio.pfmsim.project;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
-import javax.xml.bind.annotation.XmlType;
-
 import de.nobio.pfmsim.distribution.Distribution;
 import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.runtime.TimeClock;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "project")
 public class Project implements TimeClock, Comparable<Project> {
 
-    @XmlAttribute(required = true, name = "category_ref")
     private String categoryRef;
 
-    @XmlTransient
     private Long priority;
 
-    @XmlElement(type = Category.class)
+    private Long duration;
+
     private Category category;
 
-    @XmlElement(type = Distribution.class)
     private Distribution distribution;
 
-    @XmlElement(name = "phase", nillable = true, required = true)
     private List<Phase> phases;
 
-    @XmlTransient
     private List<Resource> resources;
 
     public String getCategoryRef() {
@@ -46,6 +33,14 @@ public class Project implements TimeClock, Comparable<Project> {
 
     public void setPriority(Long priority) {
         this.priority = priority;
+    }
+
+    public Long getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Long duration) {
+        this.duration = duration;
     }
 
     public Category getCategory() {
@@ -86,6 +81,14 @@ public class Project implements TimeClock, Comparable<Project> {
         getResources().add(resource);
     }
 
+    public Long getTotalWorkload() {
+        Long workload = 0L;
+        for (Phase phase : getPhases()) {
+            workload += phase.getWorkload().getWorkload();
+        }
+        return workload;
+    }
+
     @Override
     public void tick(Long clock) {
         // TODO Auto-generated method stub
@@ -109,8 +112,8 @@ public class Project implements TimeClock, Comparable<Project> {
 
     @Override
     public String toString() {
-        return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", category=" + category + ", distribution=" + distribution + ", phases=" + phases
-                + ", skills=" + resources + "]";
+        return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + duration + ", category=" + category + ", distribution=" + distribution
+                + ", phases=" + phases + ", skills=" + resources + "]";
     }
 
 }

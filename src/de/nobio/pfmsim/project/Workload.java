@@ -3,6 +3,7 @@ package de.nobio.pfmsim.project;
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.distribution.Distribution;
@@ -11,8 +12,30 @@ import de.nobio.pfmsim.distribution.Distribution;
 @XmlType(name = "workload", propOrder = { "distribution" })
 public class Workload {
 
+    @XmlTransient
+    private Long workload;
+
+    @XmlTransient
+    private Double workloadWeight;
+
     @XmlElement(name = "distribution", required = true)
     private Distribution distribution;
+
+    public Long getWorkload() {
+        return workload;
+    }
+
+    public void setWorkload(Long workload) {
+        this.workload = workload;
+    }
+
+    public Double getWorkloadWeight() {
+        return workloadWeight;
+    }
+
+    public void setWorkloadWeight(Double workloadWeight) {
+        this.workloadWeight = workloadWeight;
+    }
 
     public Distribution getDistribution() {
         return distribution;
@@ -20,7 +43,7 @@ public class Workload {
 
     @Override
     public String toString() {
-        return "Workload [distribution=" + distribution + "]";
+        return "Workload [workload=" + workload + ", distribution=" + distribution + "]";
     }
 
 }

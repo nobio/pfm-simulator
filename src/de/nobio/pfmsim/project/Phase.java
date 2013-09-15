@@ -55,7 +55,7 @@ public class Phase {
     }
 
     @Override
-    protected Object clone() throws CloneNotSupportedException {
+    public Object clone() throws CloneNotSupportedException {
         Phase phase = new Phase();
         phase.setId(id);
         phase.setName(name);
