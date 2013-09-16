@@ -1,0 +1,53 @@
+<!--  Log now at end of file -->
+<project name="pfm-simulation" default="build" basedir=".">
+
+
+	<path id="classpath">
+		<!--fileset dir="lib">
+			<include name="**/*.jar" />
+		</fileset-->
+	</path>
+
+	<!-- ==================== Initialization properties ===================== -->
+	<property name="debug" value="on" />
+
+	<property name="optimize" value="true" />
+
+	<property name="dist" value="dist" />
+	<property name="classes" value="bin" />
+	<property name="doc" value="doc" />
+	<property name="src" value="src" />
+
+
+	<!-- ============================= Build project ========================= -->
+	<target name="init">
+		<mkdir dir="${dist}" />
+		<mkdir dir="${classes}" />
+		<mkdir dir="${doc}" />
+	</target>
+
+	<target name="clean">
+		<delete dir="${dist}" />
+		<delete dir="${classes}" />
+		<delete dir="${doc}" />
+	</target>
+
+	<target name="build" depends="init">
+		<javac srcdir="${src}" destdir="${classes}" classpathref="classpath" debug="${debug}" deprecation="on" optimize="${optimize}" />
+		<jar jarfile="${dist}/pfm-simulation.jar" basedir="${classes}" />
+	</target>
+
+	<target name="javadoc" depends="build">
+		<javadoc packagenames="de.nobio.*" sourcepath="${src}" destdir="${doc}" author="Cortal ConSors S.A." version="true" use="true" windowtitle="" doctitle="" bottom="Copyright 2000-2013 Cortal ConSors S.A.. All Rights Reserved." classpath="${classpath}" />
+	</target>
+
+	<target name="run">
+		<java classname="de.nobio.pfmsim.PFMSimulator" fork="true">
+			<arg value='/Users/cs6518/work/pfm-simulator/resources/pfmsim_01.xml' />
+			<classpath>
+				<pathelement location="./dist/pfm-simulation.jar" />
+				<pathelement path="${java.class.path}" />
+			</classpath>
+		</java>
+	</target>
+</project>
