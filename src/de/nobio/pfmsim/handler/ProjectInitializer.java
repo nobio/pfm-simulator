@@ -74,7 +74,7 @@ public class ProjectInitializer implements Handler {
                 if (rnd < 0) {
                     rnd = 0L;
                 }
-                System.out.println(skill.getName() + " " + rnd);
+                LOGGER.info(skill.getName() + " " + rnd);
 
                 // init rnd resources and add them to the project
                 for (int n = 0; n < rnd; n++) {
@@ -88,6 +88,7 @@ public class ProjectInitializer implements Handler {
             }
 
             context.getWaitingProjects().add(project);
+            LOGGER.info(project.getCategory().getName());
         }
     }
 
