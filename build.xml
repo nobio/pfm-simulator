@@ -43,7 +43,7 @@
 
 	<target name="run">
 		<java classname="de.nobio.pfmsim.PFMSimulator" fork="true">
-			<arg value='/Users/cs6518/work/pfm-simulator/resources/pfmsim_01.xml' />
+			<arg value='./resources/pfmsim_01.xml' />
 			<classpath>
 				<pathelement location="./dist/pfm-simulation.jar" />
 				<pathelement path="${java.class.path}" />

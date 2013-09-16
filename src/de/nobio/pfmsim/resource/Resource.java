@@ -32,8 +32,8 @@ public class Resource {
     @XmlTransient
     private Double reserved = 0.0D;
 
-    @XmlElement(nillable = true, required = true)
-    private List<Skill> skill;
+    @XmlElement(name = "skill", nillable = true, required = true)
+    private List<Skill> skills;
 
     public Double getAvailability() {
         return availability;
@@ -60,10 +60,10 @@ public class Resource {
     }
 
     public List<Skill> getSkills() {
-        if (skill == null) {
-            skill = new ArrayList<Skill>();
+        if (skills == null) {
+            skills = new ArrayList<Skill>();
         }
-        return this.skill;
+        return this.skills;
     }
 
     public void addSkill(Skill skill) {
@@ -75,13 +75,13 @@ public class Resource {
         Resource r = new Resource();
         r.setAvailability(new Double(availability));
         r.setCount(new Integer(count));
-        r.getSkills().addAll(skill);
+        r.getSkills().addAll(skills);
         return r;
     }
 
     @Override
     public String toString() {
-        return "\n\tResource [availability=" + availability + ", count=" + count + ", skills=" + skill + "]";
+        return "\n\tResource [availability=" + availability + ", count=" + count + ", skills=" + skills + "]";
     }
 
 }

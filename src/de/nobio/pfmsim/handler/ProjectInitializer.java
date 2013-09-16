@@ -11,6 +11,7 @@ import de.nobio.pfmsim.project.Category;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Portfolio;
 import de.nobio.pfmsim.project.Project;
+import de.nobio.pfmsim.project.Task;
 import de.nobio.pfmsim.project.Workload;
 import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.resource.Skill;
@@ -67,6 +68,7 @@ public class ProjectInitializer implements Handler {
             project.setPhases(projectPhases);
 
             LOGGER.info(project.getDuration() + " vs. " + project.getTotalWorkload());
+            LOGGER.info(project.getPhases().toString());
 
             // calculate the needed resources (skills)
             for (Skill skill : category.getNeededSkills()) {
@@ -74,7 +76,7 @@ public class ProjectInitializer implements Handler {
                 if (rnd < 0) {
                     rnd = 0L;
                 }
-                LOGGER.info(skill.getName() + " " + rnd);
+                LOGGER.info("Needed skill: " + skill.getName() + " " + rnd);
 
                 // init rnd resources and add them to the project
                 for (int n = 0; n < rnd; n++) {
