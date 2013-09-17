@@ -62,8 +62,13 @@ public class ProjectInitializer implements Handler {
                 Workload workload = new Workload();
                 workload.setWorkload((long) (project.getDuration() * phase.getWorkload().getWorkloadWeight() / sumOfWeights));
                 Phase projectPhase = (Phase) phase.clone();
+
                 projectPhase.setWorkload(workload);
                 projectPhases.add(projectPhase);
+
+                // distribute the phase's workload to [1..n] tasks; one task must have a workload for at least 1
+                Long tasksCount = phase.getTaskDistribution(workload.getWorkload());
+                LOGGER.info("  tasksCount > " + tasksCount + " " + workload.getWorkload());
             }
             project.setPhases(projectPhases);
 
