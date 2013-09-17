@@ -50,31 +50,6 @@ public class ProjectInitializer implements Handler {
             Long estimatedDuration = Math.round(category.getProjectDuration().getDuration().getRandomNumericValue());
             project.setDuration(estimatedDuration);
 
-            // distribute the expected workload amongst the phases
-            List<Phase> projectPhases = new ArrayList<Phase>();
-            Double sumOfWeights = 0.0D;
-            for (Phase phase : category.getPhases()) {
-                Double phaseWeight = phase.getWorkload().getDistribution().getRandomNumericValue();
-                phase.getWorkload().setWorkloadWeight(phaseWeight);
-                sumOfWeights += phaseWeight;
-            }
-            for (Phase phase : category.getPhases()) {
-                Workload workload = new Workload();
-                workload.setWorkload((long) (project.getDuration() * phase.getWorkload().getWorkloadWeight() / sumOfWeights));
-                Phase projectPhase = (Phase) phase.clone();
-
-                projectPhase.setWorkload(workload);
-                projectPhases.add(projectPhase);
-
-                // distribute the phase's workload to [1..n] tasks; one task must have a workload for at least 1
-                Long tasksCount = phase.getTaskDistribution(workload.getWorkload());
-                LOGGER.info("  tasksCount > " + tasksCount + " " + workload.getWorkload());
-            }
-            project.setPhases(projectPhases);
-
-            LOGGER.info(project.getDuration() + " vs. " + project.getTotalWorkload());
-            LOGGER.info(project.getPhases().toString());
-
             // calculate the needed resources (skills)
             for (Skill skill : category.getNeededSkills()) {
                 Long rnd = Math.round(Double.valueOf(skill.getDistribution().getDistribution().getRandomeValue().toString()));
@@ -94,9 +69,59 @@ public class ProjectInitializer implements Handler {
                 }
             }
 
+            // distribute the expected workload amongst the phases
+            List<Phase> projectPhases = new ArrayList<Phase>();
+            Double sumOfWeights = 0.0D;
+            for (Phase phase : category.getPhases()) {
+                Double phaseWeight = phase.getWorkload().getDistribution().getRandomNumericValue();
+                phase.getWorkload().setWorkloadWeight(phaseWeight);
+                sumOfWeights += phaseWeight;
+            }
+            for (Phase phase : category.getPhases()) {
+                Workload workload = new Workload();
+                workload.setWorkload((long) (project.getDuration() * phase.getWorkload().getWorkloadWeight() / sumOfWeights));
+                Phase projectPhase = (Phase) phase.clone();
+
+                projectPhase.setWorkload(workload);
+                projectPhases.add(projectPhase);
+
+                // distribute the phase's workload to [1..n] tasks; one task
+                // must have a workload for at least 1
+                Long tasksCount = phase.getTaskDistribution(workload.getWorkload());
+                LOGGER.info("  tasksCount > " + tasksCount + " " + workload.getWorkload());
+
+                for (Skill skill : category.getNeededSkills()) {
+                    for (int n = 0; n < phase.getTaskDistribution(workload.getWorkload()); n++) {
+                        int maxNumberResources;
+                        List<Resource> r = project.getResourcesBySkill(skill);
+
+                        if (phase.getParallel() == -1) {
+                            maxNumberResources = r.size();
+                        } else {
+                            maxNumberResources = Math.min(r.size(), (int) phase.getParallel());
+                        }
+
+                        long wl = workload.getWorkload();
+                        for (int i = 0; i < maxNumberResources; i++) {
+                            Task task = new Task();
+                            task.setSkill(skill);
+                            Workload w = new Workload();
+                            w.setWorkload(wl/(maxNumberResources));
+                            task.setWorkload(w);
+                            phase.addTask(task);
+                            LOGGER.info(task.getSkill().getName() + " " + task.getWorkload().getWorkload());
+                        }
+
+                    }
+                }
+            }
+            project.setPhases(projectPhases);
+
+            LOGGER.info(project.getDuration() + " vs. " + project.getTotalWorkload());
+            // LOGGER.info(project.getPhases().toString());
+
             context.getWaitingProjects().add(project);
             LOGGER.info(project.getCategory().getName());
         }
     }
-
 }

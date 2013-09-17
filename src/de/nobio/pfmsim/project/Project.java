@@ -5,6 +5,7 @@ import java.util.List;
 
 import de.nobio.pfmsim.distribution.Distribution;
 import de.nobio.pfmsim.resource.Resource;
+import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.TimeClock;
 
 public class Project implements TimeClock, Comparable<Project> {
@@ -79,6 +80,16 @@ public class Project implements TimeClock, Comparable<Project> {
 
     public void addResource(Resource resource) {
         getResources().add(resource);
+    }
+
+    public List<Resource> getResourcesBySkill(Skill skill) {
+        List<Resource> tmp = new ArrayList<Resource>();
+        for (Resource resource : getResources()) {
+            if (resource.getSkills().contains(skill)) {
+                tmp.add(resource);
+            }
+        }
+        return tmp;
     }
 
     public Long getTotalWorkload() {

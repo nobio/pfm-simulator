@@ -16,7 +16,7 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "phase")
 public class Phase {
 
-    // key=duration, value=numbers of Resources 
+    // key=duration, value=numbers of Resources
     private static Map<Long, Long> taskDistribution = new HashMap<Long, Long>();
     static {
         taskDistribution.put(1L, 1L);
@@ -54,7 +54,7 @@ public class Phase {
     private Workload workload;
 
     @XmlElement(name = "parallel", required = true)
-    private Long parallel;
+    private Integer parallel;
 
     @XmlTransient
     private List<Task> tasks;
@@ -91,11 +91,11 @@ public class Phase {
         this.workload = workload;
     }
 
-    public Long getParallel() {
+    public Integer getParallel() {
         return parallel;
     }
 
-    public void setParallel(Long parallel) {
+    public void setParallel(Integer parallel) {
         this.parallel = parallel;
     }
 
@@ -138,7 +138,7 @@ public class Phase {
 
     @Override
     public String toString() {
-        return "\n\t\tPhase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + ", parallel=" + parallel + "]";
+        return "\n\t\tPhase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + ", parallel=" + parallel + ", tasks=" + tasks + "]";
     }
 
 }
