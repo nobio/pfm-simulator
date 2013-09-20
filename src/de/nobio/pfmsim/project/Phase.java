@@ -114,6 +114,12 @@ public class Phase {
         tasks.add(task);
     }
 
+    public Double calculateWorkload() {
+        Double weight = getWorkload().getDistribution().getRandomNumericValue();
+        getWorkload().setWorkloadWeight(weight);
+        return weight;
+    }
+
     public Long getTaskDistribution(Long duration) {
         if (duration > 20) {
             return 4L;

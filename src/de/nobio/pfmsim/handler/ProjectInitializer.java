@@ -11,7 +11,6 @@ import de.nobio.pfmsim.project.Category;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Portfolio;
 import de.nobio.pfmsim.project.Project;
-import de.nobio.pfmsim.project.Task;
 import de.nobio.pfmsim.project.Workload;
 import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.resource.Skill;
@@ -73,10 +72,10 @@ public class ProjectInitializer implements Handler {
             List<Phase> projectPhases = new ArrayList<Phase>();
             Double sumOfWeights = 0.0D;
             for (Phase phase : category.getPhases()) {
-                Double phaseWeight = phase.getWorkload().getDistribution().getRandomNumericValue();
-                phase.getWorkload().setWorkloadWeight(phaseWeight);
+                Double phaseWeight = phase.calculateWorkload();
                 sumOfWeights += phaseWeight;
             }
+
             for (Phase phase : category.getPhases()) {
                 Workload workload = new Workload();
                 workload.setWorkload((long) (project.getDuration() * phase.getWorkload().getWorkloadWeight() / sumOfWeights));
@@ -84,36 +83,6 @@ public class ProjectInitializer implements Handler {
 
                 projectPhase.setWorkload(workload);
                 projectPhases.add(projectPhase);
-
-                // distribute the phase's workload to [1..n] tasks; one task
-                // must have a workload for at least 1
-                Long tasksCount = phase.getTaskDistribution(workload.getWorkload());
-                LOGGER.info("  tasksCount > " + tasksCount + " " + workload.getWorkload());
-
-                for (Skill skill : category.getNeededSkills()) {
-                    for (int n = 0; n < phase.getTaskDistribution(workload.getWorkload()); n++) {
-                        int maxNumberResources;
-                        List<Resource> r = project.getResourcesBySkill(skill);
-
-                        if (phase.getParallel() == -1) {
-                            maxNumberResources = r.size();
-                        } else {
-                            maxNumberResources = Math.min(r.size(), (int) phase.getParallel());
-                        }
-
-                        long wl = workload.getWorkload();
-                        for (int i = 0; i < maxNumberResources; i++) {
-                            Task task = new Task();
-                            task.setSkill(skill);
-                            Workload w = new Workload();
-                            w.setWorkload(wl/(maxNumberResources));
-                            task.setWorkload(w);
-                            phase.addTask(task);
-                            LOGGER.info(task.getSkill().getName() + " " + task.getWorkload().getWorkload());
-                        }
-
-                    }
-                }
             }
             project.setPhases(projectPhases);
 
