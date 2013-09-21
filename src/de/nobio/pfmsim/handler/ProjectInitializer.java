@@ -55,7 +55,6 @@ public class ProjectInitializer implements Handler {
                 if (rnd < 0) {
                     rnd = 0L;
                 }
-                LOGGER.info("Needed skill: " + skill.getName() + " " + rnd);
 
                 // init rnd resources and add them to the project
                 for (int n = 0; n < rnd; n++) {
@@ -64,8 +63,9 @@ public class ProjectInitializer implements Handler {
                     res.setAvailability(config.getAvailability() * config.getPlanningHorizont());
                     res.setReserved(0.0);
 
-                    project.addResource(res);
+                    project.addNeededResource(res);
                 }
+                LOGGER.info("Needed skill: " + skill.getName() + " from " + rnd + " resources");
             }
 
             // distribute the expected workload amongst the phases
@@ -83,14 +83,12 @@ public class ProjectInitializer implements Handler {
 
                 projectPhase.setWorkload(workload);
                 projectPhases.add(projectPhase);
+                LOGGER.info("Workload of phase " + projectPhase.getName() + ": " + projectPhase.getWorkload().getWorkload());
             }
             project.setPhases(projectPhases);
-
-            LOGGER.info(project.getDuration() + " vs. " + project.getTotalWorkload());
-            // LOGGER.info(project.getPhases().toString());
-
             context.getWaitingProjects().add(project);
-            LOGGER.info(project.getCategory().getName());
+            LOGGER.info("Workload of this project: " + project.getTotalWorkload() + " in " + project.getPhases().size() + " project phases distributed over "
+                    + project.getNeededResources().size() + " resources (" + project.getTotalWorkload()/project.getNeededResources().size() + " each)");
         }
     }
 }

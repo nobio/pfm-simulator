@@ -1,15 +1,12 @@
 package de.nobio.pfmsim.project;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -24,21 +21,30 @@ public class Phase {
         taskDistribution.put(3L, 1L);
         taskDistribution.put(4L, 1L);
         taskDistribution.put(5L, 1L);
-        taskDistribution.put(6L, 2L);
-        taskDistribution.put(7L, 2L);
-        taskDistribution.put(8L, 2L);
-        taskDistribution.put(9L, 2L);
-        taskDistribution.put(10L, 2L);
-        taskDistribution.put(11L, 3L);
-        taskDistribution.put(12L, 3L);
-        taskDistribution.put(13L, 3L);
-        taskDistribution.put(14L, 3L);
-        taskDistribution.put(15L, 3L);
-        taskDistribution.put(16L, 3L);
-        taskDistribution.put(17L, 3L);
-        taskDistribution.put(18L, 3L);
-        taskDistribution.put(19L, 3L);
-        taskDistribution.put(20L, 3L);
+        taskDistribution.put(6L, 1L);
+        taskDistribution.put(7L, 1L);
+        taskDistribution.put(8L, 1L);
+        taskDistribution.put(9L, 1L);
+        taskDistribution.put(10L, 1L);
+        taskDistribution.put(11L, 1L);
+        taskDistribution.put(12L, 1L);
+        taskDistribution.put(13L, 1L);
+        taskDistribution.put(14L, 1L);
+        taskDistribution.put(15L, 1L);
+        taskDistribution.put(16L, 2L);
+        taskDistribution.put(17L, 2L);
+        taskDistribution.put(18L, 2L);
+        taskDistribution.put(19L, 2L);
+        taskDistribution.put(20L, 2L);
+        taskDistribution.put(21L, 2L);
+        taskDistribution.put(22L, 2L);
+        taskDistribution.put(23L, 2L);
+        taskDistribution.put(24L, 2L);
+        taskDistribution.put(25L, 2L);
+        taskDistribution.put(26L, 2L);
+        taskDistribution.put(27L, 2L);
+        taskDistribution.put(28L, 2L);
+        taskDistribution.put(29L, 2L);
     }
 
     @XmlAttribute(required = true)
@@ -53,11 +59,12 @@ public class Phase {
     @XmlElement(name = "workload", nillable = true, required = true)
     private Workload workload;
 
+    /**
+     * how many resources of the needed skill(s) can work in parallel in this phase?
+     * -1 means: all for this phase available resources; otherwise this is a max number
+     */
     @XmlElement(name = "parallel", required = true)
     private Integer parallel;
-
-    @XmlTransient
-    private List<Task> tasks;
 
     public String getId() {
         return id;
@@ -99,21 +106,6 @@ public class Phase {
         this.parallel = parallel;
     }
 
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
-    }
-
-    public void addTask(Task task) {
-        if (tasks == null) {
-            tasks = new ArrayList<Task>();
-        }
-        tasks.add(task);
-    }
-
     public Double calculateWorkload() {
         Double weight = getWorkload().getDistribution().getRandomNumericValue();
         getWorkload().setWorkloadWeight(weight);
@@ -138,13 +130,12 @@ public class Phase {
         phase.setRef(ref);
         phase.setWorkload(workload);
         phase.setParallel(parallel);
-        phase.setTasks(tasks);
         return phase;
     }
 
     @Override
     public String toString() {
-        return "\n\t\tPhase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + ", parallel=" + parallel + ", tasks=" + tasks + "]";
+        return "\n\t\tPhase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + ", parallel=" + parallel + "]";
     }
 
 }

@@ -4,10 +4,10 @@
     <!-- ======================== HEADER ============================== -->
     <!-- ============================================================== -->
     <!-- number of iterations which can be identified with "days" -->
-    <iterations>1000</iterations>
+    <iterations>10</iterations>
 
     <!-- pause in ms between two iterations -->
-    <pause>00</pause>
+    <pause>2500</pause>
 
     <!-- general availability for all resources except there is another value 
         defined at resource level -->
@@ -32,8 +32,8 @@
         <parallel>1</parallel>
         <workload>
             <distribution type="Equal">
-                <param1>10</param1>
-                <param2>30</param2>
+                <param1>6</param1>
+                <param2>10</param2>
             </distribution>
         </workload>
     </phase>
@@ -42,8 +42,8 @@
         <parallel>1</parallel>
         <workload>
             <distribution type="Equal">
-                <param1>20</param1>
-                <param2>30</param2>
+                <param1>10</param1>
+                <param2>20</param2>
             </distribution>
         </workload>
     </phase>
@@ -52,7 +52,7 @@
         <parallel>2</parallel>
         <workload>
             <distribution type="Normal">
-                <param1>30</param1>
+                <param1>20</param1>
                 <param2>3</param2>
             </distribution>
         </workload>
@@ -62,7 +62,7 @@
         <parallel>-1</parallel>
         <workload>
             <distribution type="Normal">
-                <param1>40</param1>
+                <param1>50</param1>
                 <param2>10</param2>
             </distribution>
         </workload>
@@ -103,14 +103,14 @@
             distribution; must not use "weighted" here -->
         <skill ref="jd">
             <distribution type="Normal">
-                <param1>6</param1>
-                <param2>5</param2>
+                <param1>2</param1>
+                <param2>0.5</param2>
             </distribution>
         </skill>
         <skill ref="dd">
             <distribution type="Equal">
                 <param1>1</param1>
-                <param2>3</param2>
+                <param2>1.5</param2>
             </distribution>
         </skill>
 
@@ -119,16 +119,16 @@
         <project_duration>
             <distribution type="Normal"
                 comment="time units; the type must not be weighted">
-                <param1>50</param1>
+                <param1>60</param1>
                 <param2>10</param2>
             </distribution>
         </project_duration>
 
         <!-- definition of the phases of this project category -->
-        <phase ref="init" />
         <phase ref="prep" />
         <phase ref="spec" />
         <phase ref="constr" />
+        <phase ref="acc" />
         <phase ref="trans" />
     </project_category>
     <project_category id="sm">
@@ -136,7 +136,7 @@
         <!-- this is how the chances of this project category has compared 
             to others; please use "weighted" here -->
         <distribution type="Weighted">
-            <param1>2</param1>
+            <param1>1</param1>
         </distribution>
 
         <!-- defines the duration of a project in this category; will be 

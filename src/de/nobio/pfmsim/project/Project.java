@@ -22,7 +22,7 @@ public class Project implements TimeClock, Comparable<Project> {
 
     private List<Phase> phases;
 
-    private List<Resource> resources;
+    private List<Resource> neededResources;
 
     public String getCategoryRef() {
         return categoryRef;
@@ -67,24 +67,24 @@ public class Project implements TimeClock, Comparable<Project> {
         this.phases = phases;
     }
 
-    public List<Resource> getResources() {
-        if (resources == null) {
-            resources = new ArrayList<Resource>();
+    public List<Resource> getNeededResources() {
+        if (neededResources == null) {
+            neededResources = new ArrayList<Resource>();
         }
-        return resources;
+        return neededResources;
     }
 
-    public void setResources(List<Resource> resources) {
-        this.resources = resources;
+    public void setNeededResources(List<Resource> neededResources) {
+        this.neededResources = neededResources;
     }
 
-    public void addResource(Resource resource) {
-        getResources().add(resource);
+    public void addNeededResource(Resource resource) {
+        getNeededResources().add(resource);
     }
 
     public List<Resource> getResourcesBySkill(Skill skill) {
         List<Resource> tmp = new ArrayList<Resource>();
-        for (Resource resource : getResources()) {
+        for (Resource resource : getNeededResources()) {
             if (resource.getSkills().contains(skill)) {
                 tmp.add(resource);
             }
@@ -124,7 +124,7 @@ public class Project implements TimeClock, Comparable<Project> {
     @Override
     public String toString() {
         return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + duration + ", category=" + category + ", distribution=" + distribution
-                + ", phases=" + phases + ", skills=" + resources + "]";
+                + ", phases=" + phases + ", neededResources=" + neededResources + "]";
     }
 
 }
