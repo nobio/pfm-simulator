@@ -11,10 +11,10 @@
 
     <!-- general availability for all resources except there is another value 
         defined at resource level -->
-    <availability>0.7</availability>
+    <availability>1</availability>
 
     <!-- how far into future efforts can be planned? -->
-    <planning_horizont>60</planning_horizont>
+    <planning_horizont>360</planning_horizont>
 
     <!-- definition of skills; will be referenced by resources and projects/tasks -->
     <skill id="jd" name="Java Developer" />
@@ -199,7 +199,7 @@
             hard coded to >50; adapt your intervall and make sure your min value is smaller 
             than 50; this goes to Portfolio.projectCategoryStartProbability -->
         <distribution type="Equal">
-            <param1>51</param1>
+            <param1>50</param1>
             <!--paramx>50<paramx -->
             <param2>70</param2>
         </distribution>

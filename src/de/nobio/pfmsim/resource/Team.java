@@ -38,6 +38,9 @@ public class Team {
         if (this.resource == null) {
             this.resource = new ArrayList<Resource>();
         }
+        for (Resource res : this.resource) {
+            setNewResourceId(res);
+        }
         return this.resource;
     }
 
@@ -45,9 +48,25 @@ public class Team {
         if (this.resource == null) {
             this.resource = new ArrayList<Resource>();
         }
+        setNewResourceId(resource);
         this.resource.add(resource);
     }
 
+    public Resource getResourceWithSkill(Skill skill, Long workload) {
+        for (Resource resource : getResources()) {
+            for (Skill s : resource.getSkills()) {
+                if (s.equals(skill) && resource.getAvailability() > workload) {
+                    return resource;
+                }
+            }
+        }
+        return null;
+    }
+
+    private void setNewResourceId(Resource resource){
+        resource.setId(this.getId() + "." + resource.hashCode());
+    }
+    
     @Override
     public String toString() {
         return "\nTeam [id=" + id + ", resource=" + resource + "]";

@@ -10,7 +10,12 @@ public class StatisticHandler implements Handler {
 
     @Override
     public void handle(PFMContext context) {
-        LOGGER.info(this.getClass().getName());
+        String msg = "\nWaiting Project:  " + context.getWaitingProjects().size() + " with total workload " + context.getWaitingProjects().getTotalWorkload();
+        msg += "\nRunning Projects: " + context.getRunningProjects().size() + " with total workload " + context.getRunningProjects().getTotalWorkload();
+        msg += "\nTeams:            " + context.getConfiguration().getTeams().size();
+        LOGGER.info("\n********************************************************************");
+        LOGGER.info(msg);
+        LOGGER.info("\n********************************************************************");
     }
 
 }

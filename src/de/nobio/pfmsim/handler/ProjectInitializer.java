@@ -86,6 +86,7 @@ public class ProjectInitializer implements Handler {
                 LOGGER.info("Workload of phase " + projectPhase.getName() + ": " + projectPhase.getWorkload().getWorkload());
             }
             project.setPhases(projectPhases);
+            project.setDuration(project.getTotalWorkload());
             context.getWaitingProjects().add(project);
             LOGGER.info("Workload of this project: " + project.getTotalWorkload() + " in " + project.getPhases().size() + " project phases distributed over "
                     + project.getNeededResources().size() + " resources (" + project.getTotalWorkload()/project.getNeededResources().size() + " each)");

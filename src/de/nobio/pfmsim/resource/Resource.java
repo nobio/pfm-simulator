@@ -23,6 +23,9 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "resource")
 public class Resource {
 
+    @XmlTransient
+    private String id;
+
     @XmlElement(required = false)
     private Double availability = 0.0D;
 
@@ -34,6 +37,14 @@ public class Resource {
 
     @XmlElement(name = "skill", nillable = true, required = true)
     private List<Skill> skills;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Double getAvailability() {
         return availability;
@@ -81,7 +92,7 @@ public class Resource {
 
     @Override
     public String toString() {
-        return "\n\tResource [availability=" + availability + ", count=" + count + ", skills=" + skills + "]";
+        return "\n\tResource [id=" + id + ", availability=" + availability + ", count=" + count + ", reserved=" + reserved + ", skills=" + skills + "]";
     }
 
 }
