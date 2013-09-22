@@ -60,7 +60,7 @@ public class ProjectInitializer implements Handler {
                 for (int n = 0; n < rnd; n++) {
                     Resource res = new Resource();
                     res.addSkill(skill);
-                    res.setAvailability(config.getAvailability() * config.getPlanningHorizont());
+                    res.setBaseAvailability(config.getAvailability() * config.getPlanningHorizont());
                     res.setReserved(0.0);
 
                     project.addNeededResource(res);

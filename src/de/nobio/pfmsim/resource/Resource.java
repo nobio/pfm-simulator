@@ -27,7 +27,7 @@ public class Resource {
     private String id;
 
     @XmlElement(required = false)
-    private Double availability = 0.0D;
+    private Double baseAvailability = 0.0D;
 
     @XmlAttribute(required = true)
     private Integer count = 0;
@@ -38,6 +38,9 @@ public class Resource {
     @XmlElement(name = "skill", nillable = true, required = true)
     private List<Skill> skills;
 
+    @XmlTransient
+    private Plan plan;
+    
     public String getId() {
         return id;
     }
@@ -46,12 +49,12 @@ public class Resource {
         this.id = id;
     }
 
-    public Double getAvailability() {
-        return availability;
+    public Double getBaseAvailability() {
+        return baseAvailability;
     }
 
-    public void setAvailability(Double availability) {
-        this.availability = availability;
+    public void setBaseAvailability(Double availability) {
+        this.baseAvailability = availability;
     }
 
     public Double getReserved() {
@@ -81,10 +84,21 @@ public class Resource {
         getSkills().add(skill);
     }
 
+    public Plan getPlan() {
+        return plan;
+    }
+
+    public Long getFreeCapacity() {
+        if(plan == null) {
+            plan = new Plan(baseAvailability);
+        }
+        return plan.getFreeCapacity();
+    }
+    
     @Override
     protected Resource clone() throws CloneNotSupportedException {
         Resource r = new Resource();
-        r.setAvailability(new Double(availability));
+        r.setBaseAvailability(new Double(baseAvailability));
         r.setCount(new Integer(count));
         r.getSkills().addAll(skills);
         return r;
@@ -92,7 +106,7 @@ public class Resource {
 
     @Override
     public String toString() {
-        return "\n\tResource [id=" + id + ", availability=" + availability + ", count=" + count + ", reserved=" + reserved + ", skills=" + skills + "]";
+        return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + reserved + ", skills=" + skills + "]";
     }
 
 }

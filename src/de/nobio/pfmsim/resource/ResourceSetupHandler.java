@@ -25,7 +25,7 @@ public class ResourceSetupHandler {
         // "general availability"
         for (Team team : teams) {
             for (Resource resource : team.getResources()) {
-                resource.setAvailability(cfgSimulation.getAvailability() * cfgSimulation.getPlanningHorizont());
+                resource.setBaseAvailability(cfgSimulation.getAvailability() * cfgSimulation.getPlanningHorizont());
                 List<Skill> tmpSkills = new ArrayList<Skill>();
                 for (Skill skill : resource.getSkills()) {
                     tmpSkills.add(cfgSimulation.getSkillFromPool(skill.getRef()));
@@ -64,7 +64,7 @@ public class ResourceSetupHandler {
             Util.assertNotNull(team.getResources());
 
             for (Resource resource : team.getResources()) {
-                Util.assertNotNull(resource.getAvailability());
+                Util.assertNotNull(resource.getBaseAvailability());
                 Util.assertNotNull(resource.getCount());
                 Util.assertNotNull(resource.getSkills());
 

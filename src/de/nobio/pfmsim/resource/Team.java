@@ -55,7 +55,7 @@ public class Team {
     public Resource getResourceWithSkill(Skill skill, Long workload) {
         for (Resource resource : getResources()) {
             for (Skill s : resource.getSkills()) {
-                if (s.equals(skill) && resource.getAvailability() > workload) {
+                if (s.equals(skill) && resource.getFreeCapacity() > workload) {
                     return resource;
                 }
             }
