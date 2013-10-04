@@ -160,6 +160,19 @@ public class Simulation {
     public Portfolio getPortfolio() {
         return portfolio;
     }
+    
+    /**
+     * @return thoretical capacity of all resources
+     */
+    public Double getTotalCapacity() {
+        double capacity = 0.0;
+        for (Team team : getTeams()) {
+            for (Resource res : team.getResources()) {
+                capacity += res.getFreeCapacityForNow();
+            }
+        }
+        return capacity;
+    }
 
     @Override
     public String toString() {

@@ -21,4 +21,13 @@ public class Plan extends ArrayList<PlanItem> {
         }
         return (long)freeCapacity;
     }
+    
+    public PlanItem getFirst() {
+        PlanItem pi = null;
+        
+        if(size() > 0) {
+            pi=get(0);
+        }
+        return pi;
+    }
 }

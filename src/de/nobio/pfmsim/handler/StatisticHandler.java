@@ -12,7 +12,8 @@ public class StatisticHandler implements Handler {
     public void handle(PFMContext context) {
         String msg = "\nWaiting Project:  " + context.getWaitingProjects().size() + " with total workload " + context.getWaitingProjects().getTotalWorkload();
         msg += "\nRunning Projects: " + context.getRunningProjects().size() + " with total workload " + context.getRunningProjects().getTotalWorkload();
-        msg += "\nTeams:            " + context.getConfiguration().getTeams().size();
+        msg += "\nTeams:            " + context.getConfiguration().getTeams().size() + "; capacity: " + context.getConfiguration().getTotalCapacity() + "; thereof idle: (to be calculated...)" ;
+        
         LOGGER.info("\n********************************************************************");
         LOGGER.info(msg);
         LOGGER.info("\n********************************************************************");

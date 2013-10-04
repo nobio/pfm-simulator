@@ -40,7 +40,7 @@ public class Resource {
 
     @XmlTransient
     private Plan plan;
-    
+
     public String getId() {
         return id;
     }
@@ -89,12 +89,23 @@ public class Resource {
     }
 
     public Long getFreeCapacity() {
-        if(plan == null) {
+        if (plan == null) {
             plan = new Plan(baseAvailability);
         }
         return plan.getFreeCapacity();
     }
-    
+
+    public Double getFreeCapacityForNow() {
+        if (plan == null) {
+            plan = new Plan(baseAvailability);
+        }
+        if (plan.getFirst() == null) {
+            return baseAvailability;
+        } else {
+            return baseAvailability - plan.getFirst().getAllocation();
+        }
+    }
+
     @Override
     protected Resource clone() throws CloneNotSupportedException {
         Resource r = new Resource();
