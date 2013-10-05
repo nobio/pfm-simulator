@@ -61,7 +61,6 @@ public class ProjectInitializer implements Handler {
                     Resource res = new Resource();
                     res.addSkill(skill);
                     res.setBaseAvailability(config.getAvailability() * config.getPlanningHorizont());
-                    res.setReserved(0.0);
 
                     project.addNeededResource(res);
                 }
@@ -89,7 +88,7 @@ public class ProjectInitializer implements Handler {
             project.setDuration(project.getTotalWorkload());
             context.getWaitingProjects().add(project);
             LOGGER.info("Workload of this project: " + project.getTotalWorkload() + " in " + project.getPhases().size() + " project phases distributed over "
-                    + project.getNeededResources().size() + " resources (" + project.getTotalWorkload()/project.getNeededResources().size() + " each)");
+                    + project.getNeededResources().size() + " resources (" + project.getTotalWorkload() / project.getNeededResources().size() + " each)");
         }
     }
 }

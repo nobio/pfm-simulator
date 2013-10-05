@@ -23,6 +23,7 @@ import de.nobio.pfmsim.distribution.WeightedDistribution;
 import de.nobio.pfmsim.project.Category;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Portfolio;
+import de.nobio.pfmsim.resource.Period;
 import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.resource.Team;
@@ -149,10 +150,10 @@ public class Simulation {
         return phase;
     }
 
-    public Resource getResourceWithSkill(Skill skill, Long workload) {
+    public Resource getResourceWithSkill(Skill skill, Period period, Long workload) {
         Resource r = null;
         for (int n = 0; n < getTeams().size() && r == null; n++) {
-            r = getTeams().get(n).getResourceWithSkill(skill, workload);
+            r = getTeams().get(n).getResourceWithSkill(skill, period, workload);
         }
         return r;
     }
@@ -160,7 +161,7 @@ public class Simulation {
     public Portfolio getPortfolio() {
         return portfolio;
     }
-    
+
     /**
      * @return thoretical capacity of all resources
      */

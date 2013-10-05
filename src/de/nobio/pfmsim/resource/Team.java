@@ -52,10 +52,10 @@ public class Team {
         this.resource.add(resource);
     }
 
-    public Resource getResourceWithSkill(Skill skill, Long workload) {
+    public Resource getResourceWithSkill(Skill skill, Period period, Long workload) {
         for (Resource resource : getResources()) {
             for (Skill s : resource.getSkills()) {
-                if (s.equals(skill) && resource.getFreeCapacity() > workload) {
+                if (s.equals(skill) && resource.getFreeCapacity(period) >= workload) {
                     return resource;
                 }
             }

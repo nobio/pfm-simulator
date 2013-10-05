@@ -7,14 +7,14 @@
     <iterations>10</iterations>
 
     <!-- pause in ms between two iterations -->
-    <pause>2500</pause>
+    <pause>000</pause>
 
     <!-- general availability for all resources except there is another value 
         defined at resource level -->
     <availability>1</availability>
 
-    <!-- how far into future efforts can be planned? -->
-    <planning_horizont>360</planning_horizont>
+    <!-- how far into future efforts can be planned? 2 years = 730 -->
+    <planning_horizont>730</planning_horizont>
 
     <!-- definition of skills; will be referenced by resources and projects/tasks -->
     <skill id="jd" name="Java Developer" />

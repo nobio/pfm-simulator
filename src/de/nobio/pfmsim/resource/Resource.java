@@ -19,6 +19,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+import de.nobio.pfmsim.project.Phase;
+
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "resource")
 public class Resource {
@@ -57,12 +59,11 @@ public class Resource {
         this.baseAvailability = availability;
     }
 
-    public Double getReserved() {
-        return reserved;
-    }
-
-    public void setReserved(Double reserved) {
-        this.reserved = reserved;
+    public Double getAllocation() {
+        if (plan == null) {
+            plan = new Plan(baseAvailability);
+        }
+        return plan.getAllocation();
     }
 
     public Integer getCount() {
@@ -88,11 +89,22 @@ public class Resource {
         return plan;
     }
 
-    public Long getFreeCapacity() {
+    public Double getFreeCapacity() {
         if (plan == null) {
             plan = new Plan(baseAvailability);
         }
         return plan.getFreeCapacity();
+    }
+
+    /**
+     * @param period
+     * @return free capacity within this period
+     */
+    public Double getFreeCapacity(Period period) {
+        if (plan == null) {
+            plan = new Plan(baseAvailability);
+        }
+        return plan.getFreeCapacity(period);
     }
 
     public Double getFreeCapacityForNow() {
@@ -106,6 +118,10 @@ public class Resource {
         }
     }
 
+    public Period allocate(Phase phase, Period phasePeriod, Long workload) {
+        return plan.allocate(phase, phasePeriod, workload);
+    }
+
     @Override
     protected Resource clone() throws CloneNotSupportedException {
         Resource r = new Resource();
@@ -117,7 +133,7 @@ public class Resource {
 
     @Override
     public String toString() {
-        return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + reserved + ", skills=" + skills + "]";
+        return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + getAllocation() + ", skills=" + skills + "]";
     }
 
 }
