@@ -7,6 +7,7 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 @XmlAccessorType(XmlAccessType.FIELD)
@@ -60,11 +61,15 @@ public class Phase {
     private Workload workload;
 
     /**
-     * how many resources of the needed skill(s) can work in parallel in this phase?
-     * -1 means: all for this phase available resources; otherwise this is a max number
+     * how many resources of the needed skill(s) can work in parallel in this
+     * phase? -1 means: all for this phase available resources; otherwise this
+     * is a max number
      */
     @XmlElement(name = "parallel", required = true)
     private Integer parallel;
+
+    @XmlTransient
+    private Project linktoProject;
 
     public String getId() {
         return id;
@@ -104,6 +109,14 @@ public class Phase {
 
     public void setParallel(Integer parallel) {
         this.parallel = parallel;
+    }
+
+    public Project getLinktoProject() {
+        return linktoProject;
+    }
+
+    public void setLinktoProject(Project linktoProject) {
+        this.linktoProject = linktoProject;
     }
 
     public Double calculateWorkload() {

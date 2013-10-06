@@ -174,6 +174,15 @@ public class Simulation {
         }
         return capacity;
     }
+    public Double getTotalAllocation() {
+        double alloc = 0.0;
+        for (Team team : getTeams()) {
+            for (Resource res : team.getResources()) {
+                alloc += res.getAllocation();
+            }
+        }
+        return alloc;
+    }
 
     @Override
     public String toString() {

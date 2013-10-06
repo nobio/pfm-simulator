@@ -7,7 +7,7 @@
     <iterations>10</iterations>
 
     <!-- pause in ms between two iterations -->
-    <pause>000</pause>
+    <pause>00</pause>
 
     <!-- general availability for all resources except there is another value 
         defined at resource level -->

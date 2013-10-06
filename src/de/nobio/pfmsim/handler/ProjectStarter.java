@@ -3,8 +3,12 @@
  */
 package de.nobio.pfmsim.handler;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Logger;
 
+import de.nobio.pfmsim.project.Project;
+import de.nobio.pfmsim.project.Project.ProjectStatus;
 import de.nobio.pfmsim.runtime.PFMContext;
 
 /**
@@ -20,7 +24,21 @@ public class ProjectStarter implements Handler {
      */
     @Override
     public void handle(PFMContext context) {
-        LOGGER.info(this.getClass().getName());
+        
+        List<Project> toBeRemoved = new ArrayList<Project>();
+        
+        for (Project project : context.getWaitingProjects()) {
+            
+            if (project.getStatus() == ProjectStatus.Allocated) {
+                toBeRemoved.add(project);
+                project.setStatus(ProjectStatus.Running);
+                context.getRunningProjects().add(project);
+                LOGGER.info("started project " + project.hashCode());
+            }
+        }
+        
+        context.getWaitingProjects().removeAll(toBeRemoved);
+
     }
 
 }

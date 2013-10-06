@@ -10,6 +10,17 @@ import de.nobio.pfmsim.runtime.TimeClock;
 
 public class Project implements TimeClock, Comparable<Project> {
 
+    public enum ProjectStatus {
+        Waiting, // project initialized and now waiting to be started; usually
+                 // projects in WaitingQueue are in status WAITING
+        Allocated, // project's resources are allocated; project could be
+                   // started
+        Running, // running project
+        Finished // finished project
+    }
+
+    private ProjectStatus status = ProjectStatus.Waiting;
+
     private String categoryRef;
 
     private Long priority;
@@ -23,6 +34,23 @@ public class Project implements TimeClock, Comparable<Project> {
     private List<Phase> phases;
 
     private List<Resource> neededResources;
+    
+    private Double allocation = 0D;
+
+    /**
+     * @return the status
+     */
+    public ProjectStatus getStatus() {
+        return status;
+    }
+
+    /**
+     * @param status
+     *            the status to set
+     */
+    public void setStatus(ProjectStatus status) {
+        this.status = status;
+    }
 
     public String getCategoryRef() {
         return categoryRef;
@@ -65,6 +93,9 @@ public class Project implements TimeClock, Comparable<Project> {
 
     public void setPhases(List<Phase> phases) {
         this.phases = phases;
+        for (Phase phase : phases) {
+            phase.setLinktoProject(this);
+        }
     }
 
     public List<Resource> getNeededResources() {
@@ -99,6 +130,19 @@ public class Project implements TimeClock, Comparable<Project> {
         }
         return workload;
     }
+    
+    public Double getTotalAllocation() {
+        return allocation;
+    }
+
+    public void increaseAllocation(Double alloc) {
+        System.out.println(this.hashCode() + " " + alloc);
+        this.allocation += alloc;
+    }
+
+    public boolean isAllocated() {
+        return allocation >= (double)getTotalWorkload();
+    }
 
     @Override
     public void tick(Long clock) {
@@ -121,10 +165,13 @@ public class Project implements TimeClock, Comparable<Project> {
         return cmp;
     }
 
+    /**
+     * @see java.lang.Object#toString()
+     */
     @Override
     public String toString() {
-        return "\n\tProject [categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + duration + ", category=" + category + ", distribution=" + distribution
-                + ", phases=" + phases + ", neededResources=" + neededResources + "]";
+        return "\n\tProject [status=" + status + ", categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + duration + ", category=" + category
+                + ", distribution=" + distribution + ", phases=" + phases + ", neededResources=" + neededResources + "]";
     }
 
 }

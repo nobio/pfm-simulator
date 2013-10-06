@@ -20,6 +20,7 @@ import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.project.Phase;
+import de.nobio.pfmsim.project.Project;
 
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "resource")
@@ -118,8 +119,8 @@ public class Resource {
         }
     }
 
-    public Period allocate(Phase phase, Period phasePeriod, Long workload) {
-        return plan.allocate(phase, phasePeriod, workload);
+    public Period allocate(Project project, Phase phase, Period phasePeriod, Long workload) {
+        return plan.allocate(project, phase, phasePeriod, workload);
     }
 
     @Override

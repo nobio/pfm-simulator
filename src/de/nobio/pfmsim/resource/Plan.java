@@ -3,6 +3,7 @@ package de.nobio.pfmsim.resource;
 import java.util.ArrayList;
 
 import de.nobio.pfmsim.project.Phase;
+import de.nobio.pfmsim.project.Project;
 
 public class Plan extends ArrayList<PlanItem> {
 
@@ -33,7 +34,7 @@ public class Plan extends ArrayList<PlanItem> {
      * 
      * @return true when the allocation could be done
      */
-    public Period allocate(Phase phase, Period phasePeriod, Long workload) {
+    public Period allocate(Project project, Phase phase, Period phasePeriod, Long workload) {
 
         if (workload == 0) {
             return phasePeriod;
@@ -72,12 +73,15 @@ public class Plan extends ArrayList<PlanItem> {
         }
 
         // we have found a time slot: n to i
+        // let's allocate the this plan to this project, phase and period
         for (int n = startIdx - 1; n < stopIdx; n++) {
+            project.increaseAllocation(this.baseAvailability);
             this.get(n).setAllocation(this.baseAvailability);
             this.get(n).setLinkToPhase(phase);
+            this.get(n).setLinkToProject(project);
         }
 
-        if (startIdx == endSearch) {
+        if (startIdx == endSearch && workload > 1) {
             return null;
         } else {
             return new Period(startIdx - 1, stopIdx - 1);
