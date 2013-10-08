@@ -158,6 +158,19 @@ public class Simulation {
         return r;
     }
 
+    /**
+     * @return all resources in all teams
+     */
+    public List<Resource> getAllResources() {
+        List<Resource> resources = new ArrayList<Resource>();
+        
+        for (Team team : getTeams()) {
+            resources.addAll(team.getResources());
+        }
+        
+        return resources;
+    }
+    
     public Portfolio getPortfolio() {
         return portfolio;
     }
