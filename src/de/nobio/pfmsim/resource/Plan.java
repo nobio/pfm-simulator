@@ -72,6 +72,10 @@ public class Plan extends ArrayList<PlanItem> {
             }
         }
 
+        if (startIdx == endSearch && workload > 1) {
+            return null;
+        }
+
         // we have found a time slot: n to i
         // let's allocate the this plan to this project, phase and period
         for (int n = startIdx - 1; n < stopIdx; n++) {
@@ -81,11 +85,7 @@ public class Plan extends ArrayList<PlanItem> {
             this.get(n).setLinkToProject(project);
         }
 
-        if (startIdx == endSearch && workload > 1) {
-            return null;
-        } else {
-            return new Period(startIdx - 1, stopIdx - 1);
-        }
+        return new Period(startIdx - 1, stopIdx - 1);
     }
 
     public Double getFreeCapacity() {

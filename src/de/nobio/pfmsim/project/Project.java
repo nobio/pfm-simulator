@@ -136,7 +136,7 @@ public class Project implements TimeClock, Comparable<Project> {
     }
 
     public void increaseAllocation(Double alloc) {
-        System.out.println(this.hashCode() + " " + alloc);
+//        System.out.println(this.hashCode() + " " + alloc);
         this.allocation += alloc;
     }
 
