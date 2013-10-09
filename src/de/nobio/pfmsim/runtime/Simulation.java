@@ -30,7 +30,8 @@ import de.nobio.pfmsim.resource.Team;
 
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "phasePool", "projectCategoryPool", "teams", "portfolio" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "phasePool", "projectCategoryPool",
+        "teams", "portfolio" })
 public class Simulation {
 
     @XmlElement(required = true)
@@ -163,14 +164,14 @@ public class Simulation {
      */
     public List<Resource> getAllResources() {
         List<Resource> resources = new ArrayList<Resource>();
-        
+
         for (Team team : getTeams()) {
             resources.addAll(team.getResources());
         }
-        
+
         return resources;
     }
-    
+
     public Portfolio getPortfolio() {
         return portfolio;
     }
@@ -187,6 +188,7 @@ public class Simulation {
         }
         return capacity;
     }
+
     public Double getTotalAllocation() {
         double alloc = 0.0;
         for (Team team : getTeams()) {
@@ -199,9 +201,9 @@ public class Simulation {
 
     @Override
     public String toString() {
-        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont + ", skillPool="
-                + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", projectCategoryDistribution" + projectCategoryDistribution
-                + ", teams=" + teams + ", portfolio=" + portfolio + "]";
+        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont
+                + ", skillPool=" + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", projectCategoryDistribution"
+                + projectCategoryDistribution + ", teams=" + teams + ", portfolio=" + portfolio + "]";
     }
 
 }

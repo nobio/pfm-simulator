@@ -56,7 +56,7 @@ public class Period {
     public boolean isValid() {
         return end >= 0 && begin >= 0;
     }
-    
+
     /**
      * @see java.lang.Object#toString()
      */

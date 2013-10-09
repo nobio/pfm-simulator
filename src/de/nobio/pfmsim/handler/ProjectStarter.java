@@ -24,11 +24,11 @@ public class ProjectStarter implements Handler {
      */
     @Override
     public void handle(PFMContext context) {
-        
+
         List<Project> toBeRemoved = new ArrayList<Project>();
-        
+
         for (Project project : context.getWaitingProjects()) {
-            
+
             if (project.getStatus() == ProjectStatus.Allocated) {
                 toBeRemoved.add(project);
                 project.setStatus(ProjectStatus.Running);
@@ -36,7 +36,7 @@ public class ProjectStarter implements Handler {
                 LOGGER.info("started project " + project.hashCode());
             }
         }
-        
+
         context.getWaitingProjects().removeAll(toBeRemoved);
 
     }

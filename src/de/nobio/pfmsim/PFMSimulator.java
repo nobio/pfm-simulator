@@ -63,7 +63,7 @@ public class PFMSimulator {
         ResourceSetupHandler resourceSetup = new ResourceSetupHandler();
         resourceSetup.setup(context.getConfiguration());
         resourceSetup.validate(context.getConfiguration());
-        
+
         ProjectSetupHandler projectSetup = new ProjectSetupHandler();
         projectSetup.setup(context.getConfiguration());
         projectSetup.validate(context.getConfiguration());
@@ -83,7 +83,7 @@ public class PFMSimulator {
 
         long iterations = context.getConfiguration().getIterations();
         long pause = context.getConfiguration().getPause();
-        
+
         // iterate over the whole simulation period
         for (int moment = 0; moment < iterations; moment++) {
 
@@ -95,7 +95,7 @@ public class PFMSimulator {
             statisticHandler.handle(context);
 
             Thread.sleep(pause);
-//            LOGGER.info(context.getWaitingProjects().toString());
+            //            LOGGER.info(context.getWaitingProjects().toString());
             LOGGER.info("");
 
         }

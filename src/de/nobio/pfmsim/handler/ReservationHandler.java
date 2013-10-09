@@ -54,8 +54,8 @@ public class ReservationHandler implements Handler {
                         // there should only be one skill in this list
                         Skill neededSkill = resource.getSkills().get(0);
 
-                        LOGGER.info("Phase " + phase.getName() + "; need a resource with skill " + neededSkill.getName() + " and min. availibility of " + workload
-                                + " and in the period " + phasePeriod);
+                        LOGGER.info("Phase " + phase.getName() + "; need a resource with skill " + neededSkill.getName() + " and min. availibility of "
+                                + workload + " and in the period " + phasePeriod);
 
                         Resource foundResource = config.getResourceWithSkill(neededSkill, phasePeriod, workload);
 

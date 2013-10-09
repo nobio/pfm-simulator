@@ -178,8 +178,8 @@ public class Project implements TimeClock, Comparable<Project> {
      */
     @Override
     public String toString() {
-        return "\n\tProject [status=" + status + ", categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + duration + ", category=" + category
-                + ", distribution=" + distribution + ", phases=" + phases + ", neededResources=" + neededResources + "]";
+        return "\n\tProject [status=" + status + ", categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + duration + ", category="
+                + category + ", distribution=" + distribution + ", phases=" + phases + ", neededResources=" + neededResources + "]";
     }
 
 }

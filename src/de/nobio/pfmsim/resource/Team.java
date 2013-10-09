@@ -63,10 +63,10 @@ public class Team {
         return null;
     }
 
-    private void setNewResourceId(Resource resource){
+    private void setNewResourceId(Resource resource) {
         resource.setId(this.getId() + "." + resource.hashCode());
     }
-    
+
     @Override
     public String toString() {
         return "\nTeam [id=" + id + ", resource=" + resource + "]";

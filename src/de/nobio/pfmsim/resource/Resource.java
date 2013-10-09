@@ -130,9 +130,9 @@ public class Resource {
         if (planitem.getLinkToPhase() != null) {
             Project project = planitem.getLinkToPhase().getLinktoProject();
             project.decreaseAllocation(planitem.getAllocation());
-            
-//            TODO: shift all planitems one forth
-            
+
+            //            TODO: shift all planitems one forth
+
             returnvalue = planitem.getAllocation();
         }
         return returnvalue;
@@ -149,7 +149,8 @@ public class Resource {
 
     @Override
     public String toString() {
-        return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + getAllocation() + ", skills=" + skills + "]";
+        return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + getAllocation() + ", skills="
+                + skills + "]";
     }
 
 }

@@ -79,8 +79,8 @@ public class Category {
 
     @Override
     public String toString() {
-        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryDistribution=" + projectCategoryDistribution + ", projectDuration=" + projectDuration + ", phases="
-                + phases + ", neededSkills=" + neededSkills + "]";
+        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryDistribution=" + projectCategoryDistribution + ", projectDuration="
+                + projectDuration + ", phases=" + phases + ", neededSkills=" + neededSkills + "]";
     }
 
 }
