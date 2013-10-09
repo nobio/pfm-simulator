@@ -8,6 +8,8 @@ import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 
 import de.nobio.pfmsim.handler.Handler;
+import de.nobio.pfmsim.handler.ProjectCompleter;
+import de.nobio.pfmsim.handler.ProjectFinazlizer;
 import de.nobio.pfmsim.handler.ProjectInitializer;
 import de.nobio.pfmsim.handler.ProjectStarter;
 import de.nobio.pfmsim.handler.RepriorisationHandler;
@@ -28,6 +30,8 @@ public class PFMSimulator {
     private Handler projectInitializer = new ProjectInitializer();
     private Handler reservationHandler = new ReservationHandler();
     private Handler projectStarter = new ProjectStarter();
+    private Handler projectFinalizer = new ProjectFinazlizer();
+    private Handler projectCompleter = new ProjectCompleter();
     private Handler resourceContributionHandler = new ResourceContributionHandler();
     private Handler statisticHandler = new StatisticHandler();
 
@@ -92,6 +96,8 @@ public class PFMSimulator {
             reservationHandler.handle(context);
             projectStarter.handle(context);
             resourceContributionHandler.handle(context);
+            projectFinalizer.handle(context);
+            projectCompleter.handle(context);
             statisticHandler.handle(context);
 
             Thread.sleep(pause);

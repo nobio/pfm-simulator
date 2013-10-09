@@ -2,16 +2,19 @@ package de.nobio.pfmsim.resource;
 
 import java.util.ArrayList;
 
+import de.nobio.pfmsim.Util;
+import de.nobio.pfmsim.distribution.Distribution;
+import de.nobio.pfmsim.distribution.EqualDistribution;
+import de.nobio.pfmsim.distribution.NormalDistribution;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Project;
 
 public class Plan extends ArrayList<PlanItem> {
 
     private static final long serialVersionUID = 602530673196696823L;
-    // private static final Logger LOGGER =
-    // Logger.getLogger(Plan.class.getName());
-    private Double baseAvailability;
     private static final int PLANNING_HORIZONT = 2 * 365; // 2 years
+
+    private Double baseAvailability;
 
     public Plan(Double baseAvailability) {
         super(PLANNING_HORIZONT);
@@ -19,7 +22,6 @@ public class Plan extends ArrayList<PlanItem> {
         for (int n = 0; n < PLANNING_HORIZONT; n++) {
             add(new PlanItem());
         }
-
     }
 
     /**
@@ -85,6 +87,25 @@ public class Plan extends ArrayList<PlanItem> {
         }
 
         return new Period(startIdx - 1, stopIdx - 1);
+    }
+
+    public Double contribute() {
+        Double contribution = 0D;
+        PlanItem planitem = getFirst();
+
+        if (planitem.getLinkToPhase() != null) {
+            // contribution is around the allocation
+            //            contribution = Util.getNormallyDistributedRandomNumer(planitem.getAllocation(), planitem.getAllocation() * 0.2); 
+            contribution = Util.getEquallyDistributedRandomNumer(planitem.getAllocation() * 0.8, planitem.getAllocation() * 1.1);
+
+            Project project = planitem.getLinkToPhase().getLinktoProject();
+            project.decreaseAllocation(contribution);
+
+            // shift all planitems one forth
+            remove(0); // remove the first
+            add(new PlanItem()); // add an empty item at the end
+        }
+        return contribution;
     }
 
     public Double getFreeCapacity() {
