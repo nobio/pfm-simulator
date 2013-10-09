@@ -123,6 +123,21 @@ public class Resource {
         return plan.allocate(project, phase, phasePeriod, workload);
     }
 
+    public Double contribute() {
+        Double returnvalue = 0D;
+        PlanItem planitem = plan.getFirst();
+
+        if (planitem.getLinkToPhase() != null) {
+            Project project = planitem.getLinkToPhase().getLinktoProject();
+            project.decreaseAllocation(planitem.getAllocation());
+            
+//            TODO: shift all planitems one forth
+            
+            returnvalue = planitem.getAllocation();
+        }
+        return returnvalue;
+    }
+
     @Override
     protected Resource clone() throws CloneNotSupportedException {
         Resource r = new Resource();

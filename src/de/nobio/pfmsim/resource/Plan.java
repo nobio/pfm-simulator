@@ -82,7 +82,6 @@ public class Plan extends ArrayList<PlanItem> {
             project.increaseAllocation(this.baseAvailability);
             this.get(n).setAllocation(this.baseAvailability);
             this.get(n).setLinkToPhase(phase);
-            this.get(n).setLinkToProject(project);
         }
 
         return new Period(startIdx - 1, stopIdx - 1);

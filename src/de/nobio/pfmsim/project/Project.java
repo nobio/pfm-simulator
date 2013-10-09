@@ -2,6 +2,7 @@ package de.nobio.pfmsim.project;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 
 import de.nobio.pfmsim.distribution.Distribution;
 import de.nobio.pfmsim.resource.Resource;
@@ -9,6 +10,8 @@ import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.runtime.TimeClock;
 
 public class Project implements TimeClock, Comparable<Project> {
+
+    private static final Logger LOGGER = Logger.getLogger(Project.class.getName());
 
     public enum ProjectStatus {
         Waiting, // project initialized and now waiting to be started; usually
@@ -34,7 +37,7 @@ public class Project implements TimeClock, Comparable<Project> {
     private List<Phase> phases;
 
     private List<Resource> neededResources;
-    
+
     private Double allocation = 0D;
 
     /**
@@ -130,18 +133,23 @@ public class Project implements TimeClock, Comparable<Project> {
         }
         return workload;
     }
-    
+
     public Double getTotalAllocation() {
         return allocation;
     }
 
     public void increaseAllocation(Double alloc) {
-//        System.out.println(this.hashCode() + " " + alloc);
         this.allocation += alloc;
+        LOGGER.info("Project " + this.hashCode() + " increased the allocation by " + alloc + " to " + allocation);
+    }
+
+    public void decreaseAllocation(Double alloc) {
+        this.allocation -= alloc;
+        LOGGER.info("Project " + this.hashCode() + " decreased the allocation by " + alloc + " to " + allocation);
     }
 
     public boolean isAllocated() {
-        return allocation >= (double)getTotalWorkload();
+        return allocation >= (double) getTotalWorkload();
     }
 
     @Override
