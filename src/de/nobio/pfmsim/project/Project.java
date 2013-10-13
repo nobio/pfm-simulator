@@ -7,9 +7,8 @@ import java.util.logging.Logger;
 import de.nobio.pfmsim.distribution.Distribution;
 import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.resource.Skill;
-import de.nobio.pfmsim.runtime.TimeClock;
 
-public class Project implements TimeClock, Comparable<Project> {
+public class Project implements Comparable<Project> {
 
     private static final Logger LOGGER = Logger.getLogger(Project.class.getName());
 
@@ -149,13 +148,8 @@ public class Project implements TimeClock, Comparable<Project> {
     }
 
     public boolean isAllocated() {
-        return allocation >= (double) getTotalWorkload();
-    }
-
-    @Override
-    public void tick(Long clock) {
-        // TODO Auto-generated method stub
-
+        double workload = (double) getTotalWorkload();
+        return allocation >= workload;
     }
 
     @Override

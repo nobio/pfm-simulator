@@ -23,8 +23,10 @@ public class ProjectFinazlizer implements Handler {
     @Override
     public void handle(PFMContext context) {
         for (Project project : context.getRunningProjects()) {
+            LOGGER.info("Project: " + project.hashCode() + "; ALLOC: " + project.getTotalAllocation() + " Workload: " + project.getTotalWorkload());
 
-            if (project.getTotalAllocation() <= 210) {
+            // less then 10% of a project means: Project's finished
+            if (project.getTotalAllocation() <= project.getTotalWorkload() / 10) {
                 LOGGER.info("finalize project " + project.hashCode());
                 project.setStatus(ProjectStatus.Finished);
             }

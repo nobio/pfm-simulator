@@ -205,9 +205,9 @@
 			to >50; adapt your intervall and make sure your min value is smaller than 
 			50; this goes to Portfolio.projectCategoryStartProbability -->
 		<distribution type="Equal">
-			<param1>50</param1>
+			<param1>00</param1>
 			<!--paramx>50<paramx -->
-			<param2>70</param2>
+			<param2>60</param2>
 		</distribution>
 
 		<!-- definition of projects -->

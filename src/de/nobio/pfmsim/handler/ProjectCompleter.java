@@ -31,7 +31,7 @@ public class ProjectCompleter implements Handler {
 
             if (project.getStatus() == ProjectStatus.Finished) {
                 toBeRemoved.add(project);
-                LOGGER.info("removed project " + project.hashCode());
+                LOGGER.info("removed project " + project.hashCode() + "; allocation: " + project.getTotalAllocation() + "; workload: " + project.getTotalWorkload() );
             }
         }
 

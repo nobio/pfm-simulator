@@ -54,7 +54,7 @@ public class ReservationHandler implements Handler {
                         // there should only be one skill in this list
                         Skill neededSkill = resource.getSkills().get(0);
 
-                        LOGGER.info("Phase " + phase.getName() + "; need a resource with skill " + neededSkill.getName() + " and min. availibility of "
+                        LOGGER.info("Project " + project.hashCode() + ", Phase " + phase.getName() + "; need a resource with skill " + neededSkill.getName() + " and min. availibility of "
                                 + workload + " and in the period " + phasePeriod);
 
                         Resource foundResource = config.getResourceWithSkill(neededSkill, phasePeriod, workload);
@@ -64,6 +64,10 @@ public class ReservationHandler implements Handler {
                             Period period = foundResource.allocate(project, phase, phasePeriod, workload);
                             if (period != null && period.isValid()) {
                                 LOGGER.info("Found: " + foundResource.getId() + " and could allocate: " + period);
+
+                                // reduce phase'es workload
+                                workload = workload - (period.getEnd() - period.getBegin());
+                                
                                 phasePeriod = period;
                                 phasePeriod.setEnd((int) ((period.getEnd() + 1) * 1.3));
                             } else {

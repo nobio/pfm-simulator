@@ -36,13 +36,13 @@ public class ProjectInitializer implements Handler {
 
         // can we start a project?
         if (portfolio.getProjectCategoryStartProbability().getRandomNumericValue() > 50) {
-            LOGGER.info("Ohhh a project. Let's start it!!");
+            Project project = new Project();
+
+            LOGGER.info("Ohhh a project. Let's start it!! (" + project.hashCode() + ")");
 
             // which project category should the project have?
             Category category = config.getProjectCategoryFromPool(config.getProjectCategoryDistribution().getRandomeValue());
-            LOGGER.info("let's setup a " + category.getName() + " project");
-
-            Project project = new Project();
+            LOGGER.info("Project " + project.hashCode() + " let's setup a " + category.getName() + " project");
 
             project.setCategory(category);
             project.setPriority((long) Math.random() * 100);
@@ -64,7 +64,7 @@ public class ProjectInitializer implements Handler {
 
                     project.addNeededResource(res);
                 }
-                LOGGER.info("Needed skill: " + skill.getName() + " from " + rnd + " resources");
+                LOGGER.info("Project " + project.hashCode() + " Needed skill: " + skill.getName() + " from " + rnd + " resources");
             }
 
             // distribute the expected workload amongst the phases
@@ -82,13 +82,14 @@ public class ProjectInitializer implements Handler {
 
                 projectPhase.setWorkload(workload);
                 projectPhases.add(projectPhase);
-                LOGGER.info("Workload of phase " + projectPhase.getName() + ": " + projectPhase.getWorkload().getWorkload());
+                LOGGER.info("Project " + project.hashCode() + " Workload of phase " + projectPhase.getName() + ": " + projectPhase.getWorkload().getWorkload());
             }
             project.setPhases(projectPhases);
             project.setDuration(project.getTotalWorkload());
             context.getWaitingProjects().add(project);
-            LOGGER.info("Workload of this project: " + project.getTotalWorkload() + " in " + project.getPhases().size() + " project phases distributed over "
-                    + project.getNeededResources().size() + " resources (" + project.getTotalWorkload() / project.getNeededResources().size() + " each)");
+            LOGGER.info("Workload of this project (" + project.hashCode() + "): " + project.getTotalWorkload() + " in " + project.getPhases().size()
+                    + " project phases distributed over " + project.getNeededResources().size() + " resources (" + project.getTotalWorkload() / project.getNeededResources().size()
+                    + " each)");
         }
     }
 }

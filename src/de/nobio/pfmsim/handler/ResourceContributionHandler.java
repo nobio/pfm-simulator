@@ -14,9 +14,9 @@ public class ResourceContributionHandler implements Handler {
     public void handle(PFMContext context) {
         List<Resource> resources = context.getConfiguration().getAllResources();
         for (Resource resource : resources) {
-            LOGGER.info(resource.getId() + " " + resource.getSkills().get(0).getId() + " " + resource.getAllocation());
+            LOGGER.info("Actual resource situation: " + resource.getId() + " " + resource.getSkills().get(0).getId() + " " + resource.getAllocation());
             resource.contribute();
-            LOGGER.info(resource.getId() + " " + resource.getSkills().get(0).getId() + " " + resource.getAllocation());
+            LOGGER.info("Actual resource situation: " + resource.getId() + " " + resource.getSkills().get(0).getId() + " " + resource.getAllocation());
         }
     }
 

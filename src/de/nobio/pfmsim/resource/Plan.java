@@ -3,9 +3,6 @@ package de.nobio.pfmsim.resource;
 import java.util.ArrayList;
 
 import de.nobio.pfmsim.Util;
-import de.nobio.pfmsim.distribution.Distribution;
-import de.nobio.pfmsim.distribution.EqualDistribution;
-import de.nobio.pfmsim.distribution.NormalDistribution;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Project;
 
