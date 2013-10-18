@@ -11,6 +11,7 @@ import de.nobio.pfmsim.handler.Handler;
 import de.nobio.pfmsim.handler.ProjectCompleter;
 import de.nobio.pfmsim.handler.ProjectFinazlizer;
 import de.nobio.pfmsim.handler.ProjectInitializer;
+import de.nobio.pfmsim.handler.ProjectProgressHandler;
 import de.nobio.pfmsim.handler.ProjectStarter;
 import de.nobio.pfmsim.handler.RepriorisationHandler;
 import de.nobio.pfmsim.handler.ReservationHandler;
@@ -33,6 +34,7 @@ public class PFMSimulator {
     private Handler projectFinalizer = new ProjectFinazlizer();
     private Handler projectCompleter = new ProjectCompleter();
     private Handler resourceContributionHandler = new ResourceContributionHandler();
+    private Handler projectProgressHandler = new ProjectProgressHandler();
     private Handler statisticHandler = new StatisticHandler();
 
     public static void main(String[] args) throws Exception {
@@ -96,6 +98,7 @@ public class PFMSimulator {
             reservationHandler.handle(context);
             projectStarter.handle(context);
             resourceContributionHandler.handle(context);
+            projectProgressHandler.handle(context);
             projectFinalizer.handle(context);
             projectCompleter.handle(context);
             statisticHandler.handle(context);

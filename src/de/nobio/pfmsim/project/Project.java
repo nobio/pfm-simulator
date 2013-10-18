@@ -28,6 +28,10 @@ public class Project implements Comparable<Project> {
     private Long priority;
 
     private Long duration;
+    
+    private Long idleDuration;
+    
+    private Long runDuration;
 
     private Category category;
 
@@ -72,6 +76,22 @@ public class Project implements Comparable<Project> {
 
     public void setDuration(Long duration) {
         this.duration = duration;
+    }
+
+    public Long getIdleDuration() {
+        return idleDuration;
+    }
+
+    public void setIdleDuration(Long duration) {
+        this.idleDuration = duration;
+    }
+
+    public Long getRunDuration() {
+        return runDuration;
+    }
+
+    public void setRunDuration(Long duration) {
+        this.runDuration = duration;
     }
 
     public Category getCategory() {
@@ -172,7 +192,7 @@ public class Project implements Comparable<Project> {
      */
     @Override
     public String toString() {
-        return "\n\tProject [status=" + status + ", categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + duration + ", category="
+        return "\n\tProject [status=" + status + ", categoryRef=" + categoryRef + ", priority=" + priority + ", duration=" + idleDuration + ", category="
                 + category + ", distribution=" + distribution + ", phases=" + phases + ", neededResources=" + neededResources + "]";
     }
 
