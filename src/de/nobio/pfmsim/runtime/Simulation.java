@@ -28,10 +28,11 @@ import de.nobio.pfmsim.resource.Resource;
 import de.nobio.pfmsim.resource.Skill;
 import de.nobio.pfmsim.resource.Team;
 
+/**
+ */
 @XmlRootElement(name = "simulation")
 @XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "phasePool", "projectCategoryPool",
-        "teams", "portfolio" })
+@XmlType(name = "simulation", propOrder = { "availability", "iterations", "pause", "planningHorizont", "skillPool", "phasePool", "projectCategoryPool", "teams", "portfolio" })
 public class Simulation {
 
     @XmlElement(required = true)
@@ -39,6 +40,9 @@ public class Simulation {
 
     @XmlElement(required = true)
     private Long iterations;
+
+    @XmlTransient
+    private Long actualIteration;
 
     @XmlElement(required = true)
     private Long pause;
@@ -64,30 +68,74 @@ public class Simulation {
     @XmlTransient
     private WeightedDistribution<String> projectCategoryDistribution = new WeightedDistribution<String>();
 
+    /**
+     * Method getAvailability.
+     * @return Double
+     */
     public Double getAvailability() {
         return availability;
     }
 
+    /**
+     * Method setAvailability.
+     * @param availability Double
+     */
     public void setAvailability(Double availability) {
         this.availability = availability;
     }
 
+    /**
+     * Method getIterations.
+     * @return Long
+     */
     public Long getIterations() {
         return iterations;
     }
 
+    /**
+     * Method getActualIteration.
+     * @return Long
+     */
+    public Long getActualIteration() {
+        return actualIteration;
+    }
+
+    /**
+     * Method setActualIteration.
+     * @param actualIteration Long
+     */
+    public void setActualIteration(Long actualIteration) {
+        this.actualIteration = actualIteration;
+    }
+
+    /**
+     * Method getPause.
+     * @return Long
+     */
     public Long getPause() {
         return pause;
     }
 
+    /**
+     * Method getPlanningHorizont.
+     * @return Long
+     */
     public Long getPlanningHorizont() {
         return planningHorizont;
     }
 
+    /**
+     * Method setIterations.
+     * @param iterations Long
+     */
     public void setIterations(Long iterations) {
         this.iterations = iterations;
     }
 
+    /**
+     * Method getTeams.
+     * @return List<Team>
+     */
     public List<Team> getTeams() {
         if (teams == null) {
             teams = new ArrayList<Team>();
@@ -95,6 +143,10 @@ public class Simulation {
         return this.teams;
     }
 
+    /**
+     * Method getSkillPool.
+     * @return List<Skill>
+     */
     public List<Skill> getSkillPool() {
         if (skillPool == null) {
             skillPool = new ArrayList<Skill>();
@@ -102,6 +154,11 @@ public class Simulation {
         return this.skillPool;
     }
 
+    /**
+     * Method getSkillFromPool.
+     * @param ref String
+     * @return Skill
+     */
     public Skill getSkillFromPool(String ref) {
         Skill skill = null;
         for (Skill s : skillPool) {
@@ -113,10 +170,19 @@ public class Simulation {
         return skill;
     }
 
+    /**
+     * Method getProjectCategoryPool.
+     * @return List<Category>
+     */
     public List<Category> getProjectCategoryPool() {
         return projectCategoryPool;
     }
 
+    /**
+     * Method getProjectCategoryFromPool.
+     * @param ref String
+     * @return Category
+     */
     public Category getProjectCategoryFromPool(String ref) {
         Category category = null;
         for (Category s : projectCategoryPool) {
@@ -128,18 +194,35 @@ public class Simulation {
         return category;
     }
 
+    /**
+     * Method getProjectCategoryDistribution.
+     * @return WeightedDistribution<String>
+     */
     public WeightedDistribution<String> getProjectCategoryDistribution() {
         return projectCategoryDistribution;
     }
 
+    /**
+     * Method setProjectCategoryDistribution.
+     * @param projectCategoryDistribution WeightedDistribution<String>
+     */
     public void setProjectCategoryDistribution(WeightedDistribution<String> projectCategoryDistribution) {
         this.projectCategoryDistribution = projectCategoryDistribution;
     }
 
+    /**
+     * Method getPhases.
+     * @return List<Phase>
+     */
     public List<Phase> getPhases() {
         return phasePool;
     }
 
+    /**
+     * Method getPhaseFromPool.
+     * @param ref String
+     * @return Phase
+     */
     public Phase getPhaseFromPool(String ref) {
         Phase phase = null;
         for (Phase s : phasePool) {
@@ -151,6 +234,13 @@ public class Simulation {
         return phase;
     }
 
+    /**
+     * Method getResourceWithSkill.
+     * @param skill Skill
+     * @param period Period
+     * @param workload Long
+     * @return Resource
+     */
     public Resource getResourceWithSkill(Skill skill, Period period, Long workload) {
         Resource r = null;
         for (int n = 0; n < getTeams().size() && r == null; n++) {
@@ -160,8 +250,8 @@ public class Simulation {
     }
 
     /**
-     * @return all resources in all teams
-     */
+    
+     * @return all resources in all teams */
     public List<Resource> getAllResources() {
         List<Resource> resources = new ArrayList<Resource>();
 
@@ -172,13 +262,17 @@ public class Simulation {
         return resources;
     }
 
+    /**
+     * Method getPortfolio.
+     * @return Portfolio
+     */
     public Portfolio getPortfolio() {
         return portfolio;
     }
 
     /**
-     * @return thoretical capacity of all resources
-     */
+    
+     * @return thoretical capacity of all resources */
     public Double getTotalCapacity() {
         double capacity = 0.0;
         for (Team team : getTeams()) {
@@ -189,6 +283,10 @@ public class Simulation {
         return capacity;
     }
 
+    /**
+     * Method getTotalAllocation.
+     * @return Double
+     */
     public Double getTotalAllocation() {
         double alloc = 0.0;
         for (Team team : getTeams()) {
@@ -199,11 +297,15 @@ public class Simulation {
         return alloc;
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
-        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont
-                + ", skillPool=" + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", projectCategoryDistribution"
-                + projectCategoryDistribution + ", teams=" + teams + ", portfolio=" + portfolio + "]";
+        return "Simulation [availability=" + availability + ", iterations=" + iterations + ", pause=" + pause + ", planningHorizont=" + planningHorizont + ", skillPool="
+                + skillPool + ", projectCategoryPool=" + projectCategoryPool + ", phasePool=" + phasePool + ", projectCategoryDistribution" + projectCategoryDistribution
+                + ", teams=" + teams + ", portfolio=" + portfolio + "]";
     }
 
 }

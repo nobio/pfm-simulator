@@ -11,6 +11,8 @@ import javax.xml.bind.annotation.XmlEnum;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "distribution", propOrder = { "type", "param1", "param2", "param3", "param4", "param5", "param6", "param7", "param8", "param9", "param10" })
 public class Distribution {
@@ -18,6 +20,8 @@ public class Distribution {
     @XmlTransient
     Map<String, Integer> baseParamsForWeightedDistribution = new HashMap<String, Integer>();
 
+    /**
+     */
     @XmlEnum
     public enum DistributionType {
         Constant, // always the same (???)
@@ -71,61 +75,118 @@ public class Distribution {
         super();
     }
 
+    /**
+     * Constructor for Distribution.
+     * @param type DistributionType
+     */
     public Distribution(DistributionType type) {
         super();
         this.type = type;
         initDistribution();
     }
 
+    /**
+     * Method getType.
+     * @return DistributionType
+     */
     public DistributionType getType() {
         return type;
     }
 
+    /**
+     * Method getParam1.
+     * @return String
+     */
     public String getParam1() {
         return param1;
     }
 
+    /**
+     * Method getParam2.
+     * @return String
+     */
     public String getParam2() {
         return param2;
     }
 
+    /**
+     * Method getParam3.
+     * @return String
+     */
     public String getParam3() {
         return param3;
     }
 
+    /**
+     * Method getParam4.
+     * @return String
+     */
     public String getParam4() {
         return param4;
     }
 
+    /**
+     * Method getParam5.
+     * @return String
+     */
     public String getParam5() {
         return param5;
     }
 
+    /**
+     * Method getParam6.
+     * @return String
+     */
     public String getParam6() {
         return param6;
     }
 
+    /**
+     * Method getParam7.
+     * @return String
+     */
     public String getParam7() {
         return param7;
     }
 
+    /**
+     * Method getParam8.
+     * @return String
+     */
     public String getParam8() {
         return param8;
     }
 
+    /**
+     * Method getParam9.
+     * @return String
+     */
     public String getParam9() {
         return param9;
     }
 
+    /**
+     * Method getParam10.
+     * @return String
+     */
     public String getParam10() {
         return param10;
     }
 
+    /**
+     * Method getDistribution.
+     * @return IDistribution<?>
+     */
     public IDistribution<?> getDistribution() {
         initDistribution();
         return distribution;
     }
 
+    /**
+     * Method addParamForWeightedDistribution.
+     * @param group String
+     * @param weight Integer
+     */
     public void addParamForWeightedDistribution(String group, Integer weight) {
         if (this.type == DistributionType.Weighted) {
             @SuppressWarnings("unchecked")
@@ -137,6 +198,10 @@ public class Distribution {
         }
     }
 
+    /**
+     * Method getRandomNumericValue.
+     * @return Double
+     */
     public Double getRandomNumericValue() {
 
         if (type == null) {
@@ -151,6 +216,10 @@ public class Distribution {
         return (Double) distribution.getRandomeValue();
     }
 
+    /**
+     * Method getRandomWeightedValue.
+     * @return String
+     */
     public String getRandomWeightedValue() {
 
         if (type == null) {
@@ -183,6 +252,10 @@ public class Distribution {
         }
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         String strP1 = param1 != null ? ", param1=" + param1 : "";

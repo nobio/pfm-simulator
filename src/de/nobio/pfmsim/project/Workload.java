@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.distribution.Distribution;
 
+/**
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "workload", propOrder = { "distribution" })
 public class Workload {
@@ -21,26 +23,50 @@ public class Workload {
     @XmlElement(name = "distribution", required = true)
     private Distribution distribution;
 
+    /**
+     * Method getWorkload.
+     * @return Long
+     */
     public Long getWorkload() {
         return workload;
     }
 
+    /**
+     * Method setWorkload.
+     * @param workload Long
+     */
     public void setWorkload(Long workload) {
         this.workload = workload;
     }
 
+    /**
+     * Method getWorkloadWeight.
+     * @return Double
+     */
     public Double getWorkloadWeight() {
         return workloadWeight;
     }
 
+    /**
+     * Method setWorkloadWeight.
+     * @param workloadWeight Double
+     */
     public void setWorkloadWeight(Double workloadWeight) {
         this.workloadWeight = workloadWeight;
     }
 
+    /**
+     * Method getDistribution.
+     * @return Distribution
+     */
     public Distribution getDistribution() {
         return distribution;
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         return "Workload [workload=" + workload + ", distribution=" + distribution + "]";

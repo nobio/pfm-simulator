@@ -7,6 +7,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.TreeSet;
 
+/**
+ */
 public final class Util {
 
     private static Random rnd = new Random(System.currentTimeMillis());
@@ -18,8 +20,8 @@ public final class Util {
      *            start of the interval in which the random number is generated
      * @param end
      *            end of the interval in which the random number is generated
-     * @return an equally distributed random value in an interval [start, end]
-     */
+    
+     * @return an equally distributed random value in an interval [start, end] */
     public final static Double getEquallyDistributedRandomNumer(Double start, Double end) {
         if (start > end) {
             throw new IllegalArgumentException("end (" + end + ") must be greater then start (" + start + ")");
@@ -34,8 +36,8 @@ public final class Util {
      *            start of the interval in which the random number is generated
      * @param end
      *            end of the interval in which the random number is generated
-     * @return an equally distributed random value in an interval [start, end]
-     */
+    
+     * @return an equally distributed random value in an interval [start, end] */
     public final static Integer getEquallyDistributedIntRandomNumer(Integer start, Integer end) {
         if (start > end) {
             throw new IllegalArgumentException("end (" + end + ") must be greater then start (" + start + ")");
@@ -50,9 +52,9 @@ public final class Util {
      *            mean value which is the average
      * @param deviation
      *            the standard deviation
+    
      * @return a normally distributed random value with mu=mean and
-     *         sigma=deviation
-     */
+     *         sigma=deviation */
     public final static Double getNormallyDistributedRandomNumer(Double mean, Double deviation) {
         return rnd.nextGaussian() * deviation + mean;
     }
@@ -63,8 +65,8 @@ public final class Util {
      * 
      * @param baseParams
      *            : value=the strings weight; key=a group string
-     * @return one of the given values but be weighted random
-     */
+    
+     * @return one of the given values but be weighted random */
     public final static String getWeightedRandomValue(Map<String, Integer> baseParams) {
         List<String> distribution = new ArrayList<String>();
 
@@ -78,12 +80,21 @@ public final class Util {
         return distribution.get(rndIndex);
     }
 
+    /**
+     * Method assertNotNull.
+     * @param obj Object
+     */
     public final static void assertNotNull(Object obj) {
         if (obj == null) {
             throw new RuntimeException("assertion: must not be null");
         }
     }
 
+    /**
+     * Method assertEqual.
+     * @param obj1 Object
+     * @param obj2 Object
+     */
     public final static void assertEqual(Object obj1, Object obj2) {
         if (obj1 == null || obj2 == null) {
             throw new RuntimeException("assertion: " + obj1 + " must be equal to " + obj2);

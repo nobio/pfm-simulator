@@ -22,6 +22,8 @@ import javax.xml.bind.annotation.XmlType;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Project;
 
+/**
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "resource")
 public class Resource {
@@ -44,22 +46,42 @@ public class Resource {
     @XmlTransient
     private Plan plan;
 
+    /**
+     * Method getId.
+     * @return String
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Method setId.
+     * @param id String
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Method getBaseAvailability.
+     * @return Double
+     */
     public Double getBaseAvailability() {
         return baseAvailability;
     }
 
+    /**
+     * Method setBaseAvailability.
+     * @param availability Double
+     */
     public void setBaseAvailability(Double availability) {
         this.baseAvailability = availability;
     }
 
+    /**
+     * Method getAllocation.
+     * @return Double
+     */
     public Double getAllocation() {
         if (plan == null) {
             plan = new Plan(baseAvailability);
@@ -67,14 +89,26 @@ public class Resource {
         return plan.getAllocation();
     }
 
+    /**
+     * Method getCount.
+     * @return Integer
+     */
     public Integer getCount() {
         return count;
     }
 
+    /**
+     * Method setCount.
+     * @param count Integer
+     */
     public void setCount(Integer count) {
         this.count = count;
     }
 
+    /**
+     * Method getSkills.
+     * @return List<Skill>
+     */
     public List<Skill> getSkills() {
         if (skills == null) {
             skills = new ArrayList<Skill>();
@@ -82,14 +116,26 @@ public class Resource {
         return this.skills;
     }
 
+    /**
+     * Method addSkill.
+     * @param skill Skill
+     */
     public void addSkill(Skill skill) {
         getSkills().add(skill);
     }
 
+    /**
+     * Method getPlan.
+     * @return Plan
+     */
     public Plan getPlan() {
         return plan;
     }
 
+    /**
+     * Method getFreeCapacity.
+     * @return Double
+     */
     public Double getFreeCapacity() {
         if (plan == null) {
             plan = new Plan(baseAvailability);
@@ -99,8 +145,8 @@ public class Resource {
 
     /**
      * @param period
-     * @return free capacity within this period
-     */
+    
+     * @return free capacity within this period */
     public Double getFreeCapacity(Period period) {
         if (plan == null) {
             plan = new Plan(baseAvailability);
@@ -108,6 +154,10 @@ public class Resource {
         return plan.getFreeCapacity(period);
     }
 
+    /**
+     * Method getFreeCapacityForNow.
+     * @return Double
+     */
     public Double getFreeCapacityForNow() {
         if (plan == null) {
             plan = new Plan(baseAvailability);
@@ -119,14 +169,31 @@ public class Resource {
         }
     }
 
+    /**
+     * Method allocate.
+     * @param project Project
+     * @param phase Phase
+     * @param phasePeriod Period
+     * @param workload Long
+     * @return Period
+     */
     public Period allocate(Project project, Phase phase, Period phasePeriod, Long workload) {
         return plan.allocate(project, phase, phasePeriod, workload);
     }
 
+    /**
+     * Method contribute.
+     * @return Double
+     */
     public Double contribute() {
         return plan.contribute();
     }
 
+    /**
+     * Method clone.
+     * @return Resource
+     * @throws CloneNotSupportedException
+     */
     @Override
     protected Resource clone() throws CloneNotSupportedException {
         Resource r = new Resource();
@@ -136,6 +203,10 @@ public class Resource {
         return r;
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + getAllocation() + ", skills="

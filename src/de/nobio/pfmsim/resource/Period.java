@@ -7,6 +7,7 @@ package de.nobio.pfmsim.resource;
  * @author nobio
  * 
  *         represents a start date and an end date of a not disrupted time span
+ * @version $Revision: 1.0 $
  */
 public class Period {
 
@@ -17,6 +18,11 @@ public class Period {
         super();
     }
 
+    /**
+     * Constructor for Period.
+     * @param begin int
+     * @param end int
+     */
     public Period(int begin, int end) {
         super();
         this.begin = begin;
@@ -24,8 +30,8 @@ public class Period {
     }
 
     /**
-     * @return the begin
-     */
+    
+     * @return the begin */
     public int getBegin() {
         return begin;
     }
@@ -39,8 +45,8 @@ public class Period {
     }
 
     /**
-     * @return the end
-     */
+    
+     * @return the end */
     public int getEnd() {
         return end;
     }
@@ -53,6 +59,10 @@ public class Period {
         this.end = end;
     }
 
+    /**
+     * Method isValid.
+     * @return boolean
+     */
     public boolean isValid() {
         return end >= 0 && begin >= 0;
     }

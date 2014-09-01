@@ -2,6 +2,8 @@ package de.nobio.pfmsim.resource;
 
 import de.nobio.pfmsim.project.Phase;
 
+/**
+ */
 public class PlanItem {
 
     private Double allocation;
@@ -14,8 +16,8 @@ public class PlanItem {
     }
 
     /**
-     * @return the allocation
-     */
+    
+     * @return the allocation */
     public Double getAllocation() {
         return allocation;
     }
@@ -29,8 +31,8 @@ public class PlanItem {
     }
 
     /**
-     * @return the linkToPhase
-     */
+    
+     * @return the linkToPhase */
     public Phase getLinkToPhase() {
         return linkToPhase;
     }

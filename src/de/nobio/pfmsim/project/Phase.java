@@ -10,6 +10,8 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlTransient;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "phase")
 public class Phase {
@@ -71,60 +73,117 @@ public class Phase {
     @XmlTransient
     private Project linktoProject;
 
+    /**
+     * Method getId.
+     * @return String
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Method setId.
+     * @param id String
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Method getRef.
+     * @return String
+     */
     public String getRef() {
         return ref;
     }
 
+    /**
+     * Method setRef.
+     * @param ref String
+     */
     public void setRef(String ref) {
         this.ref = ref;
     }
 
+    /**
+     * Method getName.
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Method setName.
+     * @param name String
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Method getWorkload.
+     * @return Workload
+     */
     public Workload getWorkload() {
         return workload;
     }
 
+    /**
+     * Method setWorkload.
+     * @param workload Workload
+     */
     public void setWorkload(Workload workload) {
         this.workload = workload;
     }
 
+    /**
+     * Method getParallel.
+     * @return Integer
+     */
     public Integer getParallel() {
         return parallel;
     }
 
+    /**
+     * Method setParallel.
+     * @param parallel Integer
+     */
     public void setParallel(Integer parallel) {
         this.parallel = parallel;
     }
 
+    /**
+     * Method getLinktoProject.
+     * @return Project
+     */
     public Project getLinktoProject() {
         return linktoProject;
     }
 
+    /**
+     * Method setLinktoProject.
+     * @param linktoProject Project
+     */
     public void setLinktoProject(Project linktoProject) {
         this.linktoProject = linktoProject;
     }
 
+    /**
+     * Method calculateWorkload.
+     * @return Double
+     */
     public Double calculateWorkload() {
         Double weight = getWorkload().getDistribution().getRandomNumericValue();
         getWorkload().setWorkloadWeight(weight);
         return weight;
     }
 
+    /**
+     * Method getTaskDistribution.
+     * @param duration Long
+     * @return Long
+     */
     public Long getTaskDistribution(Long duration) {
         if (duration > 20) {
             return 4L;
@@ -135,6 +194,11 @@ public class Phase {
         }
     }
 
+    /**
+     * Method clone.
+     * @return Object
+     * @throws CloneNotSupportedException
+     */
     @Override
     public Object clone() throws CloneNotSupportedException {
         Phase phase = new Phase();
@@ -146,6 +210,10 @@ public class Phase {
         return phase;
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         return "\n\t\tPhase [id=" + id + ", ref=" + ref + ", name=" + name + ", workload=" + workload + ", parallel=" + parallel + "]";

@@ -18,6 +18,8 @@ import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
+/**
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "team", propOrder = { "id", "resource" })
 public class Team {
@@ -26,14 +28,26 @@ public class Team {
     @XmlElement(nillable = true)
     private List<Resource> resource;
 
+    /**
+     * Method getId.
+     * @return String
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Method setId.
+     * @param id String
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Method getResources.
+     * @return List<Resource>
+     */
     public List<Resource> getResources() {
         if (this.resource == null) {
             this.resource = new ArrayList<Resource>();
@@ -44,6 +58,10 @@ public class Team {
         return this.resource;
     }
 
+    /**
+     * Method appendResource.
+     * @param resource Resource
+     */
     public void appendResource(Resource resource) {
         if (this.resource == null) {
             this.resource = new ArrayList<Resource>();
@@ -52,6 +70,13 @@ public class Team {
         this.resource.add(resource);
     }
 
+    /**
+     * Method getResourceWithSkill.
+     * @param skill Skill
+     * @param period Period
+     * @param workload Long
+     * @return Resource
+     */
     public Resource getResourceWithSkill(Skill skill, Period period, Long workload) {
         for (Resource resource : getResources()) {
             for (Skill s : resource.getSkills()) {
@@ -63,10 +88,18 @@ public class Team {
         return null;
     }
 
+    /**
+     * Method setNewResourceId.
+     * @param resource Resource
+     */
     private void setNewResourceId(Resource resource) {
         resource.setId(this.getId() + "." + resource.hashCode());
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         return "\nTeam [id=" + id + ", resource=" + resource + "]";

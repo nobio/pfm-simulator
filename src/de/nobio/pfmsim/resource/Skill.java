@@ -8,6 +8,8 @@ import javax.xml.bind.annotation.XmlType;
 
 import de.nobio.pfmsim.distribution.Distribution;
 
+/**
+ */
 @XmlAccessorType(XmlAccessType.FIELD)
 @XmlType(name = "skill", propOrder = { "id", "distribution", "ref", "name" })
 public class Skill {
@@ -23,38 +25,74 @@ public class Skill {
     @XmlElement(type = Distribution.class, name = "distribution")
     private Distribution distribution;
 
+    /**
+     * Method getId.
+     * @return String
+     */
     public String getId() {
         return id;
     }
 
+    /**
+     * Method setId.
+     * @param id String
+     */
     public void setId(String id) {
         this.id = id;
     }
 
+    /**
+     * Method getRef.
+     * @return String
+     */
     public String getRef() {
         return ref;
     }
 
+    /**
+     * Method setRef.
+     * @param ref String
+     */
     public void setRef(String ref) {
         this.ref = ref;
     }
 
+    /**
+     * Method getName.
+     * @return String
+     */
     public String getName() {
         return name;
     }
 
+    /**
+     * Method setName.
+     * @param name String
+     */
     public void setName(String name) {
         this.name = name;
     }
 
+    /**
+     * Method getDistribution.
+     * @return Distribution
+     */
     public Distribution getDistribution() {
         return distribution;
     }
 
+    /**
+     * Method setDistribution.
+     * @param distribution Distribution
+     */
     public void setDistribution(Distribution distribution) {
         this.distribution = distribution;
     }
 
+    /**
+     * Method hashCode.
+     * @return int
+     */
     @Override
     public int hashCode() {
         final int prime = 31;
@@ -63,6 +101,11 @@ public class Skill {
         return result;
     }
 
+    /**
+     * Method equals.
+     * @param obj Object
+     * @return boolean
+     */
     @Override
     public boolean equals(Object obj) {
         if (this == obj)
@@ -80,6 +123,10 @@ public class Skill {
         return true;
     }
 
+    /**
+     * Method toString.
+     * @return String
+     */
     @Override
     public String toString() {
         return "\n\t\tSkill [id=" + id + ", ref=" + ref + ", distribution=" + distribution + ", name=" + name + "]";

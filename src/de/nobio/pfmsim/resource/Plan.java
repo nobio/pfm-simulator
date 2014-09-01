@@ -6,6 +6,8 @@ import de.nobio.pfmsim.Util;
 import de.nobio.pfmsim.project.Phase;
 import de.nobio.pfmsim.project.Project;
 
+/**
+ */
 public class Plan extends ArrayList<PlanItem> {
 
     private static final long serialVersionUID = 602530673196696823L;
@@ -13,6 +15,10 @@ public class Plan extends ArrayList<PlanItem> {
 
     private Double baseAvailability;
 
+    /**
+     * Constructor for Plan.
+     * @param baseAvailability Double
+     */
     public Plan(Double baseAvailability) {
         super(PLANNING_HORIZONT);
         this.baseAvailability = baseAvailability / PLANNING_HORIZONT;
@@ -31,8 +37,10 @@ public class Plan extends ArrayList<PlanItem> {
      * @param workload
      *            the total workload an allocation should be done
      * 
-     * @return true when the allocation could be done
-     */
+    
+     * @param project Project
+     * @param phasePeriod Period
+     * @return true when the allocation could be done */
     public Period allocate(Project project, Phase phase, Period phasePeriod, Long workload) {
 
         if (workload == 0) {
@@ -86,6 +94,10 @@ public class Plan extends ArrayList<PlanItem> {
         return new Period(startIdx - 1, stopIdx - 1);
     }
 
+    /**
+     * Method contribute.
+     * @return Double
+     */
     public Double contribute() {
         Double contribution = 0D;
         PlanItem planitem = getFirst();
@@ -105,10 +117,19 @@ public class Plan extends ArrayList<PlanItem> {
         return contribution;
     }
 
+    /**
+     * Method getFreeCapacity.
+     * @return Double
+     */
     public Double getFreeCapacity() {
         return baseAvailability * PLANNING_HORIZONT - getAllocation();
     }
 
+    /**
+     * Method getFreeCapacity.
+     * @param period Period
+     * @return Double
+     */
     public Double getFreeCapacity(Period period) {
         Double allocation;
 
@@ -121,6 +142,10 @@ public class Plan extends ArrayList<PlanItem> {
         return allocation;
     }
 
+    /**
+     * Method getAllocation.
+     * @return Double
+     */
     public Double getAllocation() {
         double allocation = 0D;
         for (PlanItem item : this) {
@@ -130,6 +155,11 @@ public class Plan extends ArrayList<PlanItem> {
 
     }
 
+    /**
+     * Method getAllocation.
+     * @param period Period
+     * @return Double
+     */
     public Double getAllocation(Period period) {
         double allocation = 0D;
         int end = period.getEnd() > PLANNING_HORIZONT ? PLANNING_HORIZONT : period.getEnd();
@@ -140,6 +170,10 @@ public class Plan extends ArrayList<PlanItem> {
 
     }
 
+    /**
+     * Method getFirst.
+     * @return PlanItem
+     */
     public PlanItem getFirst() {
         PlanItem pi = null;
 

@@ -9,14 +9,17 @@ import de.nobio.pfmsim.runtime.Simulation;
 /**
  * @author nobio
  * 
+ * @version $Revision: 1.0 $
  */
 public class ResourceSetupHandler {
 
     /**
      * sets up all resources from a configuration
      * 
-     * @param resourceConfig
-     * @return all resources
+    
+    
+     * @param cfgSimulation Simulation
+     * @return all resources * @throws CloneNotSupportedException
      */
     public List<Team> setup(Simulation cfgSimulation) throws CloneNotSupportedException {
         List<Team> teams = cfgSimulation.getTeams();
@@ -50,6 +53,10 @@ public class ResourceSetupHandler {
         return teams;
     }
 
+    /**
+     * Method validate.
+     * @param config Simulation
+     */
     public void validate(Simulation config) {
         Util.assertNotNull(config.getAvailability());
         Util.assertNotNull(config.getIterations());

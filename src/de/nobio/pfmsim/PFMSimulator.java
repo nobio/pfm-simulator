@@ -11,6 +11,7 @@ import de.nobio.pfmsim.handler.Handler;
 import de.nobio.pfmsim.handler.ProjectCompleter;
 import de.nobio.pfmsim.handler.ProjectFinazlizer;
 import de.nobio.pfmsim.handler.ProjectInitializer;
+import de.nobio.pfmsim.handler.ProjectRuntime;
 import de.nobio.pfmsim.handler.ProjectStarter;
 import de.nobio.pfmsim.handler.RepriorisationHandler;
 import de.nobio.pfmsim.handler.ReservationHandler;
@@ -22,6 +23,8 @@ import de.nobio.pfmsim.runtime.PFMContext;
 import de.nobio.pfmsim.runtime.ProjectQueue;
 import de.nobio.pfmsim.runtime.Simulation;
 
+/**
+ */
 public class PFMSimulator {
 
     private static final Logger LOGGER = Logger.getLogger(PFMSimulator.class.getName());
@@ -34,7 +37,13 @@ public class PFMSimulator {
     private Handler projectCompleter = new ProjectCompleter();
     private Handler resourceContributionHandler = new ResourceContributionHandler();
     private Handler statisticHandler = new StatisticHandler();
+    private Handler projectRuntime = new ProjectRuntime();
 
+    /**
+     * Method main.
+     * @param args String[]
+     * @throws Exception
+     */
     public static void main(String[] args) throws Exception {
         if (args == null || args.length == 0) {
             System.err.println("provide path to properties-xml file");
@@ -53,16 +62,27 @@ public class PFMSimulator {
         new PFMSimulator().mainLoop(context);
     }
 
+    /**
+     * Method loadConfiguration.
+     * @param args String[]
+     * @return Simulation
+     * @throws JAXBException
+     */
     private static Simulation loadConfiguration(String[] args) throws JAXBException {
         File file = new File(args[0]);
         JAXBContext jaxbContext = JAXBContext.newInstance(Simulation.class);
 
         Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
         Simulation cfgSimulation = (Simulation) jaxbUnmarshaller.unmarshal(file);
-        //        LOGGER.info("loaded config: " + cfgSimulation);
+        // LOGGER.info("loaded config: " + cfgSimulation);
         return cfgSimulation;
     }
 
+    /**
+     * Method setup.
+     * @param context PFMContext
+     * @throws CloneNotSupportedException
+     */
     private static void setup(PFMContext context) throws CloneNotSupportedException {
         ResourceSetupHandler resourceSetup = new ResourceSetupHandler();
         resourceSetup.setup(context.getConfiguration());
@@ -79,6 +99,11 @@ public class PFMSimulator {
         LOGGER.info("=======================================================================================");
     }
 
+    /**
+     * Method mainLoop.
+     * @param context PFMContext
+     * @throws Exception
+     */
     private void mainLoop(PFMContext context) throws Exception {
 
         LOGGER.info("=======================================================================================");
@@ -89,19 +114,22 @@ public class PFMSimulator {
         long pause = context.getConfiguration().getPause();
 
         // iterate over the whole simulation period
-        for (int moment = 0; moment < iterations; moment++) {
+        for (int moment = 0; moment < iterations || iterations == -1; moment++) {
+
+            context.getConfiguration().setActualIteration((long) moment);
 
             repriorisationHandler.handle(context);
             projectInitializer.handle(context);
             reservationHandler.handle(context);
             projectStarter.handle(context);
             resourceContributionHandler.handle(context);
+            projectRuntime.handle(context);
             projectFinalizer.handle(context);
             projectCompleter.handle(context);
             statisticHandler.handle(context);
 
             Thread.sleep(pause);
-            //            LOGGER.info(context.getWaitingProjects().toString());
+            // LOGGER.info(context.getWaitingProjects().toString());
             LOGGER.info("");
 
         }
