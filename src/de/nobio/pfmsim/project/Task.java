@@ -11,6 +11,7 @@ public class Task {
 
     /**
      * Method getSkill.
+     * 
      * @return Skill
      */
     public Skill getSkill() {
@@ -18,15 +19,8 @@ public class Task {
     }
 
     /**
-     * Method setSkill.
-     * @param skill Skill
-     */
-    public void setSkill(Skill skill) {
-        this.skill = skill;
-    }
-
-    /**
      * Method getWorkload.
+     * 
      * @return Workload
      */
     public Workload getWorkload() {
@@ -34,8 +28,20 @@ public class Task {
     }
 
     /**
+     * Method setSkill.
+     * 
+     * @param skill
+     *            Skill
+     */
+    public void setSkill(Skill skill) {
+        this.skill = skill;
+    }
+
+    /**
      * Method setWorkload.
-     * @param workload Workload
+     * 
+     * @param workload
+     *            Workload
      */
     public void setWorkload(Workload workload) {
         this.workload = workload;

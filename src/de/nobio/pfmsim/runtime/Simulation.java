@@ -69,31 +69,8 @@ public class Simulation {
     private WeightedDistribution<String> projectCategoryDistribution = new WeightedDistribution<String>();
 
     /**
-     * Method getAvailability.
-     * @return Double
-     */
-    public Double getAvailability() {
-        return availability;
-    }
-
-    /**
-     * Method setAvailability.
-     * @param availability Double
-     */
-    public void setAvailability(Double availability) {
-        this.availability = availability;
-    }
-
-    /**
-     * Method getIterations.
-     * @return Long
-     */
-    public Long getIterations() {
-        return iterations;
-    }
-
-    /**
      * Method getActualIteration.
+     * 
      * @return Long
      */
     public Long getActualIteration() {
@@ -101,15 +78,40 @@ public class Simulation {
     }
 
     /**
-     * Method setActualIteration.
-     * @param actualIteration Long
+     * 
+     * @return all resources in all teams
      */
-    public void setActualIteration(Long actualIteration) {
-        this.actualIteration = actualIteration;
+    public List<Resource> getAllResources() {
+        List<Resource> resources = new ArrayList<Resource>();
+
+        for (Team team : getTeams()) {
+            resources.addAll(team.getResources());
+        }
+
+        return resources;
+    }
+
+    /**
+     * Method getAvailability.
+     * 
+     * @return Double
+     */
+    public Double getAvailability() {
+        return availability;
+    }
+
+    /**
+     * Method getIterations.
+     * 
+     * @return Long
+     */
+    public Long getIterations() {
+        return iterations;
     }
 
     /**
      * Method getPause.
+     * 
      * @return Long
      */
     public Long getPause() {
@@ -117,110 +119,10 @@ public class Simulation {
     }
 
     /**
-     * Method getPlanningHorizont.
-     * @return Long
-     */
-    public Long getPlanningHorizont() {
-        return planningHorizont;
-    }
-
-    /**
-     * Method setIterations.
-     * @param iterations Long
-     */
-    public void setIterations(Long iterations) {
-        this.iterations = iterations;
-    }
-
-    /**
-     * Method getTeams.
-     * @return List<Team>
-     */
-    public List<Team> getTeams() {
-        if (teams == null) {
-            teams = new ArrayList<Team>();
-        }
-        return this.teams;
-    }
-
-    /**
-     * Method getSkillPool.
-     * @return List<Skill>
-     */
-    public List<Skill> getSkillPool() {
-        if (skillPool == null) {
-            skillPool = new ArrayList<Skill>();
-        }
-        return this.skillPool;
-    }
-
-    /**
-     * Method getSkillFromPool.
-     * @param ref String
-     * @return Skill
-     */
-    public Skill getSkillFromPool(String ref) {
-        Skill skill = null;
-        for (Skill s : skillPool) {
-            if (ref.equals(s.getId())) {
-                skill = s;
-                break;
-            }
-        }
-        return skill;
-    }
-
-    /**
-     * Method getProjectCategoryPool.
-     * @return List<Category>
-     */
-    public List<Category> getProjectCategoryPool() {
-        return projectCategoryPool;
-    }
-
-    /**
-     * Method getProjectCategoryFromPool.
-     * @param ref String
-     * @return Category
-     */
-    public Category getProjectCategoryFromPool(String ref) {
-        Category category = null;
-        for (Category s : projectCategoryPool) {
-            if (ref.equals(s.getId())) {
-                category = s;
-                break;
-            }
-        }
-        return category;
-    }
-
-    /**
-     * Method getProjectCategoryDistribution.
-     * @return WeightedDistribution<String>
-     */
-    public WeightedDistribution<String> getProjectCategoryDistribution() {
-        return projectCategoryDistribution;
-    }
-
-    /**
-     * Method setProjectCategoryDistribution.
-     * @param projectCategoryDistribution WeightedDistribution<String>
-     */
-    public void setProjectCategoryDistribution(WeightedDistribution<String> projectCategoryDistribution) {
-        this.projectCategoryDistribution = projectCategoryDistribution;
-    }
-
-    /**
-     * Method getPhases.
-     * @return List<Phase>
-     */
-    public List<Phase> getPhases() {
-        return phasePool;
-    }
-
-    /**
      * Method getPhaseFromPool.
-     * @param ref String
+     * 
+     * @param ref
+     *            String
      * @return Phase
      */
     public Phase getPhaseFromPool(String ref) {
@@ -235,10 +137,77 @@ public class Simulation {
     }
 
     /**
+     * Method getPhases.
+     * 
+     * @return List<Phase>
+     */
+    public List<Phase> getPhases() {
+        return phasePool;
+    }
+
+    /**
+     * Method getPlanningHorizont.
+     * 
+     * @return Long
+     */
+    public Long getPlanningHorizont() {
+        return planningHorizont;
+    }
+
+    /**
+     * Method getPortfolio.
+     * 
+     * @return Portfolio
+     */
+    public Portfolio getPortfolio() {
+        return portfolio;
+    }
+
+    /**
+     * Method getProjectCategoryDistribution.
+     * 
+     * @return WeightedDistribution<String>
+     */
+    public WeightedDistribution<String> getProjectCategoryDistribution() {
+        return projectCategoryDistribution;
+    }
+
+    /**
+     * Method getProjectCategoryFromPool.
+     * 
+     * @param ref
+     *            String
+     * @return Category
+     */
+    public Category getProjectCategoryFromPool(String ref) {
+        Category category = null;
+        for (Category s : projectCategoryPool) {
+            if (ref.equals(s.getId())) {
+                category = s;
+                break;
+            }
+        }
+        return category;
+    }
+
+    /**
+     * Method getProjectCategoryPool.
+     * 
+     * @return List<Category>
+     */
+    public List<Category> getProjectCategoryPool() {
+        return projectCategoryPool;
+    }
+
+    /**
      * Method getResourceWithSkill.
-     * @param skill Skill
-     * @param period Period
-     * @param workload Long
+     * 
+     * @param skill
+     *            Skill
+     * @param period
+     *            Period
+     * @param workload
+     *            Long
      * @return Resource
      */
     public Resource getResourceWithSkill(Skill skill, Period period, Long workload) {
@@ -250,41 +219,50 @@ public class Simulation {
     }
 
     /**
-    
-     * @return all resources in all teams */
-    public List<Resource> getAllResources() {
-        List<Resource> resources = new ArrayList<Resource>();
-
-        for (Team team : getTeams()) {
-            resources.addAll(team.getResources());
-        }
-
-        return resources;
-    }
-
-    /**
-     * Method getPortfolio.
-     * @return Portfolio
+     * Method getSkillFromPool.
+     * 
+     * @param ref
+     *            String
+     * @return Skill
      */
-    public Portfolio getPortfolio() {
-        return portfolio;
-    }
-
-    /**
-    
-     * @return thoretical capacity of all resources */
-    public Double getTotalCapacity() {
-        double capacity = 0.0;
-        for (Team team : getTeams()) {
-            for (Resource res : team.getResources()) {
-                capacity += res.getFreeCapacityForNow();
+    public Skill getSkillFromPool(String ref) {
+        Skill skill = null;
+        for (Skill s : skillPool) {
+            if (ref.equals(s.getId())) {
+                skill = s;
+                break;
             }
         }
-        return capacity;
+        return skill;
+    }
+
+    /**
+     * Method getSkillPool.
+     * 
+     * @return List<Skill>
+     */
+    public List<Skill> getSkillPool() {
+        if (skillPool == null) {
+            skillPool = new ArrayList<Skill>();
+        }
+        return this.skillPool;
+    }
+
+    /**
+     * Method getTeams.
+     * 
+     * @return List<Team>
+     */
+    public List<Team> getTeams() {
+        if (teams == null) {
+            teams = new ArrayList<Team>();
+        }
+        return this.teams;
     }
 
     /**
      * Method getTotalAllocation.
+     * 
      * @return Double
      */
     public Double getTotalAllocation() {
@@ -298,7 +276,62 @@ public class Simulation {
     }
 
     /**
+     * 
+     * @return thoretical capacity of all resources
+     */
+    public Double getTotalCapacity() {
+        double capacity = 0.0;
+        for (Team team : getTeams()) {
+            for (Resource res : team.getResources()) {
+                capacity += res.getFreeCapacityForNow();
+            }
+        }
+        return capacity;
+    }
+
+    /**
+     * Method setActualIteration.
+     * 
+     * @param actualIteration
+     *            Long
+     */
+    public void setActualIteration(Long actualIteration) {
+        this.actualIteration = actualIteration;
+    }
+
+    /**
+     * Method setAvailability.
+     * 
+     * @param availability
+     *            Double
+     */
+    public void setAvailability(Double availability) {
+        this.availability = availability;
+    }
+
+    /**
+     * Method setIterations.
+     * 
+     * @param iterations
+     *            Long
+     */
+    public void setIterations(Long iterations) {
+        this.iterations = iterations;
+    }
+
+    /**
+     * Method setProjectCategoryDistribution.
+     * 
+     * @param projectCategoryDistribution
+     *            WeightedDistribution<String>
+     */
+    public void setProjectCategoryDistribution(WeightedDistribution<String> projectCategoryDistribution) {
+        this.projectCategoryDistribution = projectCategoryDistribution;
+    }
+
+    /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

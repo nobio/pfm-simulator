@@ -22,23 +22,8 @@ public class Portfolio {
     private Distribution projectCategoryStartProbability;
 
     /**
-     * Method getProjects.
-     * @return List<Project>
-     */
-    public List<Project> getProjects() {
-        return projects;
-    }
-
-    /**
-     * Method setProjects.
-     * @param projects List<Project>
-     */
-    public void setProjects(List<Project> projects) {
-        this.projects = projects;
-    }
-
-    /**
      * Method getProjectCategoryStartProbability.
+     * 
      * @return Distribution
      */
     public Distribution getProjectCategoryStartProbability() {
@@ -46,15 +31,37 @@ public class Portfolio {
     }
 
     /**
+     * Method getProjects.
+     * 
+     * @return List<Project>
+     */
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    /**
      * Method setProjectCategoryStartProbability.
-     * @param projectCategoryStartProbability Distribution
+     * 
+     * @param projectCategoryStartProbability
+     *            Distribution
      */
     public void setProjectCategoryStartProbability(Distribution projectCategoryStartProbability) {
         this.projectCategoryStartProbability = projectCategoryStartProbability;
     }
 
     /**
+     * Method setProjects.
+     * 
+     * @param projects
+     *            List<Project>
+     */
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
+
+    /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

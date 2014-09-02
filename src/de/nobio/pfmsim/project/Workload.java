@@ -24,39 +24,8 @@ public class Workload {
     private Distribution distribution;
 
     /**
-     * Method getWorkload.
-     * @return Long
-     */
-    public Long getWorkload() {
-        return workload;
-    }
-
-    /**
-     * Method setWorkload.
-     * @param workload Long
-     */
-    public void setWorkload(Long workload) {
-        this.workload = workload;
-    }
-
-    /**
-     * Method getWorkloadWeight.
-     * @return Double
-     */
-    public Double getWorkloadWeight() {
-        return workloadWeight;
-    }
-
-    /**
-     * Method setWorkloadWeight.
-     * @param workloadWeight Double
-     */
-    public void setWorkloadWeight(Double workloadWeight) {
-        this.workloadWeight = workloadWeight;
-    }
-
-    /**
      * Method getDistribution.
+     * 
      * @return Distribution
      */
     public Distribution getDistribution() {
@@ -64,7 +33,46 @@ public class Workload {
     }
 
     /**
+     * Method getWorkload.
+     * 
+     * @return Long
+     */
+    public Long getWorkload() {
+        return workload;
+    }
+
+    /**
+     * Method getWorkloadWeight.
+     * 
+     * @return Double
+     */
+    public Double getWorkloadWeight() {
+        return workloadWeight;
+    }
+
+    /**
+     * Method setWorkload.
+     * 
+     * @param workload
+     *            Long
+     */
+    public void setWorkload(Long workload) {
+        this.workload = workload;
+    }
+
+    /**
+     * Method setWorkloadWeight.
+     * 
+     * @param workloadWeight
+     *            Double
+     */
+    public void setWorkloadWeight(Double workloadWeight) {
+        this.workloadWeight = workloadWeight;
+    }
+
+    /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

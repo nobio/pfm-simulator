@@ -17,7 +17,9 @@ public class Plan extends ArrayList<PlanItem> {
 
     /**
      * Constructor for Plan.
-     * @param baseAvailability Double
+     * 
+     * @param baseAvailability
+     *            Double
      */
     public Plan(Double baseAvailability) {
         super(PLANNING_HORIZONT);
@@ -37,10 +39,13 @@ public class Plan extends ArrayList<PlanItem> {
      * @param workload
      *            the total workload an allocation should be done
      * 
-    
-     * @param project Project
-     * @param phasePeriod Period
-     * @return true when the allocation could be done */
+     * 
+     * @param project
+     *            Project
+     * @param phasePeriod
+     *            Period
+     * @return true when the allocation could be done
+     */
     public Period allocate(Project project, Phase phase, Period phasePeriod, Long workload) {
 
         if (workload == 0) {
@@ -96,6 +101,7 @@ public class Plan extends ArrayList<PlanItem> {
 
     /**
      * Method contribute.
+     * 
      * @return Double
      */
     public Double contribute() {
@@ -104,7 +110,9 @@ public class Plan extends ArrayList<PlanItem> {
 
         if (planitem.getLinkToPhase() != null) {
             // contribution is around the allocation
-            //            contribution = Util.getNormallyDistributedRandomNumer(planitem.getAllocation(), planitem.getAllocation() * 0.2); 
+            // contribution =
+            // Util.getNormallyDistributedRandomNumer(planitem.getAllocation(),
+            // planitem.getAllocation() * 0.2);
             contribution = Util.getEquallyDistributedRandomNumer(planitem.getAllocation() * 0.8, planitem.getAllocation() * 1.1);
 
             Project project = planitem.getLinkToPhase().getLinktoProject();
@@ -118,32 +126,8 @@ public class Plan extends ArrayList<PlanItem> {
     }
 
     /**
-     * Method getFreeCapacity.
-     * @return Double
-     */
-    public Double getFreeCapacity() {
-        return baseAvailability * PLANNING_HORIZONT - getAllocation();
-    }
-
-    /**
-     * Method getFreeCapacity.
-     * @param period Period
-     * @return Double
-     */
-    public Double getFreeCapacity(Period period) {
-        Double allocation;
-
-        if (period == null) {
-            allocation = baseAvailability * PLANNING_HORIZONT - getAllocation();
-        } else {
-            allocation = baseAvailability * (period.getEnd() - period.getBegin()) - getAllocation(period);
-        }
-
-        return allocation;
-    }
-
-    /**
      * Method getAllocation.
+     * 
      * @return Double
      */
     public Double getAllocation() {
@@ -157,7 +141,9 @@ public class Plan extends ArrayList<PlanItem> {
 
     /**
      * Method getAllocation.
-     * @param period Period
+     * 
+     * @param period
+     *            Period
      * @return Double
      */
     public Double getAllocation(Period period) {
@@ -172,6 +158,7 @@ public class Plan extends ArrayList<PlanItem> {
 
     /**
      * Method getFirst.
+     * 
      * @return PlanItem
      */
     public PlanItem getFirst() {
@@ -181,5 +168,33 @@ public class Plan extends ArrayList<PlanItem> {
             pi = get(0);
         }
         return pi;
+    }
+
+    /**
+     * Method getFreeCapacity.
+     * 
+     * @return Double
+     */
+    public Double getFreeCapacity() {
+        return baseAvailability * PLANNING_HORIZONT - getAllocation();
+    }
+
+    /**
+     * Method getFreeCapacity.
+     * 
+     * @param period
+     *            Period
+     * @return Double
+     */
+    public Double getFreeCapacity(Period period) {
+        Double allocation;
+
+        if (period == null) {
+            allocation = baseAvailability * PLANNING_HORIZONT - getAllocation();
+        } else {
+            allocation = baseAvailability * (period.getEnd() - period.getBegin()) - getAllocation(period);
+        }
+
+        return allocation;
     }
 }

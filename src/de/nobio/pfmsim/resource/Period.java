@@ -20,8 +20,11 @@ public class Period {
 
     /**
      * Constructor for Period.
-     * @param begin int
-     * @param end int
+     * 
+     * @param begin
+     *            int
+     * @param end
+     *            int
      */
     public Period(int begin, int end) {
         super();
@@ -30,10 +33,28 @@ public class Period {
     }
 
     /**
-    
-     * @return the begin */
+     * 
+     * @return the begin
+     */
     public int getBegin() {
         return begin;
+    }
+
+    /**
+     * 
+     * @return the end
+     */
+    public int getEnd() {
+        return end;
+    }
+
+    /**
+     * Method isValid.
+     * 
+     * @return boolean
+     */
+    public boolean isValid() {
+        return end >= 0 && begin >= 0;
     }
 
     /**
@@ -45,26 +66,11 @@ public class Period {
     }
 
     /**
-    
-     * @return the end */
-    public int getEnd() {
-        return end;
-    }
-
-    /**
      * @param end
      *            the end to set
      */
     public void setEnd(int end) {
         this.end = end;
-    }
-
-    /**
-     * Method isValid.
-     * @return boolean
-     */
-    public boolean isValid() {
-        return end >= 0 && begin >= 0;
     }
 
     /**

@@ -37,6 +37,7 @@ public class Category {
 
     /**
      * Method getId.
+     * 
      * @return String
      */
     public String getId() {
@@ -45,6 +46,7 @@ public class Category {
 
     /**
      * Method getName.
+     * 
      * @return String
      */
     public String getName() {
@@ -52,63 +54,8 @@ public class Category {
     }
 
     /**
-     * Method setName.
-     * @param name String
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Method getProjectCategoryDistribution.
-     * @return Distribution
-     */
-    public Distribution getProjectCategoryDistribution() {
-        return projectCategoryDistribution;
-    }
-
-    /**
-     * Method setProjectCategoryDistribution.
-     * @param projectCategoryStartProbability Distribution
-     */
-    public void setProjectCategoryDistribution(Distribution projectCategoryStartProbability) {
-        this.projectCategoryDistribution = projectCategoryStartProbability;
-    }
-
-    /**
-     * Method getProjectDuration.
-     * @return ProjectDuration
-     */
-    public ProjectDuration getProjectDuration() {
-        return projectDuration;
-    }
-
-    /**
-     * Method setProjectDuration.
-     * @param projectDuration ProjectDuration
-     */
-    public void setProjectDuration(ProjectDuration projectDuration) {
-        this.projectDuration = projectDuration;
-    }
-
-    /**
-     * Method getPhases.
-     * @return List<Phase>
-     */
-    public List<Phase> getPhases() {
-        return phases;
-    }
-
-    /**
-     * Method setPhases.
-     * @param phases List<Phase>
-     */
-    public void setPhases(List<Phase> phases) {
-        this.phases = phases;
-    }
-
-    /**
      * Method getNeededSkills.
+     * 
      * @return List<Skill>
      */
     public List<Skill> getNeededSkills() {
@@ -116,21 +63,91 @@ public class Category {
     }
 
     /**
+     * Method getPhases.
+     * 
+     * @return List<Phase>
+     */
+    public List<Phase> getPhases() {
+        return phases;
+    }
+
+    /**
+     * Method getProjectCategoryDistribution.
+     * 
+     * @return Distribution
+     */
+    public Distribution getProjectCategoryDistribution() {
+        return projectCategoryDistribution;
+    }
+
+    /**
+     * Method getProjectDuration.
+     * 
+     * @return ProjectDuration
+     */
+    public ProjectDuration getProjectDuration() {
+        return projectDuration;
+    }
+
+    /**
+     * Method setName.
+     * 
+     * @param name
+     *            String
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
      * Method setNeededSkills.
-     * @param neededSkills List<Skill>
+     * 
+     * @param neededSkills
+     *            List<Skill>
      */
     public void setNeededSkills(List<Skill> neededSkills) {
         this.neededSkills = neededSkills;
     }
 
     /**
+     * Method setPhases.
+     * 
+     * @param phases
+     *            List<Phase>
+     */
+    public void setPhases(List<Phase> phases) {
+        this.phases = phases;
+    }
+
+    /**
+     * Method setProjectCategoryDistribution.
+     * 
+     * @param projectCategoryStartProbability
+     *            Distribution
+     */
+    public void setProjectCategoryDistribution(Distribution projectCategoryStartProbability) {
+        this.projectCategoryDistribution = projectCategoryStartProbability;
+    }
+
+    /**
+     * Method setProjectDuration.
+     * 
+     * @param projectDuration
+     *            ProjectDuration
+     */
+    public void setProjectDuration(ProjectDuration projectDuration) {
+        this.projectDuration = projectDuration;
+    }
+
+    /**
      * Method toString.
+     * 
      * @return String
      */
     @Override
     public String toString() {
-        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryDistribution=" + projectCategoryDistribution + ", projectDuration="
-                + projectDuration + ", phases=" + phases + ", neededSkills=" + neededSkills + "]";
+        return "\nCategory [id=" + id + ", name=" + name + ", projectCategoryDistribution=" + projectCategoryDistribution + ", projectDuration=" + projectDuration + ", phases="
+                + phases + ", neededSkills=" + neededSkills + "]";
     }
 
 }

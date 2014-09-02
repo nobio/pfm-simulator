@@ -47,39 +47,59 @@ public class Resource {
     private Plan plan;
 
     /**
-     * Method getId.
-     * @return String
+     * Method addSkill.
+     * 
+     * @param skill
+     *            Skill
      */
-    public String getId() {
-        return id;
+    public void addSkill(Skill skill) {
+        getSkills().add(skill);
     }
 
     /**
-     * Method setId.
-     * @param id String
+     * Method allocate.
+     * 
+     * @param project
+     *            Project
+     * @param phase
+     *            Phase
+     * @param phasePeriod
+     *            Period
+     * @param workload
+     *            Long
+     * @return Period
      */
-    public void setId(String id) {
-        this.id = id;
+    public Period allocate(Project project, Phase phase, Period phasePeriod, Long workload) {
+        return plan.allocate(project, phase, phasePeriod, workload);
     }
 
     /**
-     * Method getBaseAvailability.
+     * Method clone.
+     * 
+     * @return Resource
+     * @throws CloneNotSupportedException
+     */
+    @Override
+    protected Resource clone() throws CloneNotSupportedException {
+        Resource r = new Resource();
+        r.setBaseAvailability(new Double(baseAvailability));
+        r.setCount(new Integer(count));
+        r.getSkills().addAll(skills);
+        return r;
+    }
+
+    /**
+     * Method contribute.
+     * 
      * @return Double
      */
-    public Double getBaseAvailability() {
-        return baseAvailability;
-    }
-
-    /**
-     * Method setBaseAvailability.
-     * @param availability Double
-     */
-    public void setBaseAvailability(Double availability) {
-        this.baseAvailability = availability;
+    public Double contribute() {
+        return plan.contribute();
     }
 
     /**
      * Method getAllocation.
+     * 
      * @return Double
      */
     public Double getAllocation() {
@@ -90,7 +110,17 @@ public class Resource {
     }
 
     /**
+     * Method getBaseAvailability.
+     * 
+     * @return Double
+     */
+    public Double getBaseAvailability() {
+        return baseAvailability;
+    }
+
+    /**
      * Method getCount.
+     * 
      * @return Integer
      */
     public Integer getCount() {
@@ -98,42 +128,8 @@ public class Resource {
     }
 
     /**
-     * Method setCount.
-     * @param count Integer
-     */
-    public void setCount(Integer count) {
-        this.count = count;
-    }
-
-    /**
-     * Method getSkills.
-     * @return List<Skill>
-     */
-    public List<Skill> getSkills() {
-        if (skills == null) {
-            skills = new ArrayList<Skill>();
-        }
-        return this.skills;
-    }
-
-    /**
-     * Method addSkill.
-     * @param skill Skill
-     */
-    public void addSkill(Skill skill) {
-        getSkills().add(skill);
-    }
-
-    /**
-     * Method getPlan.
-     * @return Plan
-     */
-    public Plan getPlan() {
-        return plan;
-    }
-
-    /**
      * Method getFreeCapacity.
+     * 
      * @return Double
      */
     public Double getFreeCapacity() {
@@ -145,8 +141,9 @@ public class Resource {
 
     /**
      * @param period
-    
-     * @return free capacity within this period */
+     * 
+     * @return free capacity within this period
+     */
     public Double getFreeCapacity(Period period) {
         if (plan == null) {
             plan = new Plan(baseAvailability);
@@ -156,6 +153,7 @@ public class Resource {
 
     /**
      * Method getFreeCapacityForNow.
+     * 
      * @return Double
      */
     public Double getFreeCapacityForNow() {
@@ -170,47 +168,73 @@ public class Resource {
     }
 
     /**
-     * Method allocate.
-     * @param project Project
-     * @param phase Phase
-     * @param phasePeriod Period
-     * @param workload Long
-     * @return Period
+     * Method getId.
+     * 
+     * @return String
      */
-    public Period allocate(Project project, Phase phase, Period phasePeriod, Long workload) {
-        return plan.allocate(project, phase, phasePeriod, workload);
+    public String getId() {
+        return id;
     }
 
     /**
-     * Method contribute.
-     * @return Double
+     * Method getPlan.
+     * 
+     * @return Plan
      */
-    public Double contribute() {
-        return plan.contribute();
+    public Plan getPlan() {
+        return plan;
     }
 
     /**
-     * Method clone.
-     * @return Resource
-     * @throws CloneNotSupportedException
+     * Method getSkills.
+     * 
+     * @return List<Skill>
      */
-    @Override
-    protected Resource clone() throws CloneNotSupportedException {
-        Resource r = new Resource();
-        r.setBaseAvailability(new Double(baseAvailability));
-        r.setCount(new Integer(count));
-        r.getSkills().addAll(skills);
-        return r;
+    public List<Skill> getSkills() {
+        if (skills == null) {
+            skills = new ArrayList<Skill>();
+        }
+        return this.skills;
+    }
+
+    /**
+     * Method setBaseAvailability.
+     * 
+     * @param availability
+     *            Double
+     */
+    public void setBaseAvailability(Double availability) {
+        this.baseAvailability = availability;
+    }
+
+    /**
+     * Method setCount.
+     * 
+     * @param count
+     *            Integer
+     */
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+
+    /**
+     * Method setId.
+     * 
+     * @param id
+     *            String
+     */
+    public void setId(String id) {
+        this.id = id;
     }
 
     /**
      * Method toString.
+     * 
      * @return String
      */
     @Override
     public String toString() {
-        return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + getAllocation() + ", skills="
-                + skills + "]";
+        return "\n\tResource [id=" + id + ", baseAvailability=" + baseAvailability + ", count=" + count + ", reserved=" + getAllocation() + ", skills=" + skills + "]";
     }
 
 }

@@ -14,7 +14,9 @@ public class ResourceContributionHandler implements Handler {
 
     /**
      * Method handle.
-     * @param context PFMContext
+     * 
+     * @param context
+     *            PFMContext
      * @see de.nobio.pfmsim.handler.Handler#handle(PFMContext)
      */
     @Override

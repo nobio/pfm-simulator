@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<simulation>
+	<!-- ============================================================== -->
+	<!-- ======================== HEADER ============================== -->
+	<!-- ============================================================== -->
+	<!-- number of iterations which can be identified with "days" -->
+	<iterations>-1</iterations>
+
+	<!-- pause in ms between two iterations -->
+	<pause>00</pause>
+
+	<!-- general availability for all resources except there is another value 
+		defined at resource level -->
+	<availability>1</availability>
+
+	<!-- how far into future efforts can be planned? 2 years = 730 -->
+	<planning_horizont>730</planning_horizont>
+
+	<!-- definition of skills; will be referenced by resources and projects/tasks -->
+	<skill id="jd" name="Java Developer" />
+
+
+	<!-- definition of project phases; the efforts are meant to be a weight 
+		value; all weights of all phases in one project mean 100% -->
+	<phase id="prog">
+		<name>Programming</name>
+		<!-- parallel=1: max 1 resource is involved in this phase; parallel=-1:all 
+			available resources contribute to this phase... -->
+		<parallel>-1</parallel>
+		<workload>
+			<distribution type="Equal">
+				<param1>6</param1>
+				<param2>20</param2>
+			</distribution>
+		</workload>
+	</phase>
+
+	<!-- definition of project categories like Small Enhancement, Normal Project, 
+		Big Project with it's effort definition -->
+	<project_category id="np">
+		<name>Default Project</name>
+		<!-- this is how the chances of this project category has compared to others; 
+			please use "weighted" here; goes to Category.projectCategoryStartProbability -->
+		<distribution type="Weighted"
+			comment="probability to init a project and add ot to the queue">
+			<param1>1</param1>
+		</distribution>
+
+		<!-- skills needed for this project category with a certain probability 
+			distribution; must not use "weighted" here -->
+		<skill ref="jd">
+			<distribution type="Normal">
+				<param1>2</param1>
+				<param2>0</param2>
+			</distribution>
+		</skill>
+
+		<!-- defines the duration of a project in this category; will be distributed 
+			over all phases -->
+		<project_duration>
+			<distribution type="Normal"
+				comment="time units; the type must not be weighted">
+				<param1>60</param1>
+				<param2>10</param2>
+			</distribution>
+		</project_duration>
+
+		<!-- definition of the phases of this project category -->
+		<phase ref="prog" />
+	</project_category>
+
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+	<!-- ============================================================== -->
+
+	<!-- definition of teams with their resources; later only resources will 
+		be referenced by projects but it might be a more natural approach to think 
+		in teams -->
+	<team id="ResourcePool">
+		<resource count="1">
+			<skill ref="jd" />
+		</resource>
+	</team>
+
+	<!-- Definition of a portfolio -->
+	<portfolio>
+
+		<!-- propability of starting a new project; the trigger value is hard coded 
+			to >50; adapt your intervall and make sure your min value is smaller than 
+			50; this goes to Portfolio.projectCategoryStartProbability -->
+		<distribution type="Equal">
+			<param1>0</param1>
+			<!--paramx>50<paramx -->
+			<param2>51</param2>
+		</distribution>
+
+		<!-- definition of projects -->
+		<project category_ref="np" />
+	</portfolio>
+</simulation>

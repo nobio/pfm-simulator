@@ -18,6 +18,7 @@ public class ProjectDuration {
 
     /**
      * Method getDuration.
+     * 
      * @return Distribution
      */
     public Distribution getDuration() {
@@ -26,7 +27,9 @@ public class ProjectDuration {
 
     /**
      * Method setDuration.
-     * @param duration Distribution
+     * 
+     * @param duration
+     *            Distribution
      */
     public void setDuration(Distribution duration) {
         this.duration = duration;
@@ -34,6 +37,7 @@ public class ProjectDuration {
 
     /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

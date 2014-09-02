@@ -12,7 +12,9 @@ public class StatisticHandler implements Handler {
 
     /**
      * Method handle.
-     * @param context PFMContext
+     * 
+     * @param context
+     *            PFMContext
      * @see de.nobio.pfmsim.handler.Handler#handle(PFMContext)
      */
     @Override
@@ -22,8 +24,8 @@ public class StatisticHandler implements Handler {
         msg += "\nSTAT: Running Projects: " + context.getRunningProjects().size() + " with total workload " + context.getRunningProjects().getTotalWorkload();
         msg += "\nSTAT: Teams: " + context.getConfiguration().getTeams().size() + "; allocation: " + context.getConfiguration().getTotalAllocation()
                 + "; thereof idle: (to be calculated...)";
-        msg += "\nSTAT: Idletime: " + context.getWaitingProjects().getAvg() ;
-        
+        msg += "\nSTAT: Idletime: " + context.getWaitingProjects().getAvg();
+
         LOGGER.info("\nSTAT: ********************************************************************");
         LOGGER.info(msg);
         LOGGER.info("\nSTAT: ********************************************************************");

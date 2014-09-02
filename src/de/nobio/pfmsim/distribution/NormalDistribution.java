@@ -17,8 +17,11 @@ public class NormalDistribution<T> implements IDistribution<Double> {
 
     /**
      * Constructor for NormalDistribution.
-     * @param mean Double
-     * @param deviation Double
+     * 
+     * @param mean
+     *            Double
+     * @param deviation
+     *            Double
      */
     public NormalDistribution(Double mean, Double deviation) {
         this.mean = mean;
@@ -27,6 +30,7 @@ public class NormalDistribution<T> implements IDistribution<Double> {
 
     /**
      * Method getRandomeValue.
+     * 
      * @return Double
      * @see de.nobio.pfmsim.distribution.IDistribution#getRandomeValue()
      */

@@ -29,7 +29,22 @@ public class Team {
     private List<Resource> resource;
 
     /**
+     * Method appendResource.
+     * 
+     * @param resource
+     *            Resource
+     */
+    public void appendResource(Resource resource) {
+        if (this.resource == null) {
+            this.resource = new ArrayList<Resource>();
+        }
+        setNewResourceId(resource);
+        this.resource.add(resource);
+    }
+
+    /**
      * Method getId.
+     * 
      * @return String
      */
     public String getId() {
@@ -37,15 +52,8 @@ public class Team {
     }
 
     /**
-     * Method setId.
-     * @param id String
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
      * Method getResources.
+     * 
      * @return List<Resource>
      */
     public List<Resource> getResources() {
@@ -59,22 +67,14 @@ public class Team {
     }
 
     /**
-     * Method appendResource.
-     * @param resource Resource
-     */
-    public void appendResource(Resource resource) {
-        if (this.resource == null) {
-            this.resource = new ArrayList<Resource>();
-        }
-        setNewResourceId(resource);
-        this.resource.add(resource);
-    }
-
-    /**
      * Method getResourceWithSkill.
-     * @param skill Skill
-     * @param period Period
-     * @param workload Long
+     * 
+     * @param skill
+     *            Skill
+     * @param period
+     *            Period
+     * @param workload
+     *            Long
      * @return Resource
      */
     public Resource getResourceWithSkill(Skill skill, Period period, Long workload) {
@@ -89,8 +89,20 @@ public class Team {
     }
 
     /**
+     * Method setId.
+     * 
+     * @param id
+     *            String
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
      * Method setNewResourceId.
-     * @param resource Resource
+     * 
+     * @param resource
+     *            Resource
      */
     private void setNewResourceId(Resource resource) {
         resource.setId(this.getId() + "." + resource.hashCode());
@@ -98,6 +110,7 @@ public class Team {
 
     /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

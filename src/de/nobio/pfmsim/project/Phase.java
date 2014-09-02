@@ -74,103 +74,8 @@ public class Phase {
     private Project linktoProject;
 
     /**
-     * Method getId.
-     * @return String
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Method setId.
-     * @param id String
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * Method getRef.
-     * @return String
-     */
-    public String getRef() {
-        return ref;
-    }
-
-    /**
-     * Method setRef.
-     * @param ref String
-     */
-    public void setRef(String ref) {
-        this.ref = ref;
-    }
-
-    /**
-     * Method getName.
-     * @return String
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Method setName.
-     * @param name String
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Method getWorkload.
-     * @return Workload
-     */
-    public Workload getWorkload() {
-        return workload;
-    }
-
-    /**
-     * Method setWorkload.
-     * @param workload Workload
-     */
-    public void setWorkload(Workload workload) {
-        this.workload = workload;
-    }
-
-    /**
-     * Method getParallel.
-     * @return Integer
-     */
-    public Integer getParallel() {
-        return parallel;
-    }
-
-    /**
-     * Method setParallel.
-     * @param parallel Integer
-     */
-    public void setParallel(Integer parallel) {
-        this.parallel = parallel;
-    }
-
-    /**
-     * Method getLinktoProject.
-     * @return Project
-     */
-    public Project getLinktoProject() {
-        return linktoProject;
-    }
-
-    /**
-     * Method setLinktoProject.
-     * @param linktoProject Project
-     */
-    public void setLinktoProject(Project linktoProject) {
-        this.linktoProject = linktoProject;
-    }
-
-    /**
      * Method calculateWorkload.
+     * 
      * @return Double
      */
     public Double calculateWorkload() {
@@ -180,22 +85,8 @@ public class Phase {
     }
 
     /**
-     * Method getTaskDistribution.
-     * @param duration Long
-     * @return Long
-     */
-    public Long getTaskDistribution(Long duration) {
-        if (duration > 20) {
-            return 4L;
-        } else if (duration <= 0) {
-            return 0L;
-        } else {
-            return taskDistribution.get(duration);
-        }
-    }
-
-    /**
      * Method clone.
+     * 
      * @return Object
      * @throws CloneNotSupportedException
      */
@@ -211,7 +102,139 @@ public class Phase {
     }
 
     /**
+     * Method getId.
+     * 
+     * @return String
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Method getLinktoProject.
+     * 
+     * @return Project
+     */
+    public Project getLinktoProject() {
+        return linktoProject;
+    }
+
+    /**
+     * Method getName.
+     * 
+     * @return String
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Method getParallel.
+     * 
+     * @return Integer
+     */
+    public Integer getParallel() {
+        return parallel;
+    }
+
+    /**
+     * Method getRef.
+     * 
+     * @return String
+     */
+    public String getRef() {
+        return ref;
+    }
+
+    /**
+     * Method getTaskDistribution.
+     * 
+     * @param duration
+     *            Long
+     * @return Long
+     */
+    public Long getTaskDistribution(Long duration) {
+        if (duration > 20) {
+            return 4L;
+        } else if (duration <= 0) {
+            return 0L;
+        } else {
+            return taskDistribution.get(duration);
+        }
+    }
+
+    /**
+     * Method getWorkload.
+     * 
+     * @return Workload
+     */
+    public Workload getWorkload() {
+        return workload;
+    }
+
+    /**
+     * Method setId.
+     * 
+     * @param id
+     *            String
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Method setLinktoProject.
+     * 
+     * @param linktoProject
+     *            Project
+     */
+    public void setLinktoProject(Project linktoProject) {
+        this.linktoProject = linktoProject;
+    }
+
+    /**
+     * Method setName.
+     * 
+     * @param name
+     *            String
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Method setParallel.
+     * 
+     * @param parallel
+     *            Integer
+     */
+    public void setParallel(Integer parallel) {
+        this.parallel = parallel;
+    }
+
+    /**
+     * Method setRef.
+     * 
+     * @param ref
+     *            String
+     */
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    /**
+     * Method setWorkload.
+     * 
+     * @param workload
+     *            Workload
+     */
+    public void setWorkload(Workload workload) {
+        this.workload = workload;
+    }
+
+    /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

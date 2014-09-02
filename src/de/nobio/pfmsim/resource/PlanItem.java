@@ -16,10 +16,19 @@ public class PlanItem {
     }
 
     /**
-    
-     * @return the allocation */
+     * 
+     * @return the allocation
+     */
     public Double getAllocation() {
         return allocation;
+    }
+
+    /**
+     * 
+     * @return the linkToPhase
+     */
+    public Phase getLinkToPhase() {
+        return linkToPhase;
     }
 
     /**
@@ -28,13 +37,6 @@ public class PlanItem {
      */
     public void setAllocation(Double allocation) {
         this.allocation = allocation;
-    }
-
-    /**
-    
-     * @return the linkToPhase */
-    public Phase getLinkToPhase() {
-        return linkToPhase;
     }
 
     /**

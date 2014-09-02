@@ -17,9 +17,6 @@ import javax.xml.bind.annotation.XmlType;
 @XmlType(name = "distribution", propOrder = { "type", "param1", "param2", "param3", "param4", "param5", "param6", "param7", "param8", "param9", "param10" })
 public class Distribution {
 
-    @XmlTransient
-    Map<String, Integer> baseParamsForWeightedDistribution = new HashMap<String, Integer>();
-
     /**
      */
     @XmlEnum
@@ -30,6 +27,9 @@ public class Distribution {
         Weighted, // weighted distribution
         Rectangle // todo: some shaped distribution
     }
+
+    @XmlTransient
+    Map<String, Integer> baseParamsForWeightedDistribution = new HashMap<String, Integer>();
 
     @XmlAttribute(required = true)
     private DistributionType type;
@@ -77,7 +77,9 @@ public class Distribution {
 
     /**
      * Constructor for Distribution.
-     * @param type DistributionType
+     * 
+     * @param type
+     *            DistributionType
      */
     public Distribution(DistributionType type) {
         super();
@@ -86,95 +88,26 @@ public class Distribution {
     }
 
     /**
-     * Method getType.
-     * @return DistributionType
+     * Method addParamForWeightedDistribution.
+     * 
+     * @param group
+     *            String
+     * @param weight
+     *            Integer
      */
-    public DistributionType getType() {
-        return type;
-    }
-
-    /**
-     * Method getParam1.
-     * @return String
-     */
-    public String getParam1() {
-        return param1;
-    }
-
-    /**
-     * Method getParam2.
-     * @return String
-     */
-    public String getParam2() {
-        return param2;
-    }
-
-    /**
-     * Method getParam3.
-     * @return String
-     */
-    public String getParam3() {
-        return param3;
-    }
-
-    /**
-     * Method getParam4.
-     * @return String
-     */
-    public String getParam4() {
-        return param4;
-    }
-
-    /**
-     * Method getParam5.
-     * @return String
-     */
-    public String getParam5() {
-        return param5;
-    }
-
-    /**
-     * Method getParam6.
-     * @return String
-     */
-    public String getParam6() {
-        return param6;
-    }
-
-    /**
-     * Method getParam7.
-     * @return String
-     */
-    public String getParam7() {
-        return param7;
-    }
-
-    /**
-     * Method getParam8.
-     * @return String
-     */
-    public String getParam8() {
-        return param8;
-    }
-
-    /**
-     * Method getParam9.
-     * @return String
-     */
-    public String getParam9() {
-        return param9;
-    }
-
-    /**
-     * Method getParam10.
-     * @return String
-     */
-    public String getParam10() {
-        return param10;
+    public void addParamForWeightedDistribution(String group, Integer weight) {
+        if (this.type == DistributionType.Weighted) {
+            @SuppressWarnings("unchecked")
+            WeightedDistribution<String> weightedDistribution = (WeightedDistribution<String>) distribution;
+            weightedDistribution.addParam(group, weight);
+        } else {
+            throw new RuntimeException("you cannot add parameters for a weighted random value when this distribution was not defined as a weighted distribution");
+        }
     }
 
     /**
      * Method getDistribution.
+     * 
      * @return IDistribution<?>
      */
     public IDistribution<?> getDistribution() {
@@ -183,23 +116,98 @@ public class Distribution {
     }
 
     /**
-     * Method addParamForWeightedDistribution.
-     * @param group String
-     * @param weight Integer
+     * Method getParam1.
+     * 
+     * @return String
      */
-    public void addParamForWeightedDistribution(String group, Integer weight) {
-        if (this.type == DistributionType.Weighted) {
-            @SuppressWarnings("unchecked")
-            WeightedDistribution<String> weightedDistribution = (WeightedDistribution<String>) distribution;
-            weightedDistribution.addParam(group, weight);
-        } else {
-            throw new RuntimeException(
-                    "you cannot add parameters for a weighted random value when this distribution was not defined as a weighted distribution");
-        }
+    public String getParam1() {
+        return param1;
+    }
+
+    /**
+     * Method getParam10.
+     * 
+     * @return String
+     */
+    public String getParam10() {
+        return param10;
+    }
+
+    /**
+     * Method getParam2.
+     * 
+     * @return String
+     */
+    public String getParam2() {
+        return param2;
+    }
+
+    /**
+     * Method getParam3.
+     * 
+     * @return String
+     */
+    public String getParam3() {
+        return param3;
+    }
+
+    /**
+     * Method getParam4.
+     * 
+     * @return String
+     */
+    public String getParam4() {
+        return param4;
+    }
+
+    /**
+     * Method getParam5.
+     * 
+     * @return String
+     */
+    public String getParam5() {
+        return param5;
+    }
+
+    /**
+     * Method getParam6.
+     * 
+     * @return String
+     */
+    public String getParam6() {
+        return param6;
+    }
+
+    /**
+     * Method getParam7.
+     * 
+     * @return String
+     */
+    public String getParam7() {
+        return param7;
+    }
+
+    /**
+     * Method getParam8.
+     * 
+     * @return String
+     */
+    public String getParam8() {
+        return param8;
+    }
+
+    /**
+     * Method getParam9.
+     * 
+     * @return String
+     */
+    public String getParam9() {
+        return param9;
     }
 
     /**
      * Method getRandomNumericValue.
+     * 
      * @return Double
      */
     public Double getRandomNumericValue() {
@@ -218,6 +226,7 @@ public class Distribution {
 
     /**
      * Method getRandomWeightedValue.
+     * 
      * @return String
      */
     public String getRandomWeightedValue() {
@@ -232,6 +241,15 @@ public class Distribution {
         initDistribution();
 
         return (String) distribution.getRandomeValue();
+    }
+
+    /**
+     * Method getType.
+     * 
+     * @return DistributionType
+     */
+    public DistributionType getType() {
+        return type;
     }
 
     private void initDistribution() {
@@ -254,6 +272,7 @@ public class Distribution {
 
     /**
      * Method toString.
+     * 
      * @return String
      */
     @Override
@@ -268,8 +287,7 @@ public class Distribution {
         String strP8 = param8 != null ? ", param8=" + param8 : "";
         String strP9 = param9 != null ? ", param9=" + param9 : "";
         String strP10 = param10 != null ? ", param10=" + param10 : "";
-        return "Distribution [type=" + type + ", distribution=" + distribution + strP1 + strP2 + strP3 + strP4 + strP5 + strP6 + strP7 + strP8 + strP9 + strP10
-                + "]";
+        return "Distribution [type=" + type + ", distribution=" + distribution + strP1 + strP2 + strP3 + strP4 + strP5 + strP6 + strP7 + strP8 + strP9 + strP10 + "]";
     }
 
 }

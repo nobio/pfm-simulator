@@ -16,7 +16,9 @@ public class WeightedDistribution<T> implements IDistribution<String> {
 
     /**
      * Constructor for WeightedDistribution.
-     * @param baseParams Map<String,Integer>
+     * 
+     * @param baseParams
+     *            Map<String,Integer>
      */
     public WeightedDistribution(Map<String, Integer> baseParams) {
         this.baseParams = baseParams;
@@ -24,8 +26,11 @@ public class WeightedDistribution<T> implements IDistribution<String> {
 
     /**
      * Method addParam.
-     * @param group String
-     * @param weight Integer
+     * 
+     * @param group
+     *            String
+     * @param weight
+     *            Integer
      */
     public void addParam(String group, Integer weight) {
         baseParams.put(group, weight);
@@ -33,6 +38,7 @@ public class WeightedDistribution<T> implements IDistribution<String> {
 
     /**
      * Method getRandomeValue.
+     * 
      * @return String
      * @see de.nobio.pfmsim.distribution.IDistribution#getRandomeValue()
      */
@@ -43,6 +49,7 @@ public class WeightedDistribution<T> implements IDistribution<String> {
 
     /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

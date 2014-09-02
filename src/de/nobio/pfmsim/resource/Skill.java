@@ -26,84 +26,10 @@ public class Skill {
     private Distribution distribution;
 
     /**
-     * Method getId.
-     * @return String
-     */
-    public String getId() {
-        return id;
-    }
-
-    /**
-     * Method setId.
-     * @param id String
-     */
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    /**
-     * Method getRef.
-     * @return String
-     */
-    public String getRef() {
-        return ref;
-    }
-
-    /**
-     * Method setRef.
-     * @param ref String
-     */
-    public void setRef(String ref) {
-        this.ref = ref;
-    }
-
-    /**
-     * Method getName.
-     * @return String
-     */
-    public String getName() {
-        return name;
-    }
-
-    /**
-     * Method setName.
-     * @param name String
-     */
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    /**
-     * Method getDistribution.
-     * @return Distribution
-     */
-    public Distribution getDistribution() {
-        return distribution;
-    }
-
-    /**
-     * Method setDistribution.
-     * @param distribution Distribution
-     */
-    public void setDistribution(Distribution distribution) {
-        this.distribution = distribution;
-    }
-
-    /**
-     * Method hashCode.
-     * @return int
-     */
-    @Override
-    public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + ((id == null) ? 0 : id.hashCode());
-        return result;
-    }
-
-    /**
      * Method equals.
-     * @param obj Object
+     * 
+     * @param obj
+     *            Object
      * @return boolean
      */
     @Override
@@ -124,7 +50,97 @@ public class Skill {
     }
 
     /**
+     * Method getDistribution.
+     * 
+     * @return Distribution
+     */
+    public Distribution getDistribution() {
+        return distribution;
+    }
+
+    /**
+     * Method getId.
+     * 
+     * @return String
+     */
+    public String getId() {
+        return id;
+    }
+
+    /**
+     * Method getName.
+     * 
+     * @return String
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Method getRef.
+     * 
+     * @return String
+     */
+    public String getRef() {
+        return ref;
+    }
+
+    /**
+     * Method hashCode.
+     * 
+     * @return int
+     */
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        return result;
+    }
+
+    /**
+     * Method setDistribution.
+     * 
+     * @param distribution
+     *            Distribution
+     */
+    public void setDistribution(Distribution distribution) {
+        this.distribution = distribution;
+    }
+
+    /**
+     * Method setId.
+     * 
+     * @param id
+     *            String
+     */
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    /**
+     * Method setName.
+     * 
+     * @param name
+     *            String
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /**
+     * Method setRef.
+     * 
+     * @param ref
+     *            String
+     */
+    public void setRef(String ref) {
+        this.ref = ref;
+    }
+
+    /**
      * Method toString.
+     * 
      * @return String
      */
     @Override

@@ -11,6 +11,7 @@ import de.nobio.pfmsim.handler.Handler;
 import de.nobio.pfmsim.handler.ProjectCompleter;
 import de.nobio.pfmsim.handler.ProjectFinazlizer;
 import de.nobio.pfmsim.handler.ProjectInitializer;
+import de.nobio.pfmsim.handler.ProjectProgressHandler;
 import de.nobio.pfmsim.handler.ProjectRuntime;
 import de.nobio.pfmsim.handler.ProjectStarter;
 import de.nobio.pfmsim.handler.RepriorisationHandler;
@@ -27,21 +28,29 @@ import de.nobio.pfmsim.runtime.Simulation;
  */
 public class PFMSimulator {
 
-    private static final Logger LOGGER = Logger.getLogger(PFMSimulator.class.getName());
+    /**
+     * Method loadConfiguration.
+     * 
+     * @param args
+     *            String[]
+     * @return Simulation
+     * @throws JAXBException
+     */
+    private static Simulation loadConfiguration(String[] args) throws JAXBException {
+        File file = new File(args[0]);
+        JAXBContext jaxbContext = JAXBContext.newInstance(Simulation.class);
 
-    private Handler repriorisationHandler = new RepriorisationHandler();
-    private Handler projectInitializer = new ProjectInitializer();
-    private Handler reservationHandler = new ReservationHandler();
-    private Handler projectStarter = new ProjectStarter();
-    private Handler projectFinalizer = new ProjectFinazlizer();
-    private Handler projectCompleter = new ProjectCompleter();
-    private Handler resourceContributionHandler = new ResourceContributionHandler();
-    private Handler statisticHandler = new StatisticHandler();
-    private Handler projectRuntime = new ProjectRuntime();
+        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
+        Simulation cfgSimulation = (Simulation) jaxbUnmarshaller.unmarshal(file);
+        // LOGGER.info("loaded config: " + cfgSimulation);
+        return cfgSimulation;
+    }
 
     /**
      * Method main.
-     * @param args String[]
+     * 
+     * @param args
+     *            String[]
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
@@ -61,26 +70,11 @@ public class PFMSimulator {
         // let's go: start main loop
         new PFMSimulator().mainLoop(context);
     }
-
-    /**
-     * Method loadConfiguration.
-     * @param args String[]
-     * @return Simulation
-     * @throws JAXBException
-     */
-    private static Simulation loadConfiguration(String[] args) throws JAXBException {
-        File file = new File(args[0]);
-        JAXBContext jaxbContext = JAXBContext.newInstance(Simulation.class);
-
-        Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-        Simulation cfgSimulation = (Simulation) jaxbUnmarshaller.unmarshal(file);
-        // LOGGER.info("loaded config: " + cfgSimulation);
-        return cfgSimulation;
-    }
-
     /**
      * Method setup.
-     * @param context PFMContext
+     * 
+     * @param context
+     *            PFMContext
      * @throws CloneNotSupportedException
      */
     private static void setup(PFMContext context) throws CloneNotSupportedException {
@@ -98,10 +92,26 @@ public class PFMSimulator {
         LOGGER.info(context.getConfiguration().toString());
         LOGGER.info("=======================================================================================");
     }
+    private static final Logger LOGGER = Logger.getLogger(PFMSimulator.class.getName());
+    private Handler repriorisationHandler = new RepriorisationHandler();
+    private Handler projectInitializer = new ProjectInitializer();
+    private Handler reservationHandler = new ReservationHandler();
+    private Handler projectStarter = new ProjectStarter();
+    private Handler projectFinalizer = new ProjectFinazlizer();
+    private Handler projectCompleter = new ProjectCompleter();
+    private Handler resourceContributionHandler = new ResourceContributionHandler();
+
+    private Handler projectProgressHandler = new ProjectProgressHandler();
+
+    private Handler statisticHandler = new StatisticHandler();
+
+    private Handler projectRuntime = new ProjectRuntime();
 
     /**
      * Method mainLoop.
-     * @param context PFMContext
+     * 
+     * @param context
+     *            PFMContext
      * @throws Exception
      */
     private void mainLoop(PFMContext context) throws Exception {
@@ -124,6 +134,7 @@ public class PFMSimulator {
             projectStarter.handle(context);
             resourceContributionHandler.handle(context);
             projectRuntime.handle(context);
+            projectProgressHandler.handle(context);
             projectFinalizer.handle(context);
             projectCompleter.handle(context);
             statisticHandler.handle(context);

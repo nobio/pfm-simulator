@@ -16,9 +16,10 @@ public class ResourceSetupHandler {
     /**
      * sets up all resources from a configuration
      * 
-    
-    
-     * @param cfgSimulation Simulation
+     * 
+     * 
+     * @param cfgSimulation
+     *            Simulation
      * @return all resources * @throws CloneNotSupportedException
      */
     public List<Team> setup(Simulation cfgSimulation) throws CloneNotSupportedException {
@@ -55,7 +56,9 @@ public class ResourceSetupHandler {
 
     /**
      * Method validate.
-     * @param config Simulation
+     * 
+     * @param config
+     *            Simulation
      */
     public void validate(Simulation config) {
         Util.assertNotNull(config.getAvailability());

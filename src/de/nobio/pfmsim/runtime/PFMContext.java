@@ -10,9 +10,13 @@ public class PFMContext {
 
     /**
      * Constructor for PFMContext.
-     * @param configuration Simulation
-     * @param waitingProjects ProjectQueue
-     * @param runningProjects ProjectQueue
+     * 
+     * @param configuration
+     *            Simulation
+     * @param waitingProjects
+     *            ProjectQueue
+     * @param runningProjects
+     *            ProjectQueue
      */
     public PFMContext(Simulation configuration, ProjectQueue waitingProjects, ProjectQueue runningProjects) {
         super();
@@ -23,6 +27,7 @@ public class PFMContext {
 
     /**
      * Method getConfiguration.
+     * 
      * @return Simulation
      */
     public Simulation getConfiguration() {
@@ -30,19 +35,21 @@ public class PFMContext {
     }
 
     /**
-     * Method getWaitingProjects.
-     * @return ProjectQueue
-     */
-    public ProjectQueue getWaitingProjects() {
-        return waitingProjects;
-    }
-
-    /**
      * Method getRunningProjects.
+     * 
      * @return ProjectQueue
      */
     public ProjectQueue getRunningProjects() {
         return runningProjects;
+    }
+
+    /**
+     * Method getWaitingProjects.
+     * 
+     * @return ProjectQueue
+     */
+    public ProjectQueue getWaitingProjects() {
+        return waitingProjects;
     }
 
 }

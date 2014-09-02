@@ -7,7 +7,7 @@ import de.nobio.pfmsim.Util;
 
 /**
  * @author nobio
-
+ * 
  * 
  * @version $Revision: 1.0 $
  */
@@ -18,8 +18,11 @@ public class EqualDistribution<T> implements IDistribution<Double> {
 
     /**
      * Constructor for EqualDistribution.
-     * @param start Double
-     * @param end Double
+     * 
+     * @param start
+     *            Double
+     * @param end
+     *            Double
      */
     public EqualDistribution(Double start, Double end) {
         this.start = start;
@@ -28,6 +31,7 @@ public class EqualDistribution<T> implements IDistribution<Double> {
 
     /**
      * Method getRandomeValue.
+     * 
      * @return Double
      * @see de.nobio.pfmsim.distribution.IDistribution#getRandomeValue()
      */

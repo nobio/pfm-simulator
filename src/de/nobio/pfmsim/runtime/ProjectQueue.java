@@ -12,20 +12,10 @@ public class ProjectQueue extends PriorityQueue<Project> {
     private long sum = 0;
 
     /**
-     * Method getTotalWorkload.
-     * @return Long
-     */
-    public Long getTotalWorkload() {
-        Long sumWorkload = 0L;
-        for (Project project : this) {
-            sumWorkload += project.getTotalWorkload();
-        }
-        return sumWorkload;
-    }
-
-    /**
      * Method addTimeEvent.
-     * @param amount long
+     * 
+     * @param amount
+     *            long
      * @return Double
      */
     public Double addTimeEvent(long amount) {
@@ -35,7 +25,17 @@ public class ProjectQueue extends PriorityQueue<Project> {
     }
 
     /**
+     * Method getAvg.
+     * 
+     * @return Double
+     */
+    public Double getAvg() {
+        return 0D;
+    }
+
+    /**
      * Method getDuration.
+     * 
      * @return Double
      */
     public Double getDuration() {
@@ -43,10 +43,15 @@ public class ProjectQueue extends PriorityQueue<Project> {
     }
 
     /**
-     * Method getAvg.
-     * @return Double
+     * Method getTotalWorkload.
+     * 
+     * @return Long
      */
-    public Double getAvg() {
-        return 0D;
+    public Long getTotalWorkload() {
+        Long sumWorkload = 0L;
+        for (Project project : this) {
+            sumWorkload += project.getTotalWorkload();
+        }
+        return sumWorkload;
     }
 }

@@ -17,8 +17,9 @@ public class ProjectSetupHandler {
      * 
      * @param config
      *            the complete
-    
-     * @return the configuration of the portfolio * @throws CloneNotSupportedException
+     * 
+     * @return the configuration of the portfolio * @throws
+     *         CloneNotSupportedException
      */
     public Portfolio setup(Simulation config) throws CloneNotSupportedException {
         setupPhases(config);
@@ -29,25 +30,10 @@ public class ProjectSetupHandler {
     }
 
     /**
-     * Method setupPhases.
-     * @param config Simulation
-     * @throws CloneNotSupportedException
-     */
-    private void setupPhases(Simulation config) throws CloneNotSupportedException {
-        // setup phases
-        for (Category category : config.getProjectCategoryPool()) {
-            List<Phase> tmpPhases = new ArrayList<Phase>();
-            for (Phase phase : category.getPhases()) {
-                tmpPhases.add(config.getPhaseFromPool(phase.getRef()));
-            }
-            category.getPhases().removeAll(category.getPhases());
-            category.getPhases().addAll(tmpPhases);
-        }
-    }
-
-    /**
      * Method setupNeededSkills.
-     * @param config Simulation
+     * 
+     * @param config
+     *            Simulation
      */
     private void setupNeededSkills(Simulation config) {
         // setup skills for this project
@@ -66,8 +52,29 @@ public class ProjectSetupHandler {
     }
 
     /**
+     * Method setupPhases.
+     * 
+     * @param config
+     *            Simulation
+     * @throws CloneNotSupportedException
+     */
+    private void setupPhases(Simulation config) throws CloneNotSupportedException {
+        // setup phases
+        for (Category category : config.getProjectCategoryPool()) {
+            List<Phase> tmpPhases = new ArrayList<Phase>();
+            for (Phase phase : category.getPhases()) {
+                tmpPhases.add(config.getPhaseFromPool(phase.getRef()));
+            }
+            category.getPhases().removeAll(category.getPhases());
+            category.getPhases().addAll(tmpPhases);
+        }
+    }
+
+    /**
      * Method setupProjectCategoryDistribution.
-     * @param config Simulation
+     * 
+     * @param config
+     *            Simulation
      */
     private void setupProjectCategoryDistribution(Simulation config) {
         WeightedDistribution<String> projectCategoryDistribution = new WeightedDistribution<String>();
@@ -84,7 +91,9 @@ public class ProjectSetupHandler {
 
     /**
      * Method validate.
-     * @param config Simulation
+     * 
+     * @param config
+     *            Simulation
      */
     public void validate(Simulation config) {
 
